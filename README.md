@@ -15,7 +15,7 @@ This app helps you take control over your budget. You can:
 - Spring Boot 2.4.2
 
 ## Development status
-Project planning
+Developing version 0.1
 
 ## Example of use
 
