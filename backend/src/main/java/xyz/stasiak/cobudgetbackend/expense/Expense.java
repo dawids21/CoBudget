@@ -1,18 +1,18 @@
 package xyz.stasiak.cobudgetbackend.expense;
 
-import org.bson.types.Decimal128;
+import java.math.BigDecimal;
 
 public class Expense {
 
     private int day;
-    private Decimal128 amount;
+    private BigDecimal amount;
     private String category;
     private String subcategory;
 
     public Expense() {
     }
 
-    public Expense(int day, Decimal128 amount, String category, String subcategory) {
+    public Expense(int day, BigDecimal amount, String category, String subcategory) {
         this.day = day;
         this.amount = amount;
         this.category = category;
@@ -27,11 +27,11 @@ public class Expense {
         this.day = day;
     }
 
-    public Decimal128 getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Decimal128 amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

@@ -1,9 +1,9 @@
 package xyz.stasiak.cobudgetbackend.expense;
 
-import org.bson.types.Decimal128;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Document("Expenses")
@@ -16,12 +16,12 @@ public class MonthlyExpenses {
     private int month;
     private int year;
     private Set<Expense> expenses;
-    private Decimal128 sumOfExpenses;
+    private BigDecimal sumOfExpenses;
 
     public MonthlyExpenses() {
     }
 
-    public MonthlyExpenses(String username, int month, int year, Set<Expense> expenses, Decimal128 sumOfExpenses) {
+    public MonthlyExpenses(String username, int month, int year, Set<Expense> expenses, BigDecimal sumOfExpenses) {
         this.username = username;
         this.month = month;
         this.year = year;
@@ -30,7 +30,7 @@ public class MonthlyExpenses {
     }
 
     public MonthlyExpenses(String id, String username, int month, int year, Set<Expense> expenses,
-                           Decimal128 sumOfExpenses) {
+                           BigDecimal sumOfExpenses) {
         this.id = id;
         this.username = username;
         this.month = month;
@@ -79,11 +79,11 @@ public class MonthlyExpenses {
         this.expenses = expenses;
     }
 
-    public Decimal128 getSumOfExpenses() {
+    public BigDecimal getSumOfExpenses() {
         return sumOfExpenses;
     }
 
-    public void setSumOfExpenses(Decimal128 sumOfExpenses) {
+    public void setSumOfExpenses(BigDecimal sumOfExpenses) {
         this.sumOfExpenses = sumOfExpenses;
     }
 }
