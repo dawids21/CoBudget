@@ -14,13 +14,17 @@ body {
 }
 
 .container-landing {
-    display: flex;
+    background-color: var(--light-gray);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     margin: auto;
-    max-width: 25rem;
-    height: 100vh;
+    min-width: 30rem;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
@@ -36,7 +40,6 @@ body {
 
 .container-landing > h2 {
     font-size: var(--text-xxl);
-    background-color: var(--light-gray);
     color: var(--dark-green);
     font-weight: lighter;
     width: 100%;
