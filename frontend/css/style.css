@@ -58,6 +58,7 @@ body {
     padding: 1rem 0;
     font-size: var(--text-xl);
     transition: 0.2s;
+    border: 0;
 }
 
 .button:hover {
