@@ -1,0 +1,13 @@
+@import "_typography.css";
+@import "_spacing.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: var(--text-base-size);
+    font-family: var(--text-primary-font) sans-serif;
+}

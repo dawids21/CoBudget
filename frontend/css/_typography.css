@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Lato&display=swap');
+
+html {
+    font-size: 100%;
+}
+
+:root {
+
+    --text-decorative-font: 'Courgette', cursive;
+    --text-primary-font: 'Lato', sans-serif;
+
+    --text-base-size: 1rem;
+    --text-scale-ratio: 1.25;
+
+    --text-xs: calc(var(--text-base-size) / (var(--text-scale-ratio) * var(--text-scale-ratio)));
+    --text-sm: calc(var(--text-base-size) / var(--text-scale-ratio));
+    --text-md: calc(var(--text-base-size) * var(--text-scale-ratio));
+    --text-lg: calc(var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xl: calc(var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xxl: calc(var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-xxxl: calc(var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio) * var(--text-scale-ratio));
+}
+
+h1 {
+    font-size: var(--text-xl);
+}
+
+h2 {
+    font-size: var(--text-lg);
+}
+
+h3 {
+    font-size: var(--text-md);
+}
+
+h4 {
+    font-size: var(--text-base-size);
+}
+
+h5 {
+    font-size: var(--text-sm);
+}
+
+h6 {
+    font-size: var(--text-xs);
+}
+
+.text--xs {
+    font-size: var(--text-xs);
+}
+
+.text--sm {
+    font-size: var(--text-sm);
+}
+
+.text--base {
+    font-size: var(--text-base-size);
+}
+
+.text--md {
+    font-size: var(--text-md);
+}
+
+.text--lg {
+    font-size: var(--text-lg);
+}
+
+.text--xl {
+    font-size: var(--text-xl);
+}
+
+.text--xxl {
+    font-size: var(--text-xxl);
+}
+
+.text--xxxl {
+    font-size: var(--text-xxxl);
+}
