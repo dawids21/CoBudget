@@ -1,5 +1,6 @@
 @import "_typography.css";
 @import "_spacing.css";
+@import "_colors.css";
 
 * {
     margin: 0;
@@ -9,5 +10,56 @@
 
 body {
     font-size: var(--text-base-size);
-    font-family: var(--text-primary-font) sans-serif;
+    font-family: var(--text-primary-font), sans-serif;
+}
+
+.container-landing {
+    display: flex;
+    margin: auto;
+    max-width: 25rem;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    width: 100%;
+    text-align: center;
+    font-size: 5rem;
+    font-family: var(--text-decorative-font);
+    background-color: var(--main-green);
+    color: var(--white);
+    font-weight: lighter;
+}
+
+.container-landing > h2 {
+    font-size: var(--text-xxl);
+    background-color: var(--light-gray);
+    color: var(--dark-green);
+    font-weight: lighter;
+    width: 100%;
+    padding: 3rem 0;
+}
+
+.button-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    text-decoration: none;
+    color: var(--white);
+    background-color: var(--main-green);
+    width: 100%;
+    padding: 1rem 0;
+    font-size: var(--text-xl);
+    transition: 0.2s;
+}
+
+.button:hover {
+    background-color: var(--claret);
 }

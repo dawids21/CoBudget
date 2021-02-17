@@ -9,7 +9,7 @@ html {
     --text-decorative-font: 'Courgette', cursive;
     --text-primary-font: 'Lato', sans-serif;
 
-    --text-base-size: 1rem;
+    --text-base-size: 1.4rem;
     --text-scale-ratio: 1.25;
 
     --text-xs: calc(var(--text-base-size) / (var(--text-scale-ratio) * var(--text-scale-ratio)));
