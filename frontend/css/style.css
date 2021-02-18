@@ -123,6 +123,7 @@ body {
 @media all and (max-width: 568px) {
     :root {
         --text-base-size: 1rem;
+        --space-unit: 1rem;
     }
 
     .container-landing {
