@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <title>CoBudget | Login</title>
+    <script src="js/app.js"></script>
+</head>
+<body>
+<div class="container-landing">
+    <h1 class="logo">CoBudget</h1>
+    <a class="back-button" href="./"><i class="fas fa-angle-left fa-2x"></i></a>
+    <form class="login-form" method="post" action="#">
+        <div class="login-data">
+            <label for="name">Name:</label>
+            <input class="form-text" type="text" id="name" name="name" required>
+            <label class="margin-top--sm" for="email">Email:</label>
+            <input class="form-text" type="email" id="email" name="email" required>
+            <label class="margin-top--sm" for="password">Password:</label>
+            <input class="form-text" type="password" id="password" name="password" onkeyup="checkPasswords();" required>
+            <label class="margin-top--sm" for="password-repeat">Repeat password:</label>
+            <input class="form-text" type="password" id="password-repeat" name="password" onkeyup="checkPasswords();"
+                   required>
+            <span id='password-message' class="margin-top--xs">&nbsp;</span>
+        </div>
+        <input id="sign-in-submit" type="submit" class="button" name="sign-in" value="Sign in">
+    </form>
+</div>
+</body>
+</html>
