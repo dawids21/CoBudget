@@ -41,6 +41,12 @@ body {
     margin: var(--space-xl) var(--space-unit);
 }
 
+.back-button {
+    align-self: flex-start;
+    color: var(--main-green);
+    margin: var(--space-xs) var(--space-unit);
+}
+
 .button-box {
     display: flex;
     width: 100%;
@@ -54,13 +60,64 @@ body {
     background-color: var(--main-green);
     width: 100%;
     padding: 1rem 0;
-    font-size: var(--text-xl);
+    font-size: var(--text-md);
     transition: 0.2s;
     border: 0;
 }
 
 .button:hover {
     background-color: var(--claret);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.login-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-unit);
+    width: 80%;
+}
+
+.login-data > label {
+    color: var(--dark-green);
+    width: 100%;
+    text-align: left;
+}
+
+.form-text {
+    width: 100%;
+    height: var(--text-xl);
+    border: 1px solid var(--dark-green);
+    padding: 0 var(--space-sm);
+    font-family: var(--text-primary-font), sans-serif;
+    font-size: var(--text-sm);
+}
+
+.form-text:focus {
+    border: 2px solid var(--main-green);
+    outline: none;
+}
+
+#remember-me-flexbox {
+    margin-top: var(--space-unit);
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#remember-me-flexbox > input {
+    transform: scale(1.5);
+    margin-right: var(--space-sm);
 }
 
 @media all and (max-width: 568px) {
@@ -72,12 +129,17 @@ body {
         margin: auto;
     }
 
-    .button {
+    .login-form > .button {
         width: 8rem;
-        margin: var(--space-xs);
+        margin-bottom: var(--space-unit);
     }
 
     .button-box {
         flex-direction: column;
+    }
+
+    #remember-me-flexbox > input {
+        transform: scale(1);
+        margin-right: var(--space-xxs);
     }
 }

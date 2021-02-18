@@ -10,14 +10,18 @@
 <body>
 <div class="container-landing">
     <h1 class="logo">CoBudget</h1>
-    <a href="./"><i class="fas fa-angle-left fa-2x"></i></a>
+    <a class="back-button" href="./"><i class="fas fa-angle-left fa-2x"></i></a>
     <form class="login-form" method="post" action="#">
-        <label for="email">Email:</label>
-        <input class="form-text" type="text" id="email" name="email">
-        <label for="password">Password:</label>
-        <input class="form-text" type="password" id="password" name="password">
-        <input type="checkbox" id="remember-me" name="remember-me">
-        <label for="remember-me">Remember me</label>
+        <div class="login-data">
+            <label for="email">Email:</label>
+            <input class="form-text" type="text" id="email" name="email">
+            <label class="margin-top--sm" for="password">Password:</label>
+            <input class="form-text" type="password" id="password" name="password">
+            <div id="remember-me-flexbox">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me">Remember me</label>
+            </div>
+        </div>
         <input type="submit" class="button" name="sign-in" value="Sign in">
     </form>
 </div>
