@@ -15,12 +15,8 @@ body {
 
 .container-landing {
     background-color: var(--light-gray);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    margin: auto;
-    min-width: 30rem;
+    margin: 10rem auto;
+    max-width: 40rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +27,7 @@ body {
 .logo {
     width: 100%;
     text-align: center;
-    font-size: 5rem;
+    font-size: var(--text-xxxl);
     font-family: var(--text-decorative-font);
     background-color: var(--main-green);
     color: var(--white);
@@ -42,8 +38,7 @@ body {
     font-size: var(--text-xxl);
     color: var(--dark-green);
     font-weight: lighter;
-    width: 100%;
-    padding: 3rem 0;
+    margin: var(--space-xl) var(--space-unit);
 }
 
 .button-box {
@@ -66,4 +61,23 @@ body {
 
 .button:hover {
     background-color: var(--claret);
+}
+
+@media all and (max-width: 568px) {
+    :root {
+        --text-base-size: 1rem;
+    }
+
+    .container-landing {
+        margin: auto;
+    }
+
+    .button {
+        width: 8rem;
+        margin: var(--space-xs);
+    }
+
+    .button-box {
+        flex-direction: column;
+    }
 }
