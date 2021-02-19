@@ -47,8 +47,8 @@ class MonthlyExpensesRepositoryIT {
 
     @Test
     void return_user_monthly_expenses_for_given_month_and_year() {
-        var user = new User("abc", "");
-        var anotherUser = new User("def", "");
+        var user = new User("abc@def.com", "", "");
+        var anotherUser = new User("def@efg.com", "", "");
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 2, 2021));
         monthlyExpensesRepository.save(exampleMonthlyExpenses(anotherUser, 2, 2021));
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 1, 2021));

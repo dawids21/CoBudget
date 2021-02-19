@@ -51,6 +51,6 @@ class UserRepositoryIT {
     }
 
     private User exampleUser() {
-        return new User("John", "Power");
+        return new User("abc@def.com", "Power", "John");
     }
 }
