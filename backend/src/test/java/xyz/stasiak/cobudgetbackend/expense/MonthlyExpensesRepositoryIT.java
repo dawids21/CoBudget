@@ -55,10 +55,10 @@ class MonthlyExpensesRepositoryIT {
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 2, 2020));
 
         Optional<MonthlyExpenses> result =
-                 monthlyExpensesRepository.findByUsernameAndMonthAndYear(user.getUsername(), 2, 2021);
+                 monthlyExpensesRepository.findByUsernameAndMonthAndYear(user.getEmail(), 2, 2021);
         assertThat(result).isNotEmpty();
         assertThat(result.get()
-                         .getUsername()).isEqualTo(user.getUsername());
+                         .getUsername()).isEqualTo(user.getEmail());
     }
 
     private MonthlyExpenses exampleMonthlyExpenses(User user, int month, int year) {
@@ -68,6 +68,6 @@ class MonthlyExpensesRepositoryIT {
         var sum = expenses.stream()
                           .map(Expense::getAmount)
                           .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return new MonthlyExpenses(user.getUsername(), month, year, expenses, sum);
+        return new MonthlyExpenses(user.getEmail(), month, year, expenses, sum);
     }
 }

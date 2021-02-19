@@ -10,5 +10,5 @@ interface MongoUserRepository extends UserRepository, MongoRepository<User, Stri
     Optional<User> findById(String id);
 
     @Override
-    Optional<User> findByUsername(String username);
+    Optional<User> findByEmail(String email);
 }
