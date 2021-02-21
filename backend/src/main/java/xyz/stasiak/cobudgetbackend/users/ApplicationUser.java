@@ -1,5 +1,6 @@
 package xyz.stasiak.cobudgetbackend.users;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -9,7 +10,10 @@ public class ApplicationUser {
     @Id
     private String id;
 
+    //TODO add validation
     private String email;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String name;
 
