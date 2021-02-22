@@ -34,6 +34,9 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 @ActiveProfiles("integration")
 class ApplicationUserControllerIT {
 
+    @Autowired
+    private SecurityProperties securityProperties;
+
     @BeforeEach
     void setUp() {
         RestAssuredMockMvc.enableLoggingOfRequestAndResponseIfValidationFails();
@@ -43,7 +46,7 @@ class ApplicationUserControllerIT {
     void hide_password_field_after_user_signup(@Autowired WebApplicationContext context) {
         ApplicationUser testUser = testUser();
         given().webAppContextSetup(context)
-               .body(testUserJson())
+               .body(testUserSignUpJson())
                .contentType(ContentType.JSON)
                .when()
                .post("/user/sign-up")
@@ -74,16 +77,39 @@ class ApplicationUserControllerIT {
                .statusCode(200);
     }
 
+    @Test
+    void return_valid_jwt_token_after_successful_sign_up_and_login(@Autowired WebApplicationContext context) {
+        given().webAppContextSetup(context)
+               .body(testUserLoginJson())
+               .contentType(ContentType.JSON)
+               .when()
+               .post("/user/login")
+               .then()
+               .statusCode(200)
+               .header(securityProperties.getJwt()
+                                         .getHeaderString(),
+                       Matchers.matchesRegex("^Bearer [a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"));
+    }
+
     private ApplicationUser testUser() {
         return new ApplicationUser("abc@def.com", "1234", "John");
     }
 
-    private String testUserJson() {
+    private String testUserSignUpJson() {
         return """
                  {
                     "email": "abc@def.com",
                     "password": "1234",
                     "name": "John"
+                 }
+                 """;
+    }
+
+    private String testUserLoginJson() {
+        return """
+                 {
+                    "email": "abc@def.com",
+                    "password": "1234"
                  }
                  """;
     }
