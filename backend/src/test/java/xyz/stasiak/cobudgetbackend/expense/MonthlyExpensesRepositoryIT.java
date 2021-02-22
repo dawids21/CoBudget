@@ -9,7 +9,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import xyz.stasiak.cobudgetbackend.users.User;
+import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -47,27 +47,27 @@ class MonthlyExpensesRepositoryIT {
 
     @Test
     void return_user_monthly_expenses_for_given_month_and_year() {
-        var user = new User("abc", "");
-        var anotherUser = new User("def", "");
+        var user = new ApplicationUser("abc@def.com", "", "");
+        var anotherUser = new ApplicationUser("def@efg.com", "", "");
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 2, 2021));
         monthlyExpensesRepository.save(exampleMonthlyExpenses(anotherUser, 2, 2021));
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 1, 2021));
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 2, 2020));
 
         Optional<MonthlyExpenses> result =
-                 monthlyExpensesRepository.findByUsernameAndMonthAndYear(user.getUsername(), 2, 2021);
+                 monthlyExpensesRepository.findByUsernameAndMonthAndYear(user.getEmail(), 2, 2021);
         assertThat(result).isNotEmpty();
         assertThat(result.get()
-                         .getUsername()).isEqualTo(user.getUsername());
+                         .getUsername()).isEqualTo(user.getEmail());
     }
 
-    private MonthlyExpenses exampleMonthlyExpenses(User user, int month, int year) {
+    private MonthlyExpenses exampleMonthlyExpenses(ApplicationUser applicationUser, int month, int year) {
         var expenses = Set.of(new Expense(10, new BigDecimal("10.23"), "food", "for home"),
                               new Expense(2, new BigDecimal("18.23"), "hygiene", "chemistry"),
                               new Expense(1, new BigDecimal(20), "fun", "swimming pool"));
         var sum = expenses.stream()
                           .map(Expense::getAmount)
                           .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return new MonthlyExpenses(user.getUsername(), month, year, expenses, sum);
+        return new MonthlyExpenses(applicationUser.getEmail(), month, year, expenses, sum);
     }
 }

@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataMongoTest(excludeAutoConfiguration = EmbeddedMongoAutoConfiguration.class)
 @Testcontainers
 @ActiveProfiles("integration")
-class UserRepositoryIT {
+class ApplicationUserRepositoryIT {
 
     private static final MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo");
 
@@ -38,19 +38,19 @@ class UserRepositoryIT {
     }
 
     @Autowired
-    private UserRepository userRepository;
+    private ApplicationUserRepository applicationUserRepository;
 
     @Test
     void find_user_with_given_id() {
         var user = exampleUser();
-        userRepository.save(user);
+        applicationUserRepository.save(user);
 
-        var found = userRepository.findByUsername(user.getUsername());
+        var found = applicationUserRepository.findByEmail(user.getEmail());
 
         assertThat(found).isNotEmpty();
     }
 
-    private User exampleUser() {
-        return new User("John", "Power");
+    private ApplicationUser exampleUser() {
+        return new ApplicationUser("abc@def.com", "Power", "John");
     }
 }
