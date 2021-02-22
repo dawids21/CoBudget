@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.context.WebApplicationContext;
@@ -52,6 +53,25 @@ class ApplicationUserControllerIT {
                .body("name", Matchers.equalTo(testUser.getName()))
                .body("", Matchers.not(Matchers.hasKey("password")));
 
+    }
+
+    @Test
+    void return_unauthorized_when_request_without_authentication(@Autowired WebApplicationContext context) {
+        given().webAppContextSetup(context)
+               .when()
+               .get("/user/auth")
+               .then()
+               .statusCode(403);
+    }
+
+    @Test
+    @WithMockUser
+    void return_status_ok_when_request_authorized(@Autowired WebApplicationContext context) {
+        given().webAppContextSetup(context)
+               .when()
+               .get("/user/auth")
+               .then()
+               .statusCode(200);
     }
 
     private ApplicationUser testUser() {
