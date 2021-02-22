@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.context.WebApplicationContext;
@@ -68,27 +67,27 @@ class ApplicationUserControllerIT {
     }
 
     @Test
-    @WithMockUser
-    void return_status_ok_when_request_authorized(@Autowired WebApplicationContext context) {
+    void return_valid_jwt_token_after_successful_sign_up_and_login(@Autowired WebApplicationContext context) {
+        var token = given().webAppContextSetup(context)
+                           .body(testUserLoginJson())
+                           .contentType(ContentType.JSON)
+                           .when()
+                           .post("/user/login")
+                           .then()
+                           .statusCode(200)
+                           .header(securityProperties.getJwt()
+                                                     .getHeaderString(), Matchers.matchesRegex(
+                                    "^Bearer [a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"))
+                           .extract()
+                           .header(securityProperties.getJwt()
+                                                     .getHeaderString());
         given().webAppContextSetup(context)
+               .header(securityProperties.getJwt()
+                                         .getHeaderString(), token)
                .when()
                .get("/user/auth")
                .then()
                .statusCode(200);
-    }
-
-    @Test
-    void return_valid_jwt_token_after_successful_sign_up_and_login(@Autowired WebApplicationContext context) {
-        given().webAppContextSetup(context)
-               .body(testUserLoginJson())
-               .contentType(ContentType.JSON)
-               .when()
-               .post("/user/login")
-               .then()
-               .statusCode(200)
-               .header(securityProperties.getJwt()
-                                         .getHeaderString(),
-                       Matchers.matchesRegex("^Bearer [a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"));
     }
 
     private ApplicationUser testUser() {
