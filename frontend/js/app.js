@@ -1,3 +1,7 @@
+import FetchService from "./service/FetchService.js";
+
+const fetchService = new FetchService();
+
 const
     checkPasswords = () => {
         if (document.getElementById('password').value ===
@@ -19,3 +23,34 @@ document.getElementById('password').addEventListener('keyup',
     checkPasswords)
 document.getElementById('password-repeat').addEventListener('keyup',
     checkPasswords)
+
+async function submitForm(e, form) {
+    e.preventDefault();
+    const btnSubmit = document.getElementById('sign-in-submit');
+    btnSubmit.disabled = true;
+    setTimeout(() => btnSubmit.disabled = false, 2000);
+    const jsonFormData = buildJsonFormData(form);
+    const headers = buildHeaders();
+    const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/sign-up', headers, jsonFormData);
+    console.log(response);
+}
+
+function buildJsonFormData(form) {
+    const jsonFormData = {};
+    for (const pair of new FormData(form)) {
+        jsonFormData[pair[0]] = pair[1];
+    }
+    return jsonFormData;
+}
+
+function buildHeaders(authorization = null) {
+    return {
+        "Content-Type": "application/json",
+        // "Authorization": (authorization) ? authorization : "Bearer TOKEN_MISSING"
+    };
+}
+
+const form = document.getElementById('register-form');
+form.addEventListener('submit', function (e) {
+    submitForm(e, this);
+});
