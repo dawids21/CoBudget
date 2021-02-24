@@ -22,6 +22,13 @@ public class MonthlyExpenses {
     public MonthlyExpenses() {
     }
 
+    public MonthlyExpenses(String username, MonthAndYearDate date) {
+        this.username = username;
+        this.date = date;
+        expenses = Set.of();
+        sumOfExpenses = BigDecimal.ZERO;
+    }
+
     public MonthlyExpenses(String username, MonthAndYearDate date, Set<Expense> expenses, BigDecimal sumOfExpenses) {
         this.username = username;
         this.date = date;
@@ -50,10 +57,6 @@ public class MonthlyExpenses {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public Month getMonth() {
         return date.getMonth();
     }
@@ -62,23 +65,23 @@ public class MonthlyExpenses {
         return date.getYear();
     }
 
-    public void setDate(MonthAndYearDate date) {
-        this.date = date;
-    }
-
     public Set<Expense> getExpenses() {
         return expenses;
-    }
-
-    public void setExpenses(Set<Expense> expenses) {
-        this.expenses = expenses;
     }
 
     public BigDecimal getSumOfExpenses() {
         return sumOfExpenses;
     }
 
-    public void setSumOfExpenses(BigDecimal sumOfExpenses) {
-        this.sumOfExpenses = sumOfExpenses;
+    public void addToSumOfExpenses(BigDecimal toAdd) {
+        sumOfExpenses = sumOfExpenses.add(toAdd);
+    }
+
+    public void subtractToSumOfExpenses(BigDecimal toSubtract) {
+        sumOfExpenses = sumOfExpenses.subtract(toSubtract);
+    }
+
+    public void addExpense(Expense expense) {
+        expenses.add(expense);
     }
 }
