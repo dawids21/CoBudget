@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AddExpenseServiceTest {
 
-    private final AddExpenseService addExpenseService = new TestExpenseConfig().addExpenseService();
+    private final AddExpenseService addExpenseService = new TestExpenseConfig().testAddExpenseService();
 
     @Test
     void add_expense_to_current_month_monthly_expenses_entity_for_given_user() {

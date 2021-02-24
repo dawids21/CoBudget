@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class ExpensesConfig {
 
     @Bean
-    public AddExpenseService addExpenseService() {
-        return new AddExpenseService();
+    public AddExpenseService addExpenseService(MonthlyExpensesRepository repository) {
+        return new AddExpenseService(repository);
     }
 }

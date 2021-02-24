@@ -1,9 +1,15 @@
 package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
+import static org.mockito.Mockito.mock;
+
 class TestExpenseConfig extends ExpensesConfig {
 
-    @Override
-    public AddExpenseService addExpenseService() {
-        return super.addExpenseService();
+    MonthlyExpensesRepository testMonthlyExpensesRepository() {
+        //TODO write logic
+        return mock(MonthlyExpensesRepository.class);
+    }
+
+    AddExpenseService testAddExpenseService() {
+        return addExpenseService(testMonthlyExpensesRepository());
     }
 }
