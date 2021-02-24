@@ -5,8 +5,10 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 
 import java.math.BigDecimal;
+import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -64,8 +66,16 @@ class AddExpenseServiceTest {
 
     @Test
     void create_monthly_expenses_if_doesnt_exist_yet() {
-        //TODO implement create_monthly_expenses_if_doesnt_exist_yet
-        throw new UnsupportedOperationException("Not implemented yet");
+        var expense = testExpense();
+        var user = TestExpenseConfig.TEST_USER;
+        var currentDate = new MonthAndYearDate(Month.MAY, 2019);
+
+        addExpenseService.add(expense, currentDate, user.getEmail());
+
+        MonthlyExpenses monthlyExpenses = getSavedMonthlyExpenses();
+        assertThat(monthlyExpenses.getExpenses()).hasSize(1);
+        assertThat(monthlyExpenses.getMonth()).isEqualTo(currentDate.getMonth());
+        assertThat(monthlyExpenses.getYear()).isEqualTo(currentDate.getYear());
     }
 
     @Test

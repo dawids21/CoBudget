@@ -23,20 +23,18 @@ class TestExpenseConfig extends ExpensesConfig {
     MonthlyExpensesRepository testMonthlyExpensesRepository() {
         var repository = mock(MonthlyExpensesRepository.class);
         when(repository.findByUsernameAndDate(anyString(), any())).then(invocation -> {
+
             var username = invocation.getArgument(0, String.class);
             var date = invocation.getArgument(1, MonthAndYearDate.class);
-            if (username.equals(TEST_USER.getEmail())) {
-                if (date.equals(CURRENT_DATE)) {
-                    return Optional.of(TEST_MONTHLY_EXPENSES);
-                } else {
-                    return Optional.of(
-                             new MonthlyExpenses("1", TEST_USER.getEmail(), new MonthAndYearDate(Month.APRIL, 2019),
-                                                 new HashSet<>(), BigDecimal.ZERO));
-                }
+
+            if (username.equals(TEST_USER.getEmail()) && date.equals(CURRENT_DATE)) {
+                return Optional.of(TEST_MONTHLY_EXPENSES);
             } else {
                 return Optional.empty();
             }
+
         });
+
         return repository;
     }
 
