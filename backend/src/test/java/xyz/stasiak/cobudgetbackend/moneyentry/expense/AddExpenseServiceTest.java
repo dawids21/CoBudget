@@ -55,8 +55,17 @@ class AddExpenseServiceTest {
 
     @Test
     void add_expense_value_to_sum_of_expenses_in_monthly_expense() {
-        //TODO implement add_expense_value_to_sum_of_expenses_in_monthly_expense
-        throw new UnsupportedOperationException("Not implemented yet");
+        var expense = testExpense();
+        var user = TestExpenseConfig.TEST_USER;
+        var currentDate = TestExpenseConfig.CURRENT_DATE;
+        var sumBefore = TestExpenseConfig.TEST_MONTHLY_EXPENSES.getSumOfExpenses();
+
+        addExpenseService.add(expense, currentDate, user.getEmail());
+
+        var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
+        verify(monthlyExpensesRepository).save(argument.capture());
+        var monthlyExpenses = argument.getValue();
+        assertThat(monthlyExpenses.getSumOfExpenses()).isEqualTo(sumBefore.add(expense.getAmount()));
     }
 
     @Test
