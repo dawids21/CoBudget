@@ -6,6 +6,7 @@ import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 
 import java.math.BigDecimal;
 import java.time.Month;
+import java.util.HashSet;
 import java.util.Set;
 
 @Document("Expenses")
@@ -25,7 +26,7 @@ public class MonthlyExpenses {
     public MonthlyExpenses(String username, MonthAndYearDate date) {
         this.username = username;
         this.date = date;
-        expenses = Set.of();
+        expenses = new HashSet<>();
         sumOfExpenses = BigDecimal.ZERO;
     }
 
