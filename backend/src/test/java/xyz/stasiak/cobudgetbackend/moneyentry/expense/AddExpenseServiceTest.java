@@ -4,6 +4,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+
+import java.math.BigDecimal;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AddExpenseServiceTest {
@@ -19,8 +25,18 @@ class AddExpenseServiceTest {
 
     @Test
     void add_expense_to_current_month_monthly_expenses_entity_for_given_user() {
-        //TODO implement add_expense_to_current_month_monthly_expenses_entity_for_given_user
-        throw new UnsupportedOperationException("Not implemented yet");
+        var expense = new Expense(3, BigDecimal.valueOf(5), "", "");
+        var user = TestExpenseConfig.TEST_USER;
+        var currentDate = TestExpenseConfig.CURRENT_DATE;
+
+        addExpenseService.add(expense, currentDate, user.getEmail());
+       
+        var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
+        verify(monthlyExpensesRepository).save(argument.capture());
+        var monthlyExpenses = argument.getValue();
+        assertThat(monthlyExpenses.getMonth()).isEqualTo(currentDate.getMonth());
+        assertThat(monthlyExpenses.getYear()).isEqualTo(currentDate.getYear());
+        assertThat(monthlyExpenses.getExpenses()).contains(expense);
     }
 
     @Test
