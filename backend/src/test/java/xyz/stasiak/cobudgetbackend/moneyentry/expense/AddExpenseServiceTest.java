@@ -25,18 +25,32 @@ class AddExpenseServiceTest {
 
     @Test
     void add_expense_to_current_month_monthly_expenses_entity_for_given_user() {
-        var expense = new Expense(3, BigDecimal.valueOf(5), "", "");
+        var expense = testExpense();
         var user = TestExpenseConfig.TEST_USER;
         var currentDate = TestExpenseConfig.CURRENT_DATE;
 
         addExpenseService.add(expense, currentDate, user.getEmail());
-       
+
+        var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
+        verify(monthlyExpensesRepository).findByUsernameAndDate(user.getEmail(), currentDate);
+        verify(monthlyExpensesRepository).save(argument.capture());
+        var monthlyExpenses = argument.getValue();
+        assertThat(monthlyExpenses.getExpenses()).contains(expense);
+    }
+
+    @Test
+    void add_expense_to_monthly_expense_with_current_date() {
+        var expense = testExpense();
+        var user = TestExpenseConfig.TEST_USER;
+        var currentDate = TestExpenseConfig.CURRENT_DATE;
+
+        addExpenseService.add(expense, currentDate, user.getEmail());
+
         var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
         verify(monthlyExpensesRepository).save(argument.capture());
         var monthlyExpenses = argument.getValue();
         assertThat(monthlyExpenses.getMonth()).isEqualTo(currentDate.getMonth());
         assertThat(monthlyExpenses.getYear()).isEqualTo(currentDate.getYear());
-        assertThat(monthlyExpenses.getExpenses()).contains(expense);
     }
 
     @Test
@@ -61,5 +75,9 @@ class AddExpenseServiceTest {
     void reject_adding_when_amount_is_negative() {
         //TODO implement reject_adding_when_amount_is_negative
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    private Expense testExpense() {
+        return new Expense(3, BigDecimal.valueOf(5), "", "");
     }
 }
