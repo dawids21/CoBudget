@@ -1,5 +1,6 @@
 package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,14 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AddExpenseServiceTest {
 
-    private final AddExpenseService addExpenseService = new TestExpenseConfig().testAddExpenseService();
+    private AddExpenseService addExpenseService;
+    private MonthlyExpensesRepository monthlyExpensesRepository;
+
+    @BeforeEach
+    void setUp() {
+        monthlyExpensesRepository = new TestExpenseConfig().testMonthlyExpensesRepository();
+        addExpenseService = new TestExpenseConfig().tesAddExpenseService(monthlyExpensesRepository);
+    }
 
     @Test
     void add_expense_to_current_month_monthly_expenses_entity_for_given_user() {
