@@ -2,6 +2,7 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -13,28 +14,25 @@ public class MonthlyExpenses {
     private String id;
 
     private String username;
-    private int month;
-    private int year;
+    private MonthAndYearDate date;
     private Set<Expense> expenses;
     private BigDecimal sumOfExpenses;
 
     public MonthlyExpenses() {
     }
 
-    public MonthlyExpenses(String username, int month, int year, Set<Expense> expenses, BigDecimal sumOfExpenses) {
+    public MonthlyExpenses(String username, MonthAndYearDate date, Set<Expense> expenses, BigDecimal sumOfExpenses) {
         this.username = username;
-        this.month = month;
-        this.year = year;
+        this.date = date;
         this.expenses = expenses;
         this.sumOfExpenses = sumOfExpenses;
     }
 
-    public MonthlyExpenses(String id, String username, int month, int year, Set<Expense> expenses,
+    public MonthlyExpenses(String id, String username, MonthAndYearDate date, Set<Expense> expenses,
                            BigDecimal sumOfExpenses) {
         this.id = id;
         this.username = username;
-        this.month = month;
-        this.year = year;
+        this.date = date;
         this.expenses = expenses;
         this.sumOfExpenses = sumOfExpenses;
     }
@@ -56,19 +54,15 @@ public class MonthlyExpenses {
     }
 
     public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
+        return date.getMonth();
     }
 
     public int getYear() {
-        return year;
+        return date.getYear();
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setDate(MonthAndYearDate date) {
+        this.date = date;
     }
 
     public Set<Expense> getExpenses() {
