@@ -20,9 +20,9 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> add(@RequestBody Expense expense, @RequestBody MonthAndYearDate date,
-                                       Principal principal) {
-        Expense result = addExpenseService.add(expense, date, principal.getName());
+    public ResponseEntity<MonthlyExpenses> add(@RequestBody Expense expense, @RequestBody MonthAndYearDate date,
+                                               Principal principal) {
+        MonthlyExpenses result = addExpenseService.add(expense, date, principal.getName());
         return ResponseEntity.ok(result);
     }
 }
