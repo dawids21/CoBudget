@@ -17,6 +17,8 @@ class TestExpenseConfig extends ExpensesConfig {
 
     static final ApplicationUser TEST_USER = new ApplicationUser("1", "abc@abc.com", "pass", "John");
     static final MonthAndYearDate CURRENT_DATE = new MonthAndYearDate(Month.FEBRUARY, 2020);
+    static final MonthlyExpenses TEST_MONTHLY_EXPENSES =
+             new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, new HashSet<>(), BigDecimal.ZERO);
 
     MonthlyExpensesRepository testMonthlyExpensesRepository() {
         var repository = mock(MonthlyExpensesRepository.class);
@@ -25,8 +27,7 @@ class TestExpenseConfig extends ExpensesConfig {
             var date = invocation.getArgument(1, MonthAndYearDate.class);
             if (username.equals(TEST_USER.getEmail())) {
                 if (date.equals(CURRENT_DATE)) {
-                    return Optional.of(new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, new HashSet<>(),
-                                                           BigDecimal.ZERO));
+                    return Optional.of(TEST_MONTHLY_EXPENSES);
                 } else {
                     return Optional.of(
                              new MonthlyExpenses("1", TEST_USER.getEmail(), new MonthAndYearDate(Month.APRIL, 2019),
