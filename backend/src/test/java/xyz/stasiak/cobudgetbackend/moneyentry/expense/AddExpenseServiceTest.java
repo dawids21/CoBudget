@@ -4,13 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
+import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
 
 import java.math.BigDecimal;
 import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.verify;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -78,10 +82,17 @@ class AddExpenseServiceTest {
         assertThat(monthlyExpenses.getYear()).isEqualTo(currentDate.getYear());
     }
 
-    @Test
-    void reject_adding_when_day_is_out_of_range_for_given_month() {
-        //TODO implement reject_adding_when_day_is_out_of_range_for_given_month
-        throw new UnsupportedOperationException("Not implemented yet");
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 32})
+    void throws_exception_when_creating_expense_with_days_out_of_month_range(int day) {
+        var user = TestExpenseConfig.TEST_USER;
+        var currentDate = TestExpenseConfig.CURRENT_DATE;
+        var expense = new Expense(day, BigDecimal.ZERO, "", "");
+
+        assertThatThrownBy(() -> addExpenseService.add(expense, currentDate, user.getEmail())).isInstanceOf(
+                 EntryException.class)
+                                                                                              .hasMessageContaining(
+                                                                                                       "day");
     }
 
     @Test
