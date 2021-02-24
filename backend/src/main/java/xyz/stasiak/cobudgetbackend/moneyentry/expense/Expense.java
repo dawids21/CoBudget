@@ -1,5 +1,7 @@
 package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
+import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
+
 import java.math.BigDecimal;
 
 public class Expense {
@@ -11,9 +13,16 @@ public class Expense {
 
     public Expense(int day, BigDecimal amount, String category, String subcategory) {
         this.day = day;
-        this.amount = amount;
+        this.amount = checkAmount(amount);
         this.category = category;
         this.subcategory = subcategory;
+    }
+
+    private BigDecimal checkAmount(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new EntryException("amount can't be negative");
+        }
+        return amount;
     }
 
     public int getDay() {
