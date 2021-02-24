@@ -9,12 +9,14 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 import xyz.stasiak.cobudgetbackend.moneyentry.expense.Expense;
 import xyz.stasiak.cobudgetbackend.moneyentry.expense.MonthlyExpenses;
 import xyz.stasiak.cobudgetbackend.moneyentry.expense.MonthlyExpensesRepository;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 
 import java.math.BigDecimal;
+import java.time.Month;
 import java.util.Optional;
 import java.util.Set;
 
@@ -71,6 +73,7 @@ class MonthlyExpensesRepositoryIT {
         var sum = expenses.stream()
                           .map(Expense::getAmount)
                           .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return new MonthlyExpenses(applicationUser.getEmail(), month, year, expenses, sum);
+        return new MonthlyExpenses(applicationUser.getEmail(), new MonthAndYearDate(Month.of(month), year), expenses,
+                                   sum);
     }
 }
