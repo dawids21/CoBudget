@@ -1,5 +1,7 @@
 package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
+import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
+
 import java.util.Optional;
 
 public interface MonthlyExpensesRepository {
@@ -8,5 +10,5 @@ public interface MonthlyExpensesRepository {
 
     Optional<MonthlyExpenses> findByUsername(String username);
 
-    Optional<MonthlyExpenses> findByUsernameAndMonthAndYear(String username, int month, int year);
+    Optional<MonthlyExpenses> findByUsernameAndDate(String username, MonthAndYearDate date);
 }

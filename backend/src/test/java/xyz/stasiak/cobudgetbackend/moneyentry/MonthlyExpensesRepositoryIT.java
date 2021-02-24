@@ -59,8 +59,9 @@ class MonthlyExpensesRepositoryIT {
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 1, 2021));
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 2, 2020));
 
-        Optional<MonthlyExpenses> result =
-                 monthlyExpensesRepository.findByUsernameAndMonthAndYear(user.getEmail(), 2, 2021);
+        Optional<MonthlyExpenses> result = monthlyExpensesRepository.findByUsernameAndDate(user.getEmail(),
+                                                                                           new MonthAndYearDate(
+                                                                                                    Month.of(2), 2021));
         assertThat(result).isNotEmpty();
         assertThat(result.get()
                          .getUsername()).isEqualTo(user.getEmail());
