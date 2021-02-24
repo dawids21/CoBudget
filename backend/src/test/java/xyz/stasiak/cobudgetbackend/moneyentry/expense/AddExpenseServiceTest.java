@@ -97,8 +97,8 @@ class AddExpenseServiceTest {
 
     @Test
     void reject_adding_when_amount_is_negative() {
-        //TODO implement reject_adding_when_amount_is_negative
-        throw new UnsupportedOperationException("Not implemented yet");
+        assertThatThrownBy(() -> new Expense(3, BigDecimal.valueOf(-1), "", "")).isInstanceOf(EntryException.class)
+                                                                                .hasMessageContaining("amount");
     }
 
     private Expense testExpense() {
