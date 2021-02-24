@@ -3,6 +3,7 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
+import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
 
 import java.math.BigDecimal;
 import java.time.Month;
@@ -75,7 +76,24 @@ public class MonthlyExpenses {
     }
 
     public void addExpense(Expense expense) {
+        if (expense.getDay() <= 0 || expense.getDay() > getMonth().length(isLeapYear())) {
+            throw new EntryException("day field is out of range for month " + getMonth().name());
+        }
         sumOfExpenses = sumOfExpenses.add(expense.getAmount());
         expenses.add(expense);
+    }
+
+    private boolean isLeapYear() {
+        boolean isLeap;
+        if (getYear() % 4 == 0) {
+            if (getYear() % 100 == 0) {
+                isLeap = getYear() % 400 == 0;
+            } else {
+                isLeap = true;
+            }
+        } else {
+            isLeap = false;
+        }
+        return isLeap;
     }
 }
