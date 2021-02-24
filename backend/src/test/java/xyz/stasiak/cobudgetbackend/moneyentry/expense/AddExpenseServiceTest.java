@@ -32,9 +32,7 @@ class AddExpenseServiceTest {
         addExpenseService.add(expense, currentDate, user.getEmail());
 
         var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
-        verify(monthlyExpensesRepository).findByUsernameAndDate(user.getEmail(), currentDate);
-        verify(monthlyExpensesRepository).save(argument.capture());
-        var monthlyExpenses = argument.getValue();
+        var monthlyExpenses = getSavedMonthlyExpenses();
         assertThat(monthlyExpenses.getExpenses()).contains(expense);
     }
 
@@ -46,9 +44,7 @@ class AddExpenseServiceTest {
 
         addExpenseService.add(expense, currentDate, user.getEmail());
 
-        var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
-        verify(monthlyExpensesRepository).save(argument.capture());
-        var monthlyExpenses = argument.getValue();
+        MonthlyExpenses monthlyExpenses = getSavedMonthlyExpenses();
         assertThat(monthlyExpenses.getMonth()).isEqualTo(currentDate.getMonth());
         assertThat(monthlyExpenses.getYear()).isEqualTo(currentDate.getYear());
     }
@@ -62,9 +58,7 @@ class AddExpenseServiceTest {
 
         addExpenseService.add(expense, currentDate, user.getEmail());
 
-        var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
-        verify(monthlyExpensesRepository).save(argument.capture());
-        var monthlyExpenses = argument.getValue();
+        MonthlyExpenses monthlyExpenses = getSavedMonthlyExpenses();
         assertThat(monthlyExpenses.getSumOfExpenses()).isEqualTo(sumBefore.add(expense.getAmount()));
     }
 
@@ -88,5 +82,11 @@ class AddExpenseServiceTest {
 
     private Expense testExpense() {
         return new Expense(3, BigDecimal.valueOf(5), "", "");
+    }
+
+    private MonthlyExpenses getSavedMonthlyExpenses() {
+        var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
+        verify(monthlyExpensesRepository).save(argument.capture());
+        return argument.getValue();
     }
 }
