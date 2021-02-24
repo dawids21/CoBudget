@@ -73,15 +73,8 @@ public class MonthlyExpenses {
         return sumOfExpenses;
     }
 
-    public void addToSumOfExpenses(BigDecimal toAdd) {
-        sumOfExpenses = sumOfExpenses.add(toAdd);
-    }
-
-    public void subtractToSumOfExpenses(BigDecimal toSubtract) {
-        sumOfExpenses = sumOfExpenses.subtract(toSubtract);
-    }
-
     public void addExpense(Expense expense) {
+        sumOfExpenses = sumOfExpenses.add(expense.getAmount());
         expenses.add(expense);
     }
 }
