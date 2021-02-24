@@ -9,6 +9,9 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import xyz.stasiak.cobudgetbackend.moneyentry.expense.Expense;
+import xyz.stasiak.cobudgetbackend.moneyentry.expense.MonthlyExpenses;
+import xyz.stasiak.cobudgetbackend.moneyentry.expense.MonthlyExpensesRepository;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 
 import java.math.BigDecimal;

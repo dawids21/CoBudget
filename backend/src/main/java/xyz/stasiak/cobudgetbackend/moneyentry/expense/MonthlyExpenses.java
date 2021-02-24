@@ -1,4 +1,4 @@
-package xyz.stasiak.cobudgetbackend.moneyentry;
+package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
