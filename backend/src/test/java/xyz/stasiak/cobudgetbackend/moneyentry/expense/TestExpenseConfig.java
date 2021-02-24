@@ -5,9 +5,10 @@ import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 
 import java.math.BigDecimal;
 import java.time.Month;
+import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -19,11 +20,11 @@ class TestExpenseConfig extends ExpensesConfig {
 
     MonthlyExpensesRepository testMonthlyExpensesRepository() {
         var repository = mock(MonthlyExpensesRepository.class);
-        when(repository.findByUsername(anyString())).then(invocation -> {
+        when(repository.findByUsernameAndDate(anyString(), any())).then(invocation -> {
             var username = invocation.getArgument(0, String.class);
             if (username.equals(TEST_USER.getEmail())) {
-                return Optional.of(
-                         new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, Set.of(), BigDecimal.ZERO));
+                return Optional.of(new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, new HashSet<>(),
+                                                       BigDecimal.ZERO));
             } else {
                 return Optional.empty();
             }
