@@ -3,9 +3,14 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 
+import java.math.BigDecimal;
 import java.time.Month;
+import java.util.Optional;
+import java.util.Set;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TestExpenseConfig extends ExpensesConfig {
 
@@ -13,8 +18,17 @@ class TestExpenseConfig extends ExpensesConfig {
     static final MonthAndYearDate CURRENT_DATE = new MonthAndYearDate(Month.FEBRUARY, 2020);
 
     MonthlyExpensesRepository testMonthlyExpensesRepository() {
-        //TODO write logic
-        return mock(MonthlyExpensesRepository.class);
+        var repository = mock(MonthlyExpensesRepository.class);
+        when(repository.findByUsername(anyString())).then(invocation -> {
+            var username = invocation.getArgument(0, String.class);
+            if (username.equals(TEST_USER.getEmail())) {
+                return Optional.of(
+                         new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, Set.of(), BigDecimal.ZERO));
+            } else {
+                return Optional.empty();
+            }
+        });
+        return repository;
     }
 
     AddExpenseService testAddExpenseService() {
