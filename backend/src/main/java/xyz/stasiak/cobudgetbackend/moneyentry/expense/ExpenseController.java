@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 
 import java.security.Principal;
 
@@ -19,8 +20,9 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> add(@RequestBody Expense expense, Principal principal) {
-        Expense result = addExpenseService.add(expense, principal.getName());
+    public ResponseEntity<Expense> add(@RequestBody Expense expense, @RequestBody MonthAndYearDate date,
+                                       Principal principal) {
+        Expense result = addExpenseService.add(expense, date, principal.getName());
         return ResponseEntity.ok(result);
     }
 }
