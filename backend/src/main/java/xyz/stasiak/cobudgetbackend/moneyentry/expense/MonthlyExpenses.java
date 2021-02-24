@@ -2,6 +2,7 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import xyz.stasiak.cobudgetbackend.date.Month;
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 
 import java.math.BigDecimal;
@@ -53,7 +54,7 @@ public class MonthlyExpenses {
         this.username = username;
     }
 
-    public int getMonth() {
+    public Month getMonth() {
         return date.getMonth();
     }
 

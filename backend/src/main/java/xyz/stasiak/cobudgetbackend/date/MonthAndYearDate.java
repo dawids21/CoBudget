@@ -2,15 +2,15 @@ package xyz.stasiak.cobudgetbackend.date;
 
 public class MonthAndYearDate {
 
-    private final int month;
+    private final Month month;
     private final int year;
 
-    public MonthAndYearDate(int month, int year) {
+    public MonthAndYearDate(Month month, int year) {
         this.month = month;
         this.year = year;
     }
 
-    public int getMonth() {
+    public Month getMonth() {
         return month;
     }
 
