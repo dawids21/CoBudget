@@ -1,4 +1,4 @@
-package xyz.stasiak.cobudgetbackend.expense;
+package xyz.stasiak.cobudgetbackend.moneyentry;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

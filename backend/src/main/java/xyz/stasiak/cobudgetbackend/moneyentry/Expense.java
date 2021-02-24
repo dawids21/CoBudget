@@ -1,4 +1,4 @@
-package xyz.stasiak.cobudgetbackend.expense;
+package xyz.stasiak.cobudgetbackend.moneyentry;
 
 import java.math.BigDecimal;
 

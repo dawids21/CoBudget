@@ -1,4 +1,4 @@
-package xyz.stasiak.cobudgetbackend.expense;
+package xyz.stasiak.cobudgetbackend.moneyentry;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
