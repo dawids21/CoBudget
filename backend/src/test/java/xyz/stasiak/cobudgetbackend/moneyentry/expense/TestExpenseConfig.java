@@ -15,13 +15,15 @@ import static org.mockito.Mockito.when;
 
 class TestExpenseConfig extends ExpensesConfig {
 
-    static final ApplicationUser TEST_USER = new ApplicationUser("1", "abc@abc.com", "pass", "John");
+    static final String TEST_USERNAME = "abc@abc.com";
+    static final ApplicationUser TEST_USER = new ApplicationUser("1", TEST_USERNAME, "pass", "John");
     static final MonthAndYearDate CURRENT_DATE = new MonthAndYearDate(Month.FEBRUARY, 2020);
     static final MonthlyExpenses TEST_MONTHLY_EXPENSES =
              new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, new HashSet<>(), BigDecimal.ZERO);
 
     MonthlyExpensesRepository testMonthlyExpensesRepository() {
         var repository = mock(MonthlyExpensesRepository.class);
+
         when(repository.findByUsernameAndDate(anyString(), any())).then(invocation -> {
 
             var username = invocation.getArgument(0, String.class);
@@ -34,6 +36,8 @@ class TestExpenseConfig extends ExpensesConfig {
             }
 
         });
+
+        when(repository.save(any())).then(invocation -> invocation.getArgument(0, MonthlyExpenses.class));
 
         return repository;
     }
