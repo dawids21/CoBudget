@@ -43,10 +43,10 @@ class TestExpenseConfig extends ExpensesConfig {
     }
 
     AddExpenseService testAddExpenseService() {
-        return tesAddExpenseService(testMonthlyExpensesRepository());
+        return testAddExpenseService(testMonthlyExpensesRepository());
     }
 
-    AddExpenseService tesAddExpenseService(MonthlyExpensesRepository repository) {
+    AddExpenseService testAddExpenseService(MonthlyExpensesRepository repository) {
         return addExpenseService(repository);
     }
 }

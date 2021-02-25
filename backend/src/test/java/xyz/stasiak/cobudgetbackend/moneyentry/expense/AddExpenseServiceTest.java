@@ -26,7 +26,7 @@ class AddExpenseServiceTest {
     @BeforeEach
     void setUp() {
         monthlyExpensesRepository = new TestExpenseConfig().testMonthlyExpensesRepository();
-        addExpenseService = new TestExpenseConfig().tesAddExpenseService(monthlyExpensesRepository);
+        addExpenseService = new TestExpenseConfig().testAddExpenseService(monthlyExpensesRepository);
     }
 
     @Test
@@ -37,7 +37,6 @@ class AddExpenseServiceTest {
 
         addExpenseService.add(expense, currentDate, user.getEmail());
 
-        var argument = ArgumentCaptor.forClass(MonthlyExpenses.class);
         var monthlyExpenses = getSavedMonthlyExpenses();
         assertThat(monthlyExpenses.getExpenses()).contains(expense);
     }
