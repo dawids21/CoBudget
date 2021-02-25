@@ -3,6 +3,7 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Expense {
 
@@ -39,5 +40,24 @@ public class Expense {
 
     public String getSubcategory() {
         return subcategory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Expense expense = (Expense) o;
+        return getDay() == expense.getDay() && Objects.equals(getAmount(), expense.getAmount()) &&
+               Objects.equals(getCategory(), expense.getCategory()) &&
+               Objects.equals(getSubcategory(), expense.getSubcategory());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDay(), getAmount(), getCategory(), getSubcategory());
     }
 }
