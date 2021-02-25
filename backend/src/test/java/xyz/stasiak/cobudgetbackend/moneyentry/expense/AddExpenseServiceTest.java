@@ -60,7 +60,7 @@ class AddExpenseServiceTest {
         var expense = testExpense();
         var user = TestExpenseConfig.TEST_USER;
         var currentDate = TestExpenseConfig.CURRENT_DATE;
-        var sumBefore = TestExpenseConfig.TEST_MONTHLY_EXPENSES.getSumOfExpenses();
+        var sumBefore = new TestExpenseConfig().TEST_MONTHLY_EXPENSES.getSumOfExpenses();
 
         addExpenseService.add(expense, currentDate, user.getEmail());
 

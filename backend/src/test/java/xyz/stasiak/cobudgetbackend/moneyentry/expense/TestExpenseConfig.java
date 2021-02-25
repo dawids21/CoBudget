@@ -18,7 +18,7 @@ class TestExpenseConfig extends ExpensesConfig {
     static final String TEST_USERNAME = "abc@abc.com";
     static final ApplicationUser TEST_USER = new ApplicationUser("1", TEST_USERNAME, "pass", "John");
     static final MonthAndYearDate CURRENT_DATE = new MonthAndYearDate(Month.FEBRUARY, 2020);
-    static final MonthlyExpenses TEST_MONTHLY_EXPENSES =
+    final MonthlyExpenses TEST_MONTHLY_EXPENSES =
              new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, new HashSet<>(), BigDecimal.ZERO);
 
     MonthlyExpensesRepository testMonthlyExpensesRepository() {
