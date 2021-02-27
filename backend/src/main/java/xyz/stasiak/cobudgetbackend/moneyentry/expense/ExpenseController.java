@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
