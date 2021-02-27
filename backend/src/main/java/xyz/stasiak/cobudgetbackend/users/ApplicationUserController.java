@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/user")
 public class ApplicationUserController {
@@ -24,7 +26,7 @@ public class ApplicationUserController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<ApplicationUser> createUser(@RequestBody ApplicationUser applicationUser) {
+    public ResponseEntity<ApplicationUser> createUser(@Valid @RequestBody ApplicationUser applicationUser) {
         applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
         ApplicationUser user = userRepository.save(applicationUser);
         return ResponseEntity.ok(applicationUser);

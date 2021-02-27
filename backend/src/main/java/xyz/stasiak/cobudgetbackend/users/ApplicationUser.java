@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Email;
+
 @Document(collection = "Users")
 public class ApplicationUser {
 
     @Id
     private String id;
 
-    //TODO add validation
+    @Email
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
