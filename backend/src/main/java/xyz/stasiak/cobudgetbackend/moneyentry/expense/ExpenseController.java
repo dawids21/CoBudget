@@ -17,7 +17,7 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<MonthlyExpenses> add(@RequestBody ExpenseWriteModel toAdd, Principal principal) {
+    public ResponseEntity<MonthlyExpenses> add(@Valid @RequestBody ExpenseWriteModel toAdd, Principal principal) {
         MonthlyExpenses result = addExpenseService.add(toAdd.getExpense(), toAdd.getDate(), principal.getName());
         return ResponseEntity.ok(result);
     }

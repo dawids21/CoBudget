@@ -2,9 +2,13 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 
+import javax.validation.Valid;
+
 public class ExpenseWriteModel {
 
     private final MonthAndYearDate date;
+
+    @Valid
     private final Expense expense;
 
     public ExpenseWriteModel(MonthAndYearDate date, Expense expense) {

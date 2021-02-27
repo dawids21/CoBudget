@@ -2,14 +2,24 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
 import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Expense {
-   
+
     private int day;
+
+    @DecimalMin(value = "0.0", message = "amount can't be negative")
+    @Digits(integer = 15, fraction = 2, message = "amount can have max 2 decimal places")
     private BigDecimal amount;
+
+    @NotBlank(message = "category is mandatory")
     private String category;
+
+    @NotBlank(message = "subcategory is mandatory")
     private String subcategory;
     private String comment;
 
