@@ -5,3 +5,8 @@ security:
     header-string: Authorization
     token-prefix: "Bearer "
     sign-up-url: /user/sign-up
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI}
