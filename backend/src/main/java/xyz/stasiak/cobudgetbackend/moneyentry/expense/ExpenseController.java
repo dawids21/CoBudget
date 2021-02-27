@@ -3,12 +3,14 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
+import xyz.stasiak.cobudgetbackend.validation.ValidationExceptionProcessing;
 
 import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
 @RequestMapping("/expense")
+@ValidationExceptionProcessing
 public class ExpenseController {
 
     private final AddExpenseService addExpenseService;
