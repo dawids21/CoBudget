@@ -45,7 +45,7 @@ class ExpenseControllerIT {
 
     @Test
     @WithMockUser(username = TestExpenseConfig.TEST_USERNAME)
-    void hide_password_field_after_user_signup(@Autowired WebApplicationContext context) {
+    void add_expense_from_json_request(@Autowired WebApplicationContext context) {
         var result = given().webAppContextSetup(context)
                             .body(testExpenseWriteModel())
                             .contentType(ContentType.JSON)
