@@ -7,11 +7,18 @@ import java.util.Objects;
 
 public class Expense {
 
-    private final int day;
-    private final BigDecimal amount;
-    private final String category;
-    private final String subcategory;
-    private final String comment;
+    private int day;
+    private BigDecimal amount;
+    private String category;
+    private String subcategory;
+    private String comment;
+
+    public Expense() {
+    }
+
+    public Expense(int day, BigDecimal amount, String category, String subcategory) {
+        this(day, amount, category, subcategory, null);
+    }
 
     public Expense(int day, BigDecimal amount, String category, String subcategory, String comment) {
         this.day = day;

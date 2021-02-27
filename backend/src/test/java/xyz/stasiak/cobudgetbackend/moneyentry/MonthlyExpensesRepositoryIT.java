@@ -69,7 +69,7 @@ class MonthlyExpensesRepositoryIT {
 
     private MonthlyExpenses exampleMonthlyExpenses(ApplicationUser applicationUser, int month, int year) {
         var expenses = Set.of(new Expense(10, new BigDecimal("10.23"), "food", "for home"),
-                              new Expense(2, new BigDecimal("18.23"), "hygiene", "chemistry"),
+                              new Expense(2, new BigDecimal("18.23"), "hygiene", "chemistry", "Shower gel"),
                               new Expense(1, new BigDecimal(20), "fun", "swimming pool"));
         var sum = expenses.stream()
                           .map(Expense::getAmount)
