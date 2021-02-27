@@ -1,11 +1,14 @@
 package xyz.stasiak.cobudgetbackend.date;
 
+import javax.validation.constraints.Positive;
 import java.time.Month;
 import java.util.Objects;
 
 public class MonthAndYearDate {
 
     private final Month month;
+
+    @Positive(message = "year must be greater than 0")
     private final int year;
 
     public MonthAndYearDate(Month month, int year) {

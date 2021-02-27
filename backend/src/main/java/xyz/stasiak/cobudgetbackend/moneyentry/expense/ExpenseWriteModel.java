@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 public class ExpenseWriteModel {
 
+    @Valid
     private final MonthAndYearDate date;
 
     @Valid
