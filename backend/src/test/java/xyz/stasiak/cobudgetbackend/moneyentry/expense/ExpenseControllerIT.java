@@ -22,6 +22,7 @@ import xyz.stasiak.cobudgetbackend.security.SecurityConfig;
 import xyz.stasiak.cobudgetbackend.security.SecurityProperties;
 import xyz.stasiak.cobudgetbackend.security.WebSecurity;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUserRepository;
+import xyz.stasiak.cobudgetbackend.validation.ValidationExceptionHandler;
 
 import java.math.BigDecimal;
 
@@ -32,7 +33,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("integration")
 @Testcontainers
 @ContextConfiguration(classes = {ExpenseControllerIT.RestAssuredConfig.class, ExpensesConfig.class,
-                                 SecurityConfig.class, WebSecurity.class, SecurityProperties.class})
+                                 SecurityConfig.class, WebSecurity.class, SecurityProperties.class,
+                                 ValidationExceptionHandler.class})
 @WebMvcTest
 class ExpenseControllerIT {
 
