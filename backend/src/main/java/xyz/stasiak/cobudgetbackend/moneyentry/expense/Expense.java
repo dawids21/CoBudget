@@ -11,12 +11,14 @@ public class Expense {
     private final BigDecimal amount;
     private final String category;
     private final String subcategory;
+    private final String comment;
 
-    public Expense(int day, BigDecimal amount, String category, String subcategory) {
+    public Expense(int day, BigDecimal amount, String category, String subcategory, String comment) {
         this.day = day;
         this.amount = checkAmount(amount);
         this.category = category;
         this.subcategory = subcategory;
+        this.comment = comment;
     }
 
     private BigDecimal checkAmount(BigDecimal amount) {
@@ -42,6 +44,10 @@ public class Expense {
         return subcategory;
     }
 
+    public String getComment() {
+        return comment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -53,11 +59,12 @@ public class Expense {
         Expense expense = (Expense) o;
         return getDay() == expense.getDay() && Objects.equals(getAmount(), expense.getAmount()) &&
                Objects.equals(getCategory(), expense.getCategory()) &&
-               Objects.equals(getSubcategory(), expense.getSubcategory());
+               Objects.equals(getSubcategory(), expense.getSubcategory()) &&
+               Objects.equals(getComment(), expense.getComment());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDay(), getAmount(), getCategory(), getSubcategory());
+        return Objects.hash(getDay(), getAmount(), getCategory(), getSubcategory(), getComment());
     }
 }
