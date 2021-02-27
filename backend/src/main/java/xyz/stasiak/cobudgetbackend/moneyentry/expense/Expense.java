@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Expense {
-
+   
     private int day;
     private BigDecimal amount;
     private String category;
