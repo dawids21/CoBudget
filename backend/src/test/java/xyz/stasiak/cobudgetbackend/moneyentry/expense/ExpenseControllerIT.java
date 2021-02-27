@@ -22,6 +22,7 @@ import xyz.stasiak.cobudgetbackend.security.SecurityConfig;
 import xyz.stasiak.cobudgetbackend.security.SecurityProperties;
 import xyz.stasiak.cobudgetbackend.security.WebSecurity;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUserRepository;
+import xyz.stasiak.cobudgetbackend.validation.ValidationExceptionHandler;
 
 import java.math.BigDecimal;
 
@@ -32,7 +33,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("integration")
 @Testcontainers
 @ContextConfiguration(classes = {ExpenseControllerIT.RestAssuredConfig.class, ExpensesConfig.class,
-                                 SecurityConfig.class, WebSecurity.class, SecurityProperties.class})
+                                 SecurityConfig.class, WebSecurity.class, SecurityProperties.class,
+                                 ValidationExceptionHandler.class})
 @WebMvcTest
 class ExpenseControllerIT {
 
@@ -43,7 +45,7 @@ class ExpenseControllerIT {
 
     @Test
     @WithMockUser(username = TestExpenseConfig.TEST_USERNAME)
-    void hide_password_field_after_user_signup(@Autowired WebApplicationContext context) {
+    void add_expense_from_json_request(@Autowired WebApplicationContext context) {
         var result = given().webAppContextSetup(context)
                             .body(testExpenseWriteModel())
                             .contentType(ContentType.JSON)
