@@ -22,7 +22,7 @@ public class ApplicationUser {
     //TODO make constructor package-private
     //TODO write method for constructing user object with default config
 
-    public ApplicationUser() {
+    ApplicationUser() {
     }
 
     public ApplicationUser(String email, String password, String name) {
