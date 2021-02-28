@@ -19,6 +19,9 @@ public class ApplicationUser {
     private String password;
     private String name;
 
+    //TODO make constructor package-private
+    //TODO write method for constructing user object with default config
+
     public ApplicationUser() {
     }
 
