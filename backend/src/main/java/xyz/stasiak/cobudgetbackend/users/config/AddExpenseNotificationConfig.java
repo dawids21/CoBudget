@@ -1,13 +1,13 @@
 package xyz.stasiak.cobudgetbackend.users.config;
 
-public class AddExpenseConfig {
+public class AddExpenseNotificationConfig {
 
     private boolean enabled;
 
-    public AddExpenseConfig() {
+    public AddExpenseNotificationConfig() {
     }
 
-    public AddExpenseConfig(boolean enabled) {
+    public AddExpenseNotificationConfig(boolean enabled) {
         this.enabled = enabled;
     }
 
