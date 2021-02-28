@@ -31,13 +31,6 @@ public class ApplicationUser {
         this.name = name;
     }
 
-    public ApplicationUser(String id, String email, String password, String name) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
-
     public String getId() {
         return id;
     }
