@@ -19,10 +19,6 @@ public class UserConfiguration {
         return addExpenseNotificationConfig;
     }
 
-    public void setAddExpenseNotificationConfig(AddExpenseNotificationConfig addExpenseNotificationConfig) {
-        this.addExpenseNotificationConfig = addExpenseNotificationConfig;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
