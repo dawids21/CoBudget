@@ -30,8 +30,14 @@ async function submitForm(e, form) {
     setTimeout(() => btnSubmit.disabled = false, 2000);
     const jsonFormData = buildJsonFormData(form);
     const headers = buildHeaders();
-    const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/sign-up', headers, jsonFormData);
-    console.log(response);
+    try {
+        const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/sign-up', headers, jsonFormData);
+        alert(`Hello ${response.name ? response.name : "user"}! Now you can login`);
+    } catch (e) {
+        alert("Cannot perform sign up. Please try again");
+        return;
+    }
+    window.location.href = "/";
 }
 
 function buildJsonFormData(form) {
