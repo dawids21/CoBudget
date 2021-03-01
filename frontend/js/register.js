@@ -2,27 +2,26 @@ import FetchService from "./service/FetchService.js";
 
 const fetchService = new FetchService();
 
-const
-    checkPasswords = () => {
-        if (document.getElementById('password').value ===
-            document.getElementById('password-repeat').value) {
-            document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
-                .getPropertyValue('--main-green');
-            document.getElementById('password-message').innerHTML = 'Passwords are the same';
-            document.getElementById('sign-in-submit').disabled = false;
-        } else {
-            document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
-                .getPropertyValue('--claret');
+const checkPasswords = () => {
+    if (document.getElementById('password').value ===
+        document.getElementById('password-repeat').value) {
+        document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
+            .getPropertyValue('--main-green');
+        document.getElementById('password-message').innerHTML = 'Passwords are the same';
+        document.getElementById('sign-in-submit').disabled = false;
+    } else {
+        document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
+            .getPropertyValue('--claret');
 
-            document.getElementById('password-message').innerHTML = 'Passwords are not the same';
-            document.getElementById('sign-in-submit').disabled = true;
-        }
+        document.getElementById('password-message').innerHTML = 'Passwords are not the same';
+        document.getElementById('sign-in-submit').disabled = true;
     }
+};
 
 document.getElementById('password').addEventListener('keyup',
-    checkPasswords)
+    checkPasswords);
 document.getElementById('password-repeat').addEventListener('keyup',
-    checkPasswords)
+    checkPasswords);
 
 async function submitForm(e, form) {
     e.preventDefault();
@@ -43,10 +42,9 @@ function buildJsonFormData(form) {
     return jsonFormData;
 }
 
-function buildHeaders(authorization = null) {
+function buildHeaders() {
     return {
         "Content-Type": "application/json",
-        // "Authorization": (authorization) ? authorization : "Bearer TOKEN_MISSING"
     };
 }
 
