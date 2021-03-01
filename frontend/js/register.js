@@ -32,7 +32,8 @@ async function submitForm(e, form) {
     const headers = buildHeaders();
     try {
         const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/sign-up', headers, jsonFormData);
-        alert(`Hello ${response.name ? response.name : "user"}! Now you can login`);
+        const jsonResponse = response.json();
+        alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
     } catch (e) {
         alert("Cannot perform sign up. Please try again");
         return;
