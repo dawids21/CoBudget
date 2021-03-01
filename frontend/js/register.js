@@ -8,13 +8,13 @@ const checkPasswords = () => {
         document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
             .getPropertyValue('--main-green');
         document.getElementById('password-message').innerHTML = 'Passwords are the same';
-        document.getElementById('sign-in-submit').disabled = false;
+        document.getElementById('sign-up-submit').disabled = false;
     } else {
         document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
             .getPropertyValue('--claret');
 
         document.getElementById('password-message').innerHTML = 'Passwords are not the same';
-        document.getElementById('sign-in-submit').disabled = true;
+        document.getElementById('sign-up-submit').disabled = true;
     }
 };
 
@@ -25,7 +25,7 @@ document.getElementById('password-repeat').addEventListener('keyup',
 
 async function submitForm(e, form) {
     e.preventDefault();
-    const btnSubmit = document.getElementById('sign-in-submit');
+    const btnSubmit = document.getElementById('sign-up-submit');
     btnSubmit.disabled = true;
     setTimeout(() => btnSubmit.disabled = false, 2000);
     const jsonFormData = buildJsonFormData(form);
