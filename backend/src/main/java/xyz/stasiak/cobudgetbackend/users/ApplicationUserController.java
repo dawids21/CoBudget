@@ -26,10 +26,10 @@ public class ApplicationUserController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<ApplicationUserReadModel> createUser(@Valid @RequestBody ApplicationUser applicationUser) {
-        applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
-        ApplicationUser user = userRepository.save(applicationUser);
-        return ResponseEntity.ok(new ApplicationUserReadModel(applicationUser));
+    public ResponseEntity<ApplicationUserReadModel> createUser(
+             @Valid @RequestBody ApplicationUserWriteModel applicationUser) {
+        ApplicationUser user = userRepository.save(applicationUser.toApplicationUser(bCryptPasswordEncoder));
+        return ResponseEntity.ok(new ApplicationUserReadModel(user));
         //TODO handle when email already exists
     }
 }
