@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class UserConfiguration {
 
-    private final AddExpenseNotificationConfig addExpenseNotificationConfig = new AddExpenseNotificationConfig();
+    private AddExpenseNotificationConfig addExpenseNotificationConfig = new AddExpenseNotificationConfig();
 
     public static UserConfiguration defaultConfiguration() {
         var config = new UserConfiguration();
@@ -15,12 +15,12 @@ public class UserConfiguration {
     public UserConfiguration() {
     }
 
-    public boolean isAddExpenseNotificationEnabled() {
-        return addExpenseNotificationConfig.isEnabled();
+    public AddExpenseNotificationConfig getAddExpenseNotificationConfig() {
+        return addExpenseNotificationConfig;
     }
 
-    public void toggleAddExpenseNotification() {
-        addExpenseNotificationConfig.setEnabled(!addExpenseNotificationConfig.isEnabled());
+    public void setAddExpenseNotificationConfig(AddExpenseNotificationConfig addExpenseNotificationConfig) {
+        this.addExpenseNotificationConfig = addExpenseNotificationConfig;
     }
 
     @Override
