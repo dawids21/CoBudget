@@ -56,6 +56,7 @@ class AddExpenseServiceTest {
 
     @Test
     void add_expense_value_to_sum_of_expenses_in_monthly_expense() {
+
         var expense = testExpense();
         var user = TestExpenseConfig.TEST_USER;
         var currentDate = TestExpenseConfig.CURRENT_DATE;

@@ -3,6 +3,7 @@ package xyz.stasiak.cobudgetbackend.users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import xyz.stasiak.cobudgetbackend.users.config.UserConfiguration;
 
 import javax.validation.constraints.Email;
 
@@ -18,8 +19,12 @@ public class ApplicationUser {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String name;
+    private UserConfiguration userConfiguration = UserConfiguration.defaultConfiguration();
 
-    public ApplicationUser() {
+    //TODO make constructor package-private
+    //TODO write method for constructing user object with default config
+
+    ApplicationUser() {
     }
 
     public ApplicationUser(String email, String password, String name) {
@@ -28,11 +33,11 @@ public class ApplicationUser {
         this.name = name;
     }
 
-    public ApplicationUser(String id, String email, String password, String name) {
-        this.id = id;
+    public ApplicationUser(String email, String password, String name, UserConfiguration userConfiguration) {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.userConfiguration = userConfiguration;
     }
 
     public String getId() {
@@ -65,5 +70,13 @@ public class ApplicationUser {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public UserConfiguration getUserConfiguration() {
+        return userConfiguration;
+    }
+
+    public void setUserConfiguration(UserConfiguration userConfiguration) {
+        this.userConfiguration = userConfiguration;
     }
 }

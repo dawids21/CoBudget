@@ -53,7 +53,8 @@ class ApplicationUserControllerIT {
                .statusCode(200)
                .body("email", Matchers.equalTo(testUser.getEmail()))
                .body("name", Matchers.equalTo(testUser.getName()))
-               .body("", Matchers.not(Matchers.hasKey("password")));
+               .body("", Matchers.not(Matchers.hasKey("password")))
+               .body("", Matchers.not(Matchers.hasKey("userConfiguration")));
 
     }
 
