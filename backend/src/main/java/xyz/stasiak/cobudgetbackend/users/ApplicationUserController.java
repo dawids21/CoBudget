@@ -4,12 +4,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import xyz.stasiak.cobudgetbackend.users.config.UserConfiguration;
+import xyz.stasiak.cobudgetbackend.validation.ValidationExceptionProcessing;
 
 import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
 @RequestMapping("/user")
+@ValidationExceptionProcessing
 public class ApplicationUserController {
 
     private final ApplicationUserRepository userRepository;
