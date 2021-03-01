@@ -10,12 +10,13 @@ async function submitForm(e, form) {
     const jsonFormData = buildJsonFormData(form);
     const headers = buildHeaders();
     try {
-        const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/sign-up', headers, jsonFormData);
+        const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/login', headers, jsonFormData);
+        localStorage.setItem('token', response.token);
     } catch (e) {
         alert("Cannot perform login. Please try again");
         return;
     }
-    window.location.href = "/monthView.html";
+    // window.location.href = "/monthView.html";
 }
 
 function buildJsonFormData(form) {
