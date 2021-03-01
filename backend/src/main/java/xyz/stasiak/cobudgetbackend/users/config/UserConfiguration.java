@@ -12,7 +12,7 @@ public class UserConfiguration {
         return config;
     }
 
-    UserConfiguration() {
+    public UserConfiguration() {
     }
 
     public boolean isAddExpenseNotificationEnabled() {
