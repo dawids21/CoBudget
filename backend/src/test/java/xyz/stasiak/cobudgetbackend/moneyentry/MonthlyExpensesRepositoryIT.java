@@ -1,4 +1,4 @@
-package xyz.stasiak.cobudgetbackend.expense;
+package xyz.stasiak.cobudgetbackend.moneyentry;
 
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +9,14 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
+import xyz.stasiak.cobudgetbackend.moneyentry.expense.Expense;
+import xyz.stasiak.cobudgetbackend.moneyentry.expense.MonthlyExpenses;
+import xyz.stasiak.cobudgetbackend.moneyentry.expense.MonthlyExpensesRepository;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 
 import java.math.BigDecimal;
+import java.time.Month;
 import java.util.Optional;
 import java.util.Set;
 
@@ -54,8 +59,9 @@ class MonthlyExpensesRepositoryIT {
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 1, 2021));
         monthlyExpensesRepository.save(exampleMonthlyExpenses(user, 2, 2020));
 
-        Optional<MonthlyExpenses> result =
-                 monthlyExpensesRepository.findByUsernameAndMonthAndYear(user.getEmail(), 2, 2021);
+        Optional<MonthlyExpenses> result = monthlyExpensesRepository.findByUsernameAndDate(user.getEmail(),
+                                                                                           new MonthAndYearDate(
+                                                                                                    Month.of(2), 2021));
         assertThat(result).isNotEmpty();
         assertThat(result.get()
                          .getUsername()).isEqualTo(user.getEmail());
@@ -63,11 +69,12 @@ class MonthlyExpensesRepositoryIT {
 
     private MonthlyExpenses exampleMonthlyExpenses(ApplicationUser applicationUser, int month, int year) {
         var expenses = Set.of(new Expense(10, new BigDecimal("10.23"), "food", "for home"),
-                              new Expense(2, new BigDecimal("18.23"), "hygiene", "chemistry"),
+                              new Expense(2, new BigDecimal("18.23"), "hygiene", "chemistry", "Shower gel"),
                               new Expense(1, new BigDecimal(20), "fun", "swimming pool"));
         var sum = expenses.stream()
                           .map(Expense::getAmount)
                           .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return new MonthlyExpenses(applicationUser.getEmail(), month, year, expenses, sum);
+        return new MonthlyExpenses(applicationUser.getEmail(), new MonthAndYearDate(Month.of(month), year), expenses,
+                                   sum);
     }
 }
