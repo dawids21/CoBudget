@@ -2,9 +2,9 @@ import FetchService from "./service/FetchService.js";
 
 const fetchService = new FetchService();
 
-const checkPasswords = () => {
-    if (document.getElementById('password').value ===
-        document.getElementById('password-repeat').value) {
+function checkPasswords() {
+    if (document.getElementById('signup-password').value ===
+        document.getElementById('signup-password-repeat').value) {
         document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
             .getPropertyValue('--main-green');
         document.getElementById('password-message').innerHTML = 'Passwords are the same';
@@ -16,14 +16,9 @@ const checkPasswords = () => {
         document.getElementById('password-message').innerHTML = 'Passwords are not the same';
         document.getElementById('sign-up-submit').disabled = true;
     }
-};
+}
 
-document.getElementById('password').addEventListener('keyup',
-    checkPasswords);
-document.getElementById('password-repeat').addEventListener('keyup',
-    checkPasswords);
-
-async function submitForm(e, form) {
+async function submitSignUpForm(e, form) {
     e.preventDefault();
     const btnSubmit = document.getElementById('sign-up-submit');
     btnSubmit.disabled = true;
@@ -41,6 +36,39 @@ async function submitForm(e, form) {
     window.location.href = "/";
 }
 
+async function submitLoginForm(e, form) {
+
+    e.preventDefault();
+    const btnSubmit = document.getElementById('sign-in-submit');
+    btnSubmit.disabled = true;
+    setTimeout(() => btnSubmit.disabled = false, 2000);
+    const jsonFormData = buildJsonFormData(form);
+    const headers = buildHeaders();
+    try {
+        const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/login', headers, jsonFormData);
+        localStorage.setItem('token', response.token);
+    } catch (e) {
+        alert("Cannot perform login. Please try again");
+        return;
+    }
+    window.location.href = "/monthView.html";
+}
+
+document.getElementById('signup-password')?.addEventListener('keyup',
+    checkPasswords);
+document.getElementById('signup-password-repeat')?.addEventListener('keyup',
+    checkPasswords);
+
+const registerForm = document.getElementById('register-form');
+registerForm?.addEventListener('submit', function (e) {
+    submitSignUpForm(e, this);
+});
+
+const loginForm = document.getElementById('login-form');
+loginForm?.addEventListener('submit', function (e) {
+    submitLoginForm(e, this);
+});
+
 function buildJsonFormData(form) {
     const jsonFormData = {};
     for (const pair of new FormData(form)) {
@@ -54,8 +82,3 @@ function buildHeaders() {
         "Content-Type": "application/json",
     };
 }
-
-const form = document.getElementById('register-form');
-form.addEventListener('submit', function (e) {
-    submitForm(e, this);
-});
