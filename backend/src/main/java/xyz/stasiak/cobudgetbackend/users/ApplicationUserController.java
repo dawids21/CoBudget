@@ -30,4 +30,5 @@ public class ApplicationUserController {
         return ResponseEntity.ok(applicationUser);
         //TODO handle when email already exists
     }
+    //TODO add method to get information about user
 }
