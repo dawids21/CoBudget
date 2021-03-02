@@ -57,6 +57,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                                     .getSecret()
                                                                     .getBytes()));
 
+        res.setHeader("Content-Type", "application/json");
         String body = "{\"token\": \"" + token + "\"}";
         res.getWriter()
            .write(body);
