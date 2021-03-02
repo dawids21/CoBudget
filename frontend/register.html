@@ -6,26 +6,26 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fontawesome/all.min.css">
     <title>CoBudget | Login</title>
-    <script src="js/app.js"></script>
+    <script type="module" src="js/landing.js" defer></script>
 </head>
 <body>
 <div class="container-landing">
     <h1 class="logo">CoBudget</h1>
     <a class="back-button" href="./"><i class="fas fa-angle-left fa-2x"></i></a>
-    <form class="login-form" method="post" action="#">
+    <form id="register-form" class="login-form">
         <div class="login-data">
-            <label for="name">Name:</label>
-            <input class="form-text" type="text" id="name" name="name" required>
+            <label for="name">Name <span class="text--sm">(optional)</span>:</label>
+            <input class="form-text" type="text" id="name" name="name">
             <label class="margin-top--sm" for="email">Email:</label>
             <input class="form-text" type="email" id="email" name="email" required>
-            <label class="margin-top--sm" for="password">Password:</label>
-            <input class="form-text" type="password" id="password" name="password" onkeyup="checkPasswords();" required>
-            <label class="margin-top--sm" for="password-repeat">Repeat password:</label>
-            <input class="form-text" type="password" id="password-repeat" name="password" onkeyup="checkPasswords();"
+            <label class="margin-top--sm" for="signup-password">Password:</label>
+            <input class="form-text" type="password" id="signup-password" name="password" required>
+            <label class="margin-top--sm" for="signup-password-repeat">Repeat password:</label>
+            <input class="form-text" type="password" id="signup-password-repeat" name="password"
                    required>
             <span id='password-message' class="margin-top--xs">&nbsp;</span>
         </div>
-        <input id="sign-in-submit" type="submit" class="button" name="sign-in" value="Sign in">
+        <input id="sign-up-submit" type="submit" class="button" name="sign-up" value="Sign up">
     </form>
 </div>
 </body>

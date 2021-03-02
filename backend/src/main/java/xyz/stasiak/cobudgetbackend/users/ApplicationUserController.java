@@ -36,7 +36,7 @@ public class ApplicationUserController {
         return ResponseEntity.ok(new ApplicationUserReadModel(user));
         //TODO handle when email already exists
     }
-
+    
     @GetMapping("/config")
     public ResponseEntity<UserConfiguration> getUserConfiguration(Principal principal) {
         var user = userRepository.findByEmail(principal.getName());
@@ -47,4 +47,6 @@ public class ApplicationUserController {
         return ResponseEntity.ok(user.get()
                                      .getUserConfiguration());
     }
+  
+    //TODO add method to get information about user
 }
