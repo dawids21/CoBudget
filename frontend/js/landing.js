@@ -26,7 +26,7 @@ async function submitSignUpForm(e, form) {
     const jsonFormData = buildJsonFormData(form);
     const headers = buildHeaders();
     try {
-        const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/sign-up', headers, jsonFormData);
+        const response = await fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/sign-up', headers, jsonFormData);
         const jsonResponse = response.json();
         alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
     } catch (e) {
@@ -45,7 +45,7 @@ async function submitLoginForm(e, form) {
     const jsonFormData = buildJsonFormData(form);
     const headers = buildHeaders();
     try {
-        const response = await fetchService.performPostHttpRequest('http://localhost:8080/user/login', headers, jsonFormData);
+        const response = await fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/login', headers, jsonFormData);
         localStorage.setItem('token', response.token);
     } catch (e) {
         alert("Cannot perform login. Please try again");
