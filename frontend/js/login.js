@@ -16,7 +16,7 @@ async function submitForm(e, form) {
         alert("Cannot perform login. Please try again");
         return;
     }
-    // window.location.href = "/monthView.html";
+    window.location.href = "/monthView.html";
 }
 
 function buildJsonFormData(form) {
