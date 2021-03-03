@@ -4,8 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
+import xyz.stasiak.cobudgetbackend.moneyentry.EntryNotFound;
+
+import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class GetMonthlyExpensesServiceTest {
@@ -28,7 +33,11 @@ class GetMonthlyExpensesServiceTest {
 
     @Test
     void throw_exception_when_expenses_not_found() {
-        //TODO implement throw_exception_when_expenses_not_found
-        throw new UnsupportedOperationException("Not implemented yet");
+        assertThatThrownBy(() -> service.getExpenses(TestExpenseConfig.TEST_USERNAME,
+                                                     new MonthAndYearDate(Month.SEPTEMBER, 2020))).isInstanceOf(
+                 EntryNotFound.class)
+                                                                                                  .hasMessageContainingAll(
+                                                                                                           "expense",
+                                                                                                           "not found");
     }
 }
