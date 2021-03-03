@@ -31,10 +31,4 @@ public class ExpenseController {
     public ResponseEntity<MonthlyExpenses> getExpenses(@Valid @RequestBody MonthAndYearDate date, Principal principal) {
         return ResponseEntity.ok(getMonthlyExpensesService.getExpenses(principal.getName(), date));
     }
-
-    @ExceptionHandler(EntryException.class)
-    public ResponseEntity<String> handleEntryException(EntryException e) {
-        return ResponseEntity.badRequest()
-                             .body(e.getMessage());
-    }
 }
