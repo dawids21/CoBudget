@@ -1,6 +1,6 @@
 package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 
-import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
+import xyz.stasiak.cobudgetbackend.moneyentry.EntryBadRequestException;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -40,7 +40,7 @@ public class Expense {
 
     private BigDecimal checkAmount(BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) < 0) {
-            throw new EntryException("amount can't be negative");
+            throw new EntryBadRequestException("amount can't be negative");
         }
         return amount;
     }

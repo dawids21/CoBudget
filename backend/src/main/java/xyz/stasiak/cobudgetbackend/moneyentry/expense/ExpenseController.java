@@ -3,7 +3,6 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
-import xyz.stasiak.cobudgetbackend.moneyentry.EntryException;
 import xyz.stasiak.cobudgetbackend.validation.ValidationExceptionProcessing;
 
 import javax.validation.Valid;
