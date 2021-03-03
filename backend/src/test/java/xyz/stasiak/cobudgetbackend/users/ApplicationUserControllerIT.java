@@ -76,15 +76,13 @@ class ApplicationUserControllerIT {
                            .post("/user/login")
                            .then()
                            .statusCode(200)
-                           .header(securityProperties.getJwt()
-                                                     .getHeaderString(), Matchers.matchesRegex(
-                                    "^Bearer [a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"))
+                           .body("token",
+                                 Matchers.matchesRegex("^[a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"))
                            .extract()
-                           .header(securityProperties.getJwt()
-                                                     .getHeaderString());
+                           .path("token");
         given().webAppContextSetup(context)
                .header(securityProperties.getJwt()
-                                         .getHeaderString(), token)
+                                         .getHeaderString(), "Bearer " + token)
                .when()
                .get("/user/auth")
                .then()
