@@ -14,15 +14,16 @@ class GetMonthlyExpensesServiceTest {
 
     @BeforeEach
     void setUp() {
-        service = new GetMonthlyExpensesService();
+        service = new GetMonthlyExpensesService(new TestExpenseConfig().testMonthlyExpensesRepository());
     }
 
     @Test
     void get_monthly_expenses_for_given_user_and_date() {
-        MonthlyExpenses expenses = service.getExpenses(TestExpenseConfig.TEST_USERNAME, TestExpenseConfig.CURRENT_DATE);
-        assertThat(expenses.getMonth()).isEqualTo(TestExpenseConfig.CURRENT_DATE.getMonth());
-        assertThat(expenses.getYear()).isEqualTo(TestExpenseConfig.CURRENT_DATE.getYear());
-        assertThat(expenses.getUsername()).isEqualTo(TestExpenseConfig.TEST_USERNAME);
+        MonthlyExpenses expenses =
+                 service.getExpenses(new TestExpenseConfig().TEST_USERNAME, new TestExpenseConfig().CURRENT_DATE);
+        assertThat(expenses.getMonth()).isEqualTo(new TestExpenseConfig().CURRENT_DATE.getMonth());
+        assertThat(expenses.getYear()).isEqualTo(new TestExpenseConfig().CURRENT_DATE.getYear());
+        assertThat(expenses.getUsername()).isEqualTo(new TestExpenseConfig().TEST_USERNAME);
     }
 
     @Test

@@ -44,7 +44,7 @@ class ExpenseControllerIT {
     }
 
     @Test
-    @WithMockUser(username = TestExpenseConfig.TEST_USERNAME)
+    @WithMockUser(username = new TestExpenseConfig().TEST_USERNAME)
     void add_expense_from_json_request(@Autowired WebApplicationContext context) {
         var result = given().webAppContextSetup(context)
                             .body(testExpenseWriteModel())
