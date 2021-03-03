@@ -20,10 +20,10 @@ class GetMonthlyExpensesServiceTest {
     @Test
     void get_monthly_expenses_for_given_user_and_date() {
         MonthlyExpenses expenses =
-                 service.getExpenses(new TestExpenseConfig().TEST_USERNAME, new TestExpenseConfig().CURRENT_DATE);
+                 service.getExpenses(TestExpenseConfig.TEST_USERNAME, new TestExpenseConfig().CURRENT_DATE);
         assertThat(expenses.getMonth()).isEqualTo(new TestExpenseConfig().CURRENT_DATE.getMonth());
         assertThat(expenses.getYear()).isEqualTo(new TestExpenseConfig().CURRENT_DATE.getYear());
-        assertThat(expenses.getUsername()).isEqualTo(new TestExpenseConfig().TEST_USERNAME);
+        assertThat(expenses.getUsername()).isEqualTo(TestExpenseConfig.TEST_USERNAME);
     }
 
     @Test

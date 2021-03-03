@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 
 class TestExpenseConfig extends ExpensesConfig {
 
-    final String TEST_USERNAME = "abc@abc.com";
+    static final String TEST_USERNAME = "abc@abc.com";
     final ApplicationUser TEST_USER = new ApplicationUser(TEST_USERNAME, "pass", "John");
     final MonthAndYearDate CURRENT_DATE = new MonthAndYearDate(Month.FEBRUARY, 2020);
     final MonthlyExpenses TEST_MONTHLY_EXPENSES =
