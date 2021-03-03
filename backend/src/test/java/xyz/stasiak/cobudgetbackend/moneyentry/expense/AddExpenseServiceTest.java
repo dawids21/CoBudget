@@ -32,8 +32,8 @@ class AddExpenseServiceTest {
     @Test
     void add_expense_to_current_month_monthly_expenses_entity_for_given_user() {
         var expense = testExpense();
-        var user = TestExpenseConfig.TEST_USER;
-        var currentDate = TestExpenseConfig.CURRENT_DATE;
+        var user = new TestExpenseConfig().TEST_USER;
+        var currentDate = new TestExpenseConfig().CURRENT_DATE;
 
         addExpenseService.add(expense, currentDate, user.getEmail());
 
@@ -44,8 +44,8 @@ class AddExpenseServiceTest {
     @Test
     void add_expense_to_monthly_expense_with_current_date() {
         var expense = testExpense();
-        var user = TestExpenseConfig.TEST_USER;
-        var currentDate = TestExpenseConfig.CURRENT_DATE;
+        var user = new TestExpenseConfig().TEST_USER;
+        var currentDate = new TestExpenseConfig().CURRENT_DATE;
 
         addExpenseService.add(expense, currentDate, user.getEmail());
 
@@ -58,8 +58,8 @@ class AddExpenseServiceTest {
     void add_expense_value_to_sum_of_expenses_in_monthly_expense() {
 
         var expense = testExpense();
-        var user = TestExpenseConfig.TEST_USER;
-        var currentDate = TestExpenseConfig.CURRENT_DATE;
+        var user = new TestExpenseConfig().TEST_USER;
+        var currentDate = new TestExpenseConfig().CURRENT_DATE;
         var sumBefore = new TestExpenseConfig().TEST_MONTHLY_EXPENSES.getSumOfExpenses();
 
         addExpenseService.add(expense, currentDate, user.getEmail());
@@ -71,7 +71,7 @@ class AddExpenseServiceTest {
     @Test
     void create_monthly_expenses_if_doesnt_exist_yet() {
         var expense = testExpense();
-        var user = TestExpenseConfig.TEST_USER;
+        var user = new TestExpenseConfig().TEST_USER;
         var currentDate = new MonthAndYearDate(Month.MAY, 2019);
 
         addExpenseService.add(expense, currentDate, user.getEmail());
@@ -85,8 +85,8 @@ class AddExpenseServiceTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 32})
     void throws_exception_when_creating_expense_with_days_out_of_month_range(int day) {
-        var user = TestExpenseConfig.TEST_USER;
-        var currentDate = TestExpenseConfig.CURRENT_DATE;
+        var user = new TestExpenseConfig().TEST_USER;
+        var currentDate = new TestExpenseConfig().CURRENT_DATE;
         var expense = new Expense(day, BigDecimal.ZERO, "", "");
 
         assertThatThrownBy(() -> addExpenseService.add(expense, currentDate, user.getEmail())).isInstanceOf(

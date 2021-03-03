@@ -10,4 +10,9 @@ public class ExpensesConfig {
     public AddExpenseService addExpenseService(MonthlyExpensesRepository repository) {
         return new AddExpenseService(repository);
     }
+
+    @Bean
+    public GetMonthlyExpensesService getMonthlyExpensesService(MonthlyExpensesRepository repository) {
+        return new GetMonthlyExpensesService(repository);
+    }
 }

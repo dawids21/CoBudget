@@ -96,8 +96,9 @@ class ExpenseControllerIT {
         }
 
         @Bean
-        ExpenseController expenseController(AddExpenseService service) {
-            return new ExpenseController(service);
+        ExpenseController expenseController(AddExpenseService service,
+                                            GetMonthlyExpensesService getMonthlyExpensesService) {
+            return new ExpenseController(service, getMonthlyExpensesService);
         }
     }
 
