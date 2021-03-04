@@ -24,12 +24,15 @@ body {
     text-align: center;
 }
 
-.logo {
+.logo-container {
     width: 100%;
+    background-color: var(--main-green);
+}
+
+.logo {
     text-align: center;
     font-size: var(--text-xxxl);
     font-family: var(--text-decorative-font);
-    background-color: var(--main-green);
     color: var(--white);
     font-weight: lighter;
 }
