@@ -291,7 +291,7 @@ main {
 }
 
 .week-day-number {
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
     display: inline-block;
     border: 2px solid var(--dark-green);
     padding: var(--space-xs);
@@ -306,7 +306,7 @@ main {
 
 .week-day-name {
     color: var(--dark-green);
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
 }
 
 .entry-list {
