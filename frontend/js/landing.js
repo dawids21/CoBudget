@@ -27,8 +27,7 @@ async function submitSignUpForm(e, form) {
     const headers = buildHeaders();
     try {
         const response = await fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/sign-up', headers, jsonFormData);
-        const jsonResponse = response.json();
-        alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
+        alert(`Hello ${response.name ? response.name : "user"}! Now you can login`);
     } catch (e) {
         alert("Cannot perform sign up. Please try again");
         return;
