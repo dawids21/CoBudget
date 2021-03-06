@@ -51,7 +51,7 @@ async function submitLoginForm(e, form) {
         alert("Cannot perform login. Please try again");
         return;
     }
-    window.location.href = "/monthView.html";
+    window.location.href = "/week.html";
 }
 
 document.getElementById('signup-password')?.addEventListener('keyup',
