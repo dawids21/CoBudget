@@ -62,8 +62,8 @@ main {
     padding: var(--space-sm) 0;
     font-size: var(--text-md);
     transition: 0.2s;
-    border-right: 1px solid var(--light-gray);
-    border-top: 1px solid var(--light-gray);
+    border-right: 2px solid var(--light-gray);
+    border-top: 2px solid var(--light-gray);
 }
 
 .button:last-child {
@@ -105,7 +105,7 @@ main {
 .form-text {
     width: 100%;
     height: var(--text-xl);
-    border: 1px solid var(--dark-green);
+    border: 2px solid var(--dark-green);
     padding: 0 var(--space-sm);
     font-family: var(--text-primary-font), sans-serif;
     font-size: var(--text-sm);
@@ -160,11 +160,14 @@ main {
 }
 
 #main-header {
+    position: sticky;
+    top: 0;
     background-color: var(--main-green);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border-bottom: 2px solid var(--light-gray);
 }
 
 #left-side-header {
@@ -308,7 +311,7 @@ main {
 
 .entry-list {
     padding-top: var(--space-sm);
-    border-top: 1px solid var(--dark-green);
+    border-top: 2px solid var(--dark-green);
     list-style: none;
     width: 80%;
     margin: auto;
@@ -473,11 +476,11 @@ main {
     }
 
     #links-list > .button:first-child {
-        border-left: 1px solid var(--light-gray);
+        border-left: 2px solid var(--light-gray);
     }
 
     #links-list > .button:last-child {
-        border-right: 1px solid var(--light-gray);
+        border-right: 2px solid var(--light-gray);
     }
 
     #links-list > .button > a {
