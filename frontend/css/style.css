@@ -13,6 +13,11 @@ body {
     font-family: var(--text-primary-font), sans-serif;
 }
 
+main {
+    background-color: var(--light-gray);
+    padding: 0 var(--space-unit);
+}
+
 .container-column {
     background-color: var(--light-gray);
     margin: auto;
@@ -210,6 +215,7 @@ body {
 
 #budget-info {
     width: 100%;
+    color: var(--dark-green);
 }
 
 #add-entry-button {
@@ -217,6 +223,42 @@ body {
     margin: var(--space-sm) 0;
     text-align: center;
     width: 30%;
+}
+
+#change-week {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#change-week > h3 {
+    color: var(--dark-green);
+}
+
+#view-control-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#today-button {
+    padding: var(--space-xs);
+    display: inline;
+    width: auto;
+    border: none;
+    margin: 0 var(--space-xs);
+}
+
+#view-control-buttons > .view-control-back-button {
+    border: none;
+    color: var(--main-green);
+    background-color: var(--light-gray);
+    transition: 0.2s;
+    font-size: var(--text-lg);
+}
+
+#view-control-buttons > .view-control-back-button:hover {
+    color: var(--claret);
 }
 
 @media all and (min-width: 568px) {
