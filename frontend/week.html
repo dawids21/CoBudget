@@ -23,44 +23,44 @@
         </nav>
     </div>
 </header>
-<div id="control-panel">
-    <div id="change-view-buttons" class="button-box">
-        <a class="button active-button">Week</a>
-        <a class="button" href="inprogress.html">Month</a>
-    </div>
-    <div id="budget-info">
-        <ul class="flex-list-row">
-            <li>Left: 123,54 zł</li>
-            <li>Expenses: 324,64 zł</li>
-            <li>Earnings: 553,98 zł</li>
-        </ul>
-    </div>
-    <div id="add-entry-button">
-        <a class="button ">Add</a>
-    </div>
-</div>
-<main>
-    <div id="change-week">
-        <h3>September 2021</h3>
-        <div id="view-control-buttons">
-            <button class="view-control-back-button">
-                <i class="fas fa-caret-left fa-2x"></i>
-            </button>
-            <button id="today-button" class="button">Today</button>
-            <button class="view-control-back-button">
-                <i class="fas fa-caret-right fa-2x"></i>
-            </button>
+<div class="main-container">
+    <div id="control-panel">
+        <div id="change-view-buttons" class="button-box">
+            <a class="button active-button">Week</a>
+            <a class="button" href="inprogress.html">Month</a>
+        </div>
+        <div id="budget-info">
+            <ul class="flex-list-row">
+                <li>Left: 123,54 zł</li>
+                <li>Expenses: 324,64 zł</li>
+                <li>Earnings: 553,98 zł</li>
+            </ul>
+        </div>
+        <div id="add-entry-button">
+            <a class="button ">Add</a>
         </div>
     </div>
-    <div id="week-view">
-        <ul>
-            <li class="week-day">
-                <a href="inprogress.html">
-                    <h3 class="week-day-number">20</h3>
-                    <p class="week-day-name">Monday</p>
-                </a>
-                <a href="inprogress.html">
-                    <ul>
+    <main>
+        <div id="change-week">
+            <h3>September 2021</h3>
+            <div id="view-control-buttons">
+                <button class="view-control-back-button">
+                    <i class="fas fa-caret-left fa-2x"></i>
+                </button>
+                <button id="today-button" class="button">Today</button>
+                <button class="view-control-back-button">
+                    <i class="fas fa-caret-right fa-2x"></i>
+                </button>
+            </div>
+        </div>
+        <div id="week-view">
+            <ul class="week-list">
+                <li class="week-day">
+                    <a href="inprogress.html">
+                        <h3><span class="week-day-number">20</span></h3>
+                        <p class="week-day-name">Monday</p>
+                    </a>
+                    <ul class="entry-list">
                         <li class="week-day-entry expense">
                             <p>-20,43 zł</p>
                             <p>Food</p>
@@ -70,30 +70,36 @@
                             <p>Party</p>
                         </li>
                     </ul>
-                </a>
-            </li>
+                    <div class="add-entry-button">
+                        <a href="inprogress.html">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </li>
 
-            <li class="week-day">
-                <a href="inprogress.html">
-                    <h3 class="week-day-number">21</h3>
-                    <p class="week-day-name">Tuesday</p>
-                </a>
-                <a href="inprogress.html">
-                    <ul>
+                <li class="week-day">
+                    <a href="inprogress.html">
+                        <h3><span class="week-day-number">21</span></h3>
+                        <p class="week-day-name">Tuesday</p>
+                    </a>
+                    <ul class="entry-list">
                         <li class="week-day-entry earning">
                             <p>+2334,43 zł</p>
                             <p>Work</p>
                         </li>
                     </ul>
-                </a>
-            </li>
-            <li class="week-day">
-                <a href="inprogress.html">
-                    <h3 class="week-day-number">22</h3>
-                    <p class="week-day-name">Wednesday</p>
-                </a>
-                <a href="inprogress.html">
-                    <ul>
+                    <div class="add-entry-button">
+                        <a href="inprogress.html">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="inprogress.html">
+                        <h3><span class="week-day-number">22</span></h3>
+                        <p class="week-day-name">Wednesday</p>
+                    </a>
+                    <ul class="entry-list">
                         <li class="week-day-entry expense">
                             <p>-20,43 zł</p>
                             <p>Food</p>
@@ -103,15 +109,18 @@
                             <p>Allegro</p>
                         </li>
                     </ul>
-                </a>
-            </li>
-            <li class="week-day">
-                <a href="inprogress.html">
-                    <h3 class="week-day-number">23</h3>
-                    <p class="week-day-name">Thursday</p>
-                </a>
-                <a href="inprogress.html">
-                    <ul>
+                    <div class="add-entry-button">
+                        <a href="inprogress.html">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="inprogress.html">
+                        <h3><span class="week-day-number">23</span></h3>
+                        <p class="week-day-name">Thursday</p>
+                    </a>
+                    <ul class="entry-list">
                         <li class="week-day-entry expense">
                             <p>-30,00 zł</p>
                             <p>Hygiene</p>
@@ -121,44 +130,59 @@
                             <p>Restaurant</p>
                         </li>
                     </ul>
-                </a>
-            </li>
-            <li class="week-day">
-                <a href="inprogress.html">
-                    <h3 class="week-day-number">24</h3>
-                    <p class="week-day-name">Friday</p>
-                </a>
-                <a href="inprogress.html">
-                    <ul>
+                    <div class="add-entry-button">
+                        <a href="inprogress.html">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="inprogress.html">
+                        <h3><span class="week-day-number today-number">24</span></h3>
+                        <p class="week-day-name">Friday</p>
+                    </a>
+                    <ul class="entry-list">
                     </ul>
-                </a>
-            </li>
-            <li class="week-day">
-                <a href="inprogress.html">
-                    <h3 class="week-day-number">25</h3>
-                    <p class="week-day-name">Saturday</p>
-                </a>
-                <a href="inprogress.html">
-                    <ul>
+                    <div class="add-entry-button">
+                        <a href="inprogress.html">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="inprogress.html">
+                        <h3><span class="week-day-number">25</span></h3>
+                        <p class="week-day-name">Saturday</p>
+                    </a>
+                    <ul class="entry-list">
                         <li class="week-day-entry expense">
                             <p>-25,00 zł</p>
                             <p>Cinema</p>
                         </li>
                     </ul>
-                </a>
-            </li>
-            <li class="week-day">
-                <a href="inprogress.html">
-                    <h3 class="week-day-number">26</h3>
-                    <p class="week-day-name">Sunday</p>
-                </a>
-                <a href="inprogress.html">
-                    <ul>
+                    <div class="add-entry-button">
+                        <a href="inprogress.html">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="inprogress.html">
+                        <h3><span class="week-day-number">26</span></h3>
+                        <p class="week-day-name">Sunday</p>
+                    </a>
+                    <ul class="entry-list">
                     </ul>
-                </a>
-            </li>
-        </ul>
-    </div>
-</main>
+                    <div class="add-entry-button">
+                        <a href="inprogress.html">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <a id="float-add-button" class="add-entry-button"><i class="fas fa-plus"></i></a>
+        </div>
+    </main>
+</div>
 </body>
 </html>

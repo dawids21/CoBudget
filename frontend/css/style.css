@@ -29,6 +29,9 @@ main {
     text-align: center;
 }
 
+.main-container {
+}
+
 .logo-container {
     width: 100%;
     background-color: var(--main-green);
@@ -206,6 +209,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: auto;
 }
 
 #control-panel > .button-box {
@@ -261,10 +265,112 @@ main {
     color: var(--claret);
 }
 
+#week-view {
+    text-align: center;
+}
+
+#week-view a {
+    text-decoration: none;
+}
+
+.week-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.week-day {
+    padding: var(--space-unit) 0;
+    border-top: 2px solid var(--dark-green);
+    width: 100%;
+}
+
+.week-day-number {
+    font-size: var(--text-lg);
+    display: inline-block;
+    border: 2px solid var(--dark-green);
+    padding: var(--space-xs);
+    border-radius: 100%;
+    color: var(--dark-green);
+}
+
+.today-number {
+    background-color: var(--claret);
+    color: var(--white);
+}
+
+.week-day-name {
+    color: var(--dark-green);
+    font-size: var(--text-lg);
+}
+
+.entry-list {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--dark-green);
+    list-style: none;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.week-day-entry {
+    background-color: var(--main-green);
+    color: var(--white);
+    border-radius: 10px;
+    margin-bottom: var(--space-unit);
+    padding: var(--space-xs) 0;
+    width: 100%;
+}
+
+.add-entry-button i {
+    color: var(--white);
+    background-color: var(--main-green);
+    border-radius: 100%;
+    padding: var(--space-xs);
+    transition: 0.2s;
+    font-size: var(--text-lg);
+}
+
+.add-entry-button i:hover {
+    background-color: var(--claret);
+}
+
+.expense {
+    border: 8px solid var(--claret);
+}
+
+.earning {
+    border: 8px solid var(--light-green);
+}
+
+#float-add-button {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+}
+
+#float-add-button i {
+    border: 2px solid var(--dark-green);
+    font-size: 4rem;
+}
+
 @media all and (min-width: 568px) {
     :root {
         --text-base-size: 1.1rem;
         --space-unit: 1.1rem;
+    }
+
+    main {
+        margin: var(--space-md) 0;
+    }
+
+    .main-container {
+        margin-top: var(--space-unit);
     }
 
     .container-column {
@@ -284,6 +390,20 @@ main {
         transform: scale(1.5);
         margin-right: var(--space-sm);
     }
+
+    .entry-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .week-day-entry {
+        margin: 0 var(--space-unit) var(--space-unit) var(--space-unit);
+        min-width: 15rem;
+        width: auto;
+    }
+
 }
 
 @media all and (min-width: 768px) {
@@ -295,14 +415,29 @@ main {
     #add-entry-button {
         display: block;
     }
+
+    .main-container {
+        margin-left: var(--space-unit);
+        margin-right: var(--space-unit);
+    }
+
+    .week-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .week-day {
+        width: 25rem;
+    }
+
+    .add-entry-button i {
+        font-size: var(--text-base-size);
+    }
+
 }
 
 @media all and (min-width: 992px) {
-
-    :root {
-        --text-base-size: 1.3rem;
-        --space-unit: 1.3rem;
-    }
 
     .flex-list-row {
         margin: 0;
