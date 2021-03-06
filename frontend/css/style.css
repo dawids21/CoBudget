@@ -46,14 +46,20 @@ body {
 }
 
 .button {
+    display: block;
     text-decoration: none;
     color: var(--white);
     background-color: var(--main-green);
     width: 100%;
-    padding: 1rem 0;
+    padding: var(--space-sm) 0;
     font-size: var(--text-md);
     transition: 0.2s;
-    border: 0;
+    border-right: 1px solid var(--light-gray);
+    border-top: 1px solid var(--light-gray);
+}
+
+.button:last-child {
+    border-right: 0;
 }
 
 .button:hover, .active-button {
@@ -100,6 +106,17 @@ body {
 .form-text:focus {
     border: 2px solid var(--main-green);
     outline: none;
+}
+
+.flex-list-row {
+    width: 100%;
+    list-style: none;
+    margin-top: var(--space-sm);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 #landing-sentence {
@@ -169,7 +186,6 @@ body {
 }
 
 #links-list > .button {
-    display: block;
     text-align: center;
 }
 
@@ -178,10 +194,35 @@ body {
     text-decoration: none;
 }
 
+#control-panel {
+    padding: var(--space-unit);
+    background-color: var(--light-gray);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#control-panel > .button-box {
+    flex-direction: row;
+    text-align: center;
+}
+
+#budget-info {
+    width: 100%;
+}
+
+#add-entry-button {
+    display: none;
+    margin: var(--space-sm) 0;
+    text-align: center;
+    width: 30%;
+}
+
 @media all and (min-width: 568px) {
     :root {
-        --text-base-size: 1.4rem;
-        --space-unit: 1.4rem;
+        --text-base-size: 1.1rem;
+        --space-unit: 1.1rem;
     }
 
     .container-column {
@@ -203,7 +244,27 @@ body {
     }
 }
 
-@media all and (min-width: 1200px) {
+@media all and (min-width: 768px) {
+    :root {
+        --text-base-size: 1.1rem;
+        --space-unit: 1.1rem;
+    }
+
+    #add-entry-button {
+        display: block;
+    }
+}
+
+@media all and (min-width: 992px) {
+
+    :root {
+        --text-base-size: 1.3rem;
+        --space-unit: 1.3rem;
+    }
+
+    .flex-list-row {
+        margin: 0;
+    }
 
     #main-header {
         flex-direction: row;
@@ -231,9 +292,41 @@ body {
 
     #links-list > .button {
         padding: calc(1.75 * var(--space-unit)) var(--space-xs);
+        border-top: 0;
+    }
+
+    #links-list > .button:first-child {
+        border-left: 1px solid var(--light-gray);
+    }
+
+    #links-list > .button:last-child {
+        border-right: 1px solid var(--light-gray);
     }
 
     #links-list > .button > a {
         padding: calc(1.75 * var(--space-unit)) var(--space-xs);
+    }
+
+    #control-panel {
+        padding: var(--space-xs);
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #control-panel > .button-box {
+        flex-direction: row;
+        text-align: center;
+    }
+
+    #change-view-buttons {
+        margin: 0 var(--space-unit);
+    }
+
+    #budget-info {
+        margin: 0 var(--space-unit);
+    }
+
+    #add-entry-button {
+        margin: 0;
     }
 }
