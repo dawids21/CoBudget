@@ -38,6 +38,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.POST, securityProperties.getJwt()
                                                             .getSignUpUrl())
             .permitAll()
+            .antMatchers(HttpMethod.GET, "/actuator/health")
+            .permitAll()
             .anyRequest()
             .authenticated()
             .and()
