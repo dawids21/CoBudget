@@ -52,16 +52,19 @@
     <a id="back-button" href="week.html"><i class="fas fa-angle-left fa-2x"></i></a>
     <form id="login-form" class="form" method="post" action="#">
         <div class="form-data">
-            <label for="email">Email:</label>
-            <input class="form-text" type="email" id="email" name="email" required>
-            <label class="margin-top--sm" for="password">Password:</label>
-            <input class="form-text" type="password" id="password" name="password" required>
-            <div id="remember-me-flexbox">
-                <input type="checkbox" id="remember-me" name="remember-me">
-                <label for="remember-me">Remember me</label>
-            </div>
+            <label>Type:</label>
+            <label class="margin-top--sm" for="date">Date:</label>
+            <input class="form-text" type="date" id="date" name="date" required>
+            <label class="margin-top--sm" for="amount">Amount:</label>
+            <input class="form-text" type="number" id="amount" name="amount" required>
+            <label class="margin-top--sm" for="category">Category:</label>
+            <input class="form-text" type="text" id="category" name="category" required>
+            <label class="margin-top--sm" for="subcategory">Subcategory:</label>
+            <input class="form-text" type="text" id="subcategory" name="subcategory" required>
+            <label class="margin-top--sm" for="comment">Comment:</label>
+            <input class="form-text" type="text" id="comment" name="comment">
         </div>
-        <input id="sign-in-submit" type="submit" class="button" name="sign-in" value="Sign in">
+        <input type="submit" class="button" name="add" value="Add">
     </form>
 </div>
 </body>
