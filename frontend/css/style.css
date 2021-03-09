@@ -62,11 +62,15 @@ main {
     padding: var(--space-sm) 0;
     font-size: var(--text-md);
     transition: 0.2s;
+    border: 0;
+}
+
+#links-list > .button {
     border-right: 2px solid var(--light-gray);
     border-top: 2px solid var(--light-gray);
 }
 
-.button:last-child {
+#links-list > .button:last-child {
     border-right: 0;
 }
 
