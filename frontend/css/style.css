@@ -39,6 +39,11 @@ main {
     background-color: var(--main-green);
 }
 
+.form-container {
+    background-color: var(--light-gray);
+    margin-top: var(--space-sm);
+}
+
 .logo {
     text-align: center;
     font-size: var(--text-xxxl);
@@ -381,6 +386,10 @@ main {
         margin-top: var(--space-unit);
     }
 
+    .form-container {
+        margin-top: var(--space-unit);
+    }
+
     .container-column {
         margin: 10rem auto;
     }
@@ -429,6 +438,12 @@ main {
         margin-right: var(--space-unit);
     }
 
+    .form-container {
+        max-width: 35rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
     .week-list {
         flex-direction: row;
         flex-wrap: wrap;
@@ -446,6 +461,10 @@ main {
 }
 
 @media all and (min-width: 992px) {
+
+    .form-container {
+        max-width: 50rem;
+    }
 
     .flex-list-row {
         margin: 0;
