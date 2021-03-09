@@ -16,6 +16,7 @@ body {
 main {
     background-color: var(--light-gray);
     padding: 0 var(--space-unit);
+    margin-top: var(--space-sm);
 }
 
 .container-column {
@@ -30,6 +31,7 @@ main {
 }
 
 .main-container {
+    margin-top: var(--space-sm);
 }
 
 .logo-container {
@@ -373,7 +375,7 @@ main {
     }
 
     main {
-        margin: var(--space-md) 0;
+        margin: var(--space-unit) 0;
     }
 
     .main-container {
