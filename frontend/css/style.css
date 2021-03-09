@@ -16,6 +16,7 @@ body {
 main {
     background-color: var(--light-gray);
     padding: 0 var(--space-unit);
+    margin-top: var(--space-sm);
 }
 
 .container-column {
@@ -30,11 +31,17 @@ main {
 }
 
 .main-container {
+    margin-top: var(--space-sm);
 }
 
 .logo-container {
     width: 100%;
     background-color: var(--main-green);
+}
+
+.form-container {
+    background-color: var(--light-gray);
+    margin-top: var(--space-sm);
 }
 
 .logo {
@@ -62,11 +69,26 @@ main {
     padding: var(--space-sm) 0;
     font-size: var(--text-md);
     transition: 0.2s;
+    border: 0;
+}
+
+.icon-button {
+    border: none;
+    color: var(--main-green);
+    transition: 0.2s;
+    background-color: var(--light-gray);
+}
+
+.icon-button:hover {
+    color: var(--claret);
+}
+
+#links-list > .button {
     border-right: 2px solid var(--light-gray);
     border-top: 2px solid var(--light-gray);
 }
 
-.button:last-child {
+#links-list > .button:last-child {
     border-right: 0;
 }
 
@@ -136,7 +158,6 @@ main {
 
 #back-button {
     align-self: flex-start;
-    color: var(--main-green);
     margin: var(--space-xs) var(--space-unit);
 }
 
@@ -167,7 +188,6 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-bottom: 2px solid var(--light-gray);
 }
 
 #left-side-header {
@@ -254,18 +274,6 @@ main {
     width: auto;
     border: none;
     margin: 0 var(--space-xs);
-}
-
-#view-control-buttons > .view-control-back-button {
-    border: none;
-    color: var(--main-green);
-    background-color: var(--light-gray);
-    transition: 0.2s;
-    font-size: var(--text-lg);
-}
-
-#view-control-buttons > .view-control-back-button:hover {
-    color: var(--claret);
 }
 
 #week-view {
@@ -362,17 +370,21 @@ main {
     font-size: 4rem;
 }
 
-@media all and (min-width: 568px) {
-    :root {
-        --text-base-size: 1.1rem;
-        --space-unit: 1.1rem;
-    }
+.form-data > .button-box {
+    flex-direction: row;
+    text-align: center;
+}
 
+@media all and (min-width: 568px) {
     main {
-        margin: var(--space-md) 0;
+        margin: var(--space-unit) 0;
     }
 
     .main-container {
+        margin-top: var(--space-unit);
+    }
+
+    .form-container {
         margin-top: var(--space-unit);
     }
 
@@ -424,6 +436,12 @@ main {
         margin-right: var(--space-unit);
     }
 
+    .form-container {
+        max-width: 35rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
     .week-list {
         flex-direction: row;
         flex-wrap: wrap;
@@ -441,6 +459,10 @@ main {
 }
 
 @media all and (min-width: 992px) {
+
+    .form-container {
+        max-width: 50rem;
+    }
 
     .flex-list-row {
         margin: 0;
