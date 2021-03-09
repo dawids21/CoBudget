@@ -72,6 +72,17 @@ main {
     border: 0;
 }
 
+.icon-button {
+    border: none;
+    color: var(--main-green);
+    transition: 0.2s;
+    background-color: var(--light-gray);
+}
+
+.icon-button:hover {
+    color: var(--claret);
+}
+
 #links-list > .button {
     border-right: 2px solid var(--light-gray);
     border-top: 2px solid var(--light-gray);
@@ -147,7 +158,6 @@ main {
 
 #back-button {
     align-self: flex-start;
-    color: var(--main-green);
     margin: var(--space-xs) var(--space-unit);
 }
 
@@ -264,18 +274,6 @@ main {
     width: auto;
     border: none;
     margin: 0 var(--space-xs);
-}
-
-#view-control-buttons > .view-control-back-button {
-    border: none;
-    color: var(--main-green);
-    background-color: var(--light-gray);
-    transition: 0.2s;
-    font-size: var(--text-lg);
-}
-
-#view-control-buttons > .view-control-back-button:hover {
-    color: var(--claret);
 }
 
 #week-view {
