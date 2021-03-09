@@ -367,12 +367,12 @@ main {
     font-size: 4rem;
 }
 
-@media all and (min-width: 568px) {
-    :root {
-        --text-base-size: 1.1rem;
-        --space-unit: 1.1rem;
-    }
+.form-data > .button-box {
+    flex-direction: row;
+    text-align: center;
+}
 
+@media all and (min-width: 568px) {
     main {
         margin: var(--space-unit) 0;
     }
