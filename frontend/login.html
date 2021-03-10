@@ -16,6 +16,13 @@
     <meta name="application-name" content="CoBudget">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <script type="module">
+        import JwtService from "./js/service/JwtService.js";
+
+        if (!new JwtService().checkExpire()) {
+            window.location.href = "/week.html";
+        }
+    </script>
 </head>
 <body>
 <div class="container-column">

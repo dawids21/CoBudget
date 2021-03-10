@@ -4,11 +4,6 @@ import RequestService from "./service/RequestService.js";
 const jwtService = new JwtService();
 const requestService = new RequestService();
 
-function getPageName() {
-    let path = window.location.pathname;
-    return path.split("/").pop();
-}
-
 function checkPasswords() {
     if (document.getElementById('signup-password').value ===
         document.getElementById('signup-password-repeat').value) {
@@ -60,24 +55,4 @@ function addEventListeners() {
     }
 }
 
-function checkToken() {
-
-    const isJwtExpired = jwtService.checkExpire();
-
-    if (["", "login.html", "register.html"].includes(getPageName())) {
-        window.onload = () => {
-            if (!isJwtExpired) {
-                window.location.href = "/week.html";
-            }
-        };
-    } else {
-        window.onload = () => {
-            if (isJwtExpired) {
-                jwtService.logout();
-            }
-        };
-    }
-}
-
-checkToken();
 addEventListeners();

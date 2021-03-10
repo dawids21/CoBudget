@@ -16,6 +16,14 @@
     <meta name="application-name" content="CoBudget">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <script type="module">
+        import JwtService from "./js/service/JwtService.js";
+
+        const jwtService = new JwtService();
+        if (jwtService.checkExpire()) {
+            jwtService.logout();
+        }
+    </script>
 </head>
 <body>
 <header id="main-header">
