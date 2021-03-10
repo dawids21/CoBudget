@@ -44,13 +44,13 @@ function addEventListeners() {
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', function (e) {
-            requestService.submitSignUpForm(e, this).then(() => window.location.href = "/");
+            requestService.submitSignUpForm(e, this).then(() => window.location.href = "/").catch(() => alert("Cannot perform sign up. Please try again"));
         });
     }
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
-            requestService.submitLoginForm(e, this).then(() => window.location.href = "/week.html");
+            requestService.submitLoginForm(e, this).then(() => window.location.href = "/week.html").catch(() => alert("Cannot perform login. Please try again"));
         });
     }
 }
