@@ -16,10 +16,26 @@ if ("serviceWorker" in navigator) {
 
 const jwtService = new JwtService();
 
-const logoutButton = document.getElementById("logout-button");
+function addEventListeners() {
+    const logoutButton = document.getElementById("logout-button");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", jwtService.logout);
+    }
 
-if (logoutButton !== null) {
-    logoutButton.addEventListener("click", jwtService.logout);
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function (e) {
+            submitSignUpForm(e, this);
+        });
+    }
+
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (e) {
+            submitLoginForm(e, this);
+        });
+    }
+
 }
 
 if (["", "login.html", "register.html"].includes(getPageName())) {
@@ -29,3 +45,5 @@ if (["", "login.html", "register.html"].includes(getPageName())) {
         }
     };
 }
+
+addEventListeners();
