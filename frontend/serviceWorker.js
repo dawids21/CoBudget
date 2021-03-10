@@ -1,7 +1,8 @@
-const staticCoBudget = "cobudget-site-v2";
+const staticCoBudget = "cobudget-site-v3";
 
 // what to store in cache?
 const assets = [
+    "/",
     "/index.html",
     "/login.html",
     "/register.html",
