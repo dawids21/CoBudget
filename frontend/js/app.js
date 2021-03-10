@@ -1,5 +1,10 @@
 import JwtService from "./service/JwtService.js";
 
+function getPageName() {
+    let path = window.location.pathname;
+    return path.split("/").pop();
+}
+
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
         navigator.serviceWorker
@@ -15,4 +20,12 @@ const logoutButton = document.getElementById("logout-button");
 
 if (logoutButton !== undefined) {
     logoutButton.addEventListener("click", jwtService.logout);
+}
+
+if (["", "login.html", "register.html"].includes(getPageName())) {
+    window.onload = () => {
+        if (!jwtService.checkExpire()) {
+            window.location.href = "/week.html";
+        }
+    };
 }
