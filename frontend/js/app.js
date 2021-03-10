@@ -1,5 +1,7 @@
 import JwtService from "./service/JwtService.js";
 
+const jwtService = new JwtService();
+
 function getPageName() {
     let path = window.location.pathname;
     return path.split("/").pop();
@@ -37,8 +39,6 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-const jwtService = new JwtService();
-
 function addEventListeners() {
     addEventListener("logout-button", "click", jwtService.logout);
     addEventListener("signup-password", "keyup", checkPasswords);
@@ -58,12 +58,24 @@ function addEventListeners() {
     }
 }
 
-if (["", "login.html", "register.html"].includes(getPageName())) {
-    window.onload = () => {
-        if (!jwtService.checkExpire()) {
-            window.location.href = "/week.html";
-        }
-    };
+function checkToken() {
+
+    const isJwtExpired = jwtService.checkExpire();
+
+    if (["", "login.html", "register.html"].includes(getPageName())) {
+        window.onload = () => {
+            if (!isJwtExpired) {
+                window.location.href = "/week.html";
+            }
+        };
+    } else {
+        window.onload = () => {
+            if (isJwtExpired) {
+                jwtService.logout();
+            }
+        };
+    }
 }
 
+checkToken();
 addEventListeners();
