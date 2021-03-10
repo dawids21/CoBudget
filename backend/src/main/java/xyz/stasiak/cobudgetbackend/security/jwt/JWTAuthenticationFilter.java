@@ -17,6 +17,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
@@ -51,8 +52,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication auth) throws IOException {
         String token = JWT.create()
                           .withSubject(((User) auth.getPrincipal()).getUsername())
-                          .withExpiresAt(new Date(System.currentTimeMillis() + securityProperties.getJwt()
-                                                                                                 .getExpirationDate()))
+                          .withExpiresAt(Date.from(Instant.now()
+                                                          .plusMillis(securityProperties.getJwt()
+                                                                                        .getExpirationDate())))
                           .sign(Algorithm.HMAC512(securityProperties.getJwt()
                                                                     .getSecret()
                                                                     .getBytes()));

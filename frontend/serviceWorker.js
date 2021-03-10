@@ -3,7 +3,7 @@ const staticCoBudget = "cobudget-site-v1";
 // what to store in cache?
 const assets = [
     "/index.html",
-    "/js/registerServiceWorker.js",
+    "/js/app.js",
 ];
 
 // runs when the service worker is installed
