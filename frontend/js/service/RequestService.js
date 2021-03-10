@@ -58,7 +58,7 @@ export default class RequestService {
             "Content-Type": "application/json",
         };
         if (auth) {
-            result.Authorization = auth;
+            result.Authorization = `Bearer ${auth}`;
         }
         return result;
     }
