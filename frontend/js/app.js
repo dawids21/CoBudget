@@ -1,6 +1,8 @@
 import JwtService from "./service/JwtService.js";
+import RequestService from "./service/RequestService.js";
 
 const jwtService = new JwtService();
+const requestService = new RequestService();
 
 function getPageName() {
     let path = window.location.pathname;
@@ -47,13 +49,13 @@ function addEventListeners() {
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', function (e) {
-            submitSignUpForm(e, this);
+            requestService.submitSignUpForm(e, this).then(() => window.location.href = "/");
         });
     }
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', function (e) {
-            submitLoginForm(e, this);
+            requestService.submitLoginForm(e, this).then(() => window.location.href = "/week.html");
         });
     }
 }

@@ -20,9 +20,7 @@ export default class RequestService {
             alert(`Hello ${response.name ? response.name : "user"}! Now you can login`);
         } catch (e) {
             alert("Cannot perform sign up. Please try again");
-            return;
         }
-        window.location.href = "/";
     }
 
     async submitLoginForm(e, form) {
