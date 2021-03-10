@@ -1,9 +1,3 @@
-import FetchService from "./service/FetchService.js";
-import JwtService from "./service/JwtService.js";
-
-const fetchService = new FetchService();
-const jwtService = new JwtService();
-
 function checkPasswords() {
     if (document.getElementById('signup-password').value ===
         document.getElementById('signup-password-repeat').value) {
@@ -18,41 +12,6 @@ function checkPasswords() {
         document.getElementById('password-message').innerHTML = 'Passwords are not the same';
         document.getElementById('sign-up-submit').disabled = true;
     }
-}
-
-async function submitSignUpForm(e, form) {
-    e.preventDefault();
-    const btnSubmit = document.getElementById('sign-up-submit');
-    btnSubmit.disabled = true;
-    setTimeout(() => btnSubmit.disabled = false, 2000);
-    const jsonFormData = buildJsonFormData(form);
-    const headers = buildHeaders();
-    try {
-        const response = await fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/sign-up', headers, jsonFormData);
-        alert(`Hello ${response.name ? response.name : "user"}! Now you can login`);
-    } catch (e) {
-        alert("Cannot perform sign up. Please try again");
-        return;
-    }
-    window.location.href = "/";
-}
-
-async function submitLoginForm(e, form) {
-
-    e.preventDefault();
-    const btnSubmit = document.getElementById('sign-in-submit');
-    btnSubmit.disabled = true;
-    setTimeout(() => btnSubmit.disabled = false, 2000);
-    const jsonFormData = buildJsonFormData(form);
-    const headers = buildHeaders();
-    try {
-        const response = await fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/login', headers, jsonFormData);
-        jwtService.store(response.token);
-    } catch (e) {
-        alert("Cannot perform login. Please try again");
-        return;
-    }
-    window.location.href = "/week.html";
 }
 
 document.getElementById('signup-password')?.addEventListener('keyup',
