@@ -16,7 +16,8 @@ export default class RequestService {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
         const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/sign-up', headers, jsonFormData);
-        alert(`Hello ${response.name ? response.name : "user"}! Now you can login`);
+        const jsonResponse = await response.json();
+        alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
     }
 
     async submitLoginForm(e, form) {
@@ -27,7 +28,8 @@ export default class RequestService {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
         const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/login', headers, jsonFormData);
-        this.jwtService.store(response.token);
+        const jsonResponse = await response.json();
+        this.jwtService.store(jsonResponse.token);
     }
 
     _buildJsonFormData(form) {
