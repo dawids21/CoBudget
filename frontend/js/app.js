@@ -53,6 +53,15 @@ function addEventListeners() {
             requestService.submitLoginForm(e, this).then(() => window.location.href = "/week.html").catch(() => alert("Cannot perform login. Please try again"));
         });
     }
+    const addExpenseForm = document.getElementById('add-expense-form');
+    if (addExpenseForm) {
+        addExpenseForm.addEventListener('submit', function (e) {
+            requestService.submitExpenseForm(e, this).then(() => {
+                alert("Expense added!");
+                window.location.href = "/week.html";
+            }).catch(() => alert("Cannot add expense. Please try again"));
+        });
+    }
 }
 
 addEventListeners();
