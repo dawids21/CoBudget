@@ -1,6 +1,8 @@
 import FetchService from "./service/FetchService.js";
+import JwtService from "./service/JwtService.js";
 
 const fetchService = new FetchService();
+const jwtService = new JwtService();
 
 function checkPasswords() {
     if (document.getElementById('signup-password').value ===
@@ -45,7 +47,7 @@ async function submitLoginForm(e, form) {
     const headers = buildHeaders();
     try {
         const response = await fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/login', headers, jsonFormData);
-        localStorage.setItem('token', response.token);
+        jwtService.store(response.token);
     } catch (e) {
         alert("Cannot perform login. Please try again");
         return;
