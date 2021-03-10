@@ -18,7 +18,7 @@ const jwtService = new JwtService();
 
 const logoutButton = document.getElementById("logout-button");
 
-if (logoutButton !== undefined) {
+if (logoutButton !== null) {
     logoutButton.addEventListener("click", jwtService.logout);
 }
 
