@@ -3,7 +3,10 @@ package xyz.stasiak.cobudgetbackend.moneyentry.expense;
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
 import xyz.stasiak.cobudgetbackend.validation.CheckDateFormat;
 
-import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class ExpenseWriteModel {
@@ -11,12 +14,23 @@ public class ExpenseWriteModel {
     @CheckDateFormat(pattern = "uuuu-MM-dd", message = "Date is invalid")
     private final String date;
 
-    @Valid
-    private final Expense expense;
+    @DecimalMin(value = "0.0", message = "amount can't be negative")
+    @Digits(integer = 15, fraction = 2, message = "amount can have max 2 decimal places")
+    private final BigDecimal amount;
 
-    public ExpenseWriteModel(String date, Expense expense) {
+    @NotBlank(message = "category is mandatory")
+    private final String category;
+
+    @NotBlank(message = "subcategory is mandatory")
+    private final String subcategory;
+    private final String comment;
+
+    public ExpenseWriteModel(String date, BigDecimal amount, String category, String subcategory, String comment) {
         this.date = date;
-        this.expense = expense;
+        this.amount = amount;
+        this.category = category;
+        this.subcategory = subcategory;
+        this.comment = comment;
     }
 
     public MonthAndYearDate getDate() {
@@ -25,6 +39,7 @@ public class ExpenseWriteModel {
     }
 
     public Expense getExpense() {
-        return expense;
+        var localDate = LocalDate.parse(date);
+        return new Expense(localDate.getDayOfMonth(), amount, category, subcategory, comment);
     }
 }
