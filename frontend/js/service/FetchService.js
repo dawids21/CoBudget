@@ -13,8 +13,7 @@ export default class FetchService {
                 headers: headers,
                 query: (query != null) ? query : ""
             });
-            const content = await rawResponse.json();
-            return content;
+            return rawResponse;
         } catch (err) {
             console.error(`Error at fetch GET: ${err}`);
             throw err;
@@ -31,8 +30,7 @@ export default class FetchService {
                 headers: headers,
                 body: JSON.stringify(body)
             });
-            const content = await rawResponse.json();
-            return content;
+            return rawResponse;
         } catch (err) {
             console.error(`Error at fetch POST: ${err}`);
             throw err;
@@ -49,8 +47,7 @@ export default class FetchService {
                 headers: headers,
                 body: JSON.stringify(body)
             });
-            const content = await rawResponse.json();
-            return content;
+            return rawResponse;
         } catch (err) {
             console.error(`Error at fetch PUT: ${err}`);
             throw err;

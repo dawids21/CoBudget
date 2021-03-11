@@ -15,12 +15,9 @@ export default class RequestService {
         setTimeout(() => btnSubmit.disabled = false, 2000);
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        try {
-            const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/sign-up', headers, jsonFormData);
-            alert(`Hello ${response.name ? response.name : "user"}! Now you can login`);
-        } catch (e) {
-            alert("Cannot perform sign up. Please try again");
-        }
+        const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/sign-up', headers, jsonFormData);
+        const jsonResponse = await response.json();
+        alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
     }
 
     async submitLoginForm(e, form) {
@@ -30,11 +27,21 @@ export default class RequestService {
         setTimeout(() => btnSubmit.disabled = false, 2000);
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        try {
-            const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/login', headers, jsonFormData);
-            this.jwtService.store(response.token);
-        } catch (e) {
-            alert("Cannot perform login. Please try again");
+        const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/login', headers, jsonFormData);
+        const jsonResponse = await response.json();
+        this.jwtService.store(jsonResponse.token);
+    }
+
+    async submitExpenseForm(e, form) {
+        e.preventDefault();
+        const btnSubmit = document.getElementById('add-expense-button');
+        btnSubmit.disabled = true;
+        setTimeout(() => btnSubmit.disabled = false, 2000);
+        const jsonFormData = this._buildJsonFormData(form);
+        const headers = this._buildHeaders(this.jwtService.getToken());
+        const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/expense', headers, jsonFormData);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
     }
 
@@ -51,7 +58,7 @@ export default class RequestService {
             "Content-Type": "application/json",
         };
         if (auth) {
-            result.Authorization = auth;
+            result.Authorization = `Bearer ${auth}`;
         }
         return result;
     }
