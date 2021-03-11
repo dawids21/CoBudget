@@ -67,16 +67,10 @@ class ExpenseControllerIT {
     private String testExpenseWriteModel() {
         return """
                  {
-                     "expense": {
-                         "day": 5,
-                         "amount": 20.34,
-                         "category": "fun",
-                         "subcategory": "cinema"
-                     },
-                     "date": {
-                         "month": "FEBRUARY",
-                         "year": 2020
-                     }
+                    "date": "2020-02-05",
+                    "amount": 20.34,
+                    "category": "fun",
+                    "subcategory": "cinema"
                  }
                                   """;
     }
