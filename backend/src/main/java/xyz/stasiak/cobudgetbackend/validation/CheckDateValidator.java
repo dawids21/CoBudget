@@ -1,4 +1,4 @@
-package xyz.stasiak.cobudgetbackend.moneyentry;
+package xyz.stasiak.cobudgetbackend.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
