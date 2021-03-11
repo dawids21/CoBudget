@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class ExpenseWriteModel {
 
-    @CheckDateFormat(pattern = "uuuu-MM-dd", message = "Date is invalid")
+    @CheckDateFormat(pattern = "uuuu-MM-dd", message = "date is invalid")
     private final String date;
 
     @DecimalMin(value = "0.0", message = "amount can't be negative")
