@@ -46,6 +46,8 @@ const assets = [
 
 // runs when the service worker is installed
 self.addEventListener("install", installEvent => {
+    //TODO add popup for refreshing UI
+    self.skipWaiting();
     installEvent.waitUntil(
         caches.open(cacheName).then(cache => {
             cache.addAll(assets);
