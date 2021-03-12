@@ -1,10 +1,10 @@
 import JwtService from "./service/JwtService.js";
 import RequestService from "./service/RequestService.js";
+import ConfigApp from "./config.js";
 
+const config = new ConfigApp("dev");
 const jwtService = new JwtService();
-// const restUrl = "https://cobudget-backend.herokuapp.com"; // Production
-const restUrl = "http://localhost:8080"; // Local
-const requestService = new RequestService(restUrl);
+const requestService = new RequestService(config.getRestUrl());
 
 function checkPasswords() {
     if (document.getElementById('signup-password').value ===
