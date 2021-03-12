@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  cobudget-backend:
+    build: ./backend
+    image: dawids21/cobudget-backend:v1
+    container_name: cobudget-backend
+    hostname: cobudget-backend
+    depends_on:
+      - mongo
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      JWT_EXPIRATION_DATE: 86400000
+      JWT_SECRET_KEY: secret
+      MONGO_URI: mongodb://sa:password@mongo:27017/production?retryWrites=true&w=majority&authSource=admin
+    networks:
+      - app
+      - backend
+    ports:
+      - 8080:8080
+
+  mongo:
+    image: mongo:4.4.4
+    container_name: mongo
+    hostname: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: sa
+      MONGO_INITDB_ROOT_PASSWORD: password
+    networks:
+      - backend
+
+  cobudget-frontend:
+    build: ./frontend
+    image: dawids21/cobudget-frontend:v1
+    container_name: cobudget-frontend
+    hostname: cobudget-frontend
+    networks:
+      - app
+    ports:
+      - 80:80
+
+networks:
+  app:
+  backend:
