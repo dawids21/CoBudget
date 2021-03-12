@@ -1,8 +1,10 @@
 import JwtService from "./service/JwtService.js";
 import RequestService from "./service/RequestService.js";
+import ConfigApp from "./config.js";
 
+const config = new ConfigApp("prod");
 const jwtService = new JwtService();
-const requestService = new RequestService();
+const requestService = new RequestService(config.getRestUrl());
 
 function checkPasswords() {
     if (document.getElementById('signup-password').value ===
