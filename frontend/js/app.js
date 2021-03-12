@@ -2,7 +2,10 @@ import JwtService from "./service/JwtService.js";
 import RequestService from "./service/RequestService.js";
 
 const jwtService = new JwtService();
-const requestService = new RequestService();
+const restUrl = "https://cobudget-backend.herokuapp.com"; // Production
+// const restUrl = "http://cobudget-backend"; // Docker
+// const restUrl = "http://localhost:8080"; // Local
+const requestService = new RequestService(restUrl);
 
 function checkPasswords() {
     if (document.getElementById('signup-password').value ===

@@ -3,7 +3,8 @@ import JwtService from "./JwtService.js";
 
 export default class RequestService {
 
-    constructor() {
+    constructor(restUrl) {
+        this.restUrl = restUrl;
         this.fetchService = new FetchService();
         this.jwtService = new JwtService();
     }
@@ -15,7 +16,7 @@ export default class RequestService {
         setTimeout(() => btnSubmit.disabled = false, 2000);
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/sign-up', headers, jsonFormData);
+        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/sign-up', headers, jsonFormData);
         const jsonResponse = await response.json();
         alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
     }
@@ -27,7 +28,7 @@ export default class RequestService {
         setTimeout(() => btnSubmit.disabled = false, 2000);
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/user/login', headers, jsonFormData);
+        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/login', headers, jsonFormData);
         const jsonResponse = await response.json();
         this.jwtService.store(jsonResponse.token);
     }
@@ -39,7 +40,7 @@ export default class RequestService {
         setTimeout(() => btnSubmit.disabled = false, 2000);
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders(this.jwtService.getToken());
-        const response = await this.fetchService.performPostHttpRequest('https://cobudget-backend.herokuapp.com/expense', headers, jsonFormData);
+        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/expense', headers, jsonFormData);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
