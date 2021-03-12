@@ -2,7 +2,7 @@ import JwtService from "./service/JwtService.js";
 import RequestService from "./service/RequestService.js";
 import ConfigApp from "./config.js";
 
-const config = new ConfigApp("dev");
+const config = new ConfigApp("prod");
 const jwtService = new JwtService();
 const requestService = new RequestService(config.getRestUrl());
 
