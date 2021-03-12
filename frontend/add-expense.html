@@ -28,11 +28,11 @@
 <body>
 <header id="main-header">
     <div id="left-side-header"><i id="hamburger" class="fas fa-bars fa-2x"></i>
-        <h2 class="logo">CoBudget</h2>
+        <h2 class="logo disable-select">CoBudget</h2>
     </div>
     <div id="right-side-header">
         <nav>
-            <ul id="links-list">
+            <ul id="links-list" class="disable-select">
                 <li class="button active-button"><a href="week.html">Track</a></li>
                 <li class="button"><a href="inprogress.html">Plan</a></li>
                 <li class="button"><a href="inprogress.html">Analyze</a></li>
@@ -43,7 +43,7 @@
 </header>
 <div class="main-container">
     <div id="control-panel">
-        <div id="change-view-buttons" class="button-box">
+        <div id="change-view-buttons" class="button-box disable-select">
             <a class="button active-button">Week</a>
             <a class="button" href="inprogress.html">Month</a>
         </div>
@@ -54,16 +54,13 @@
                 <li>Earnings: 553,98 zł</li>
             </ul>
         </div>
-        <div id="add-entry-button">
-            <a class="button ">Add</a>
-        </div>
     </div>
     <div class="form-container">
         <a id="back-button" class="icon-button" href="week.html"><i class="fas fa-angle-left fa-3x"></i></a>
         <form id="add-expense-form" class="form" method="post" action="#">
             <div class="form-data">
                 <label>Type:</label>
-                <div class="button-box">
+                <div class="button-box disable-select">
                     <a class="button active-button">Expense</a>
                     <a class="button" href="inprogress.html">Earning</a>
                 </div>
@@ -80,7 +77,7 @@
                 <label class="margin-top--sm" for="comment">Comment:</label>
                 <input class="form-text" type="text" id="comment" name="comment">
             </div>
-            <input id="add-expense-button" type="submit" class="button" name="add" value="Add">
+            <input id="add-expense-button" type="submit" class="button disable-select" name="add" value="Add">
         </form>
     </div>
 </div>
