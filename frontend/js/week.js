@@ -16,6 +16,12 @@ export default class WeekView {
         this._setWeekInView();
     }
 
+    setNextWeek() {
+        this.startWeekDate.setDate(this.startWeekDate.getDate() + 7);
+        this._setWeekInView();
+    }
+
+
     _setWeekInView() {
         const weekDaysElements = document.getElementsByClassName("week-day");
         for (let i = 0; i < weekDaysElements.length; i++) {
