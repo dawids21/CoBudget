@@ -7,8 +7,8 @@ import xyz.stasiak.cobudgetbackend.moneyentry.EntryBadRequestException;
 
 import java.math.BigDecimal;
 import java.time.Month;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document("Expenses")
 public class MonthlyExpenses {
@@ -18,7 +18,7 @@ public class MonthlyExpenses {
 
     private String username;
     private MonthAndYearDate date;
-    private Set<Expense> expenses;
+    private List<Expense> expenses;
     private BigDecimal sumOfExpenses;
 
     public MonthlyExpenses() {
@@ -27,18 +27,18 @@ public class MonthlyExpenses {
     public MonthlyExpenses(String username, MonthAndYearDate date) {
         this.username = username;
         this.date = date;
-        expenses = new HashSet<>();
+        expenses = new ArrayList<>();
         sumOfExpenses = BigDecimal.ZERO;
     }
 
-    public MonthlyExpenses(String username, MonthAndYearDate date, Set<Expense> expenses, BigDecimal sumOfExpenses) {
+    public MonthlyExpenses(String username, MonthAndYearDate date, List<Expense> expenses, BigDecimal sumOfExpenses) {
         this.username = username;
         this.date = date;
         this.expenses = expenses;
         this.sumOfExpenses = sumOfExpenses;
     }
 
-    public MonthlyExpenses(String id, String username, MonthAndYearDate date, Set<Expense> expenses,
+    public MonthlyExpenses(String id, String username, MonthAndYearDate date, List<Expense> expenses,
                            BigDecimal sumOfExpenses) {
         this.id = id;
         this.username = username;
@@ -67,7 +67,7 @@ public class MonthlyExpenses {
         return date.getYear();
     }
 
-    public Set<Expense> getExpenses() {
+    public List<Expense> getExpenses() {
         return expenses;
     }
 

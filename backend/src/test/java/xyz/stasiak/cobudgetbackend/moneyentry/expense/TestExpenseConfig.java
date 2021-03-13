@@ -5,7 +5,7 @@ import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 
 import java.math.BigDecimal;
 import java.time.Month;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -19,7 +19,7 @@ class TestExpenseConfig extends ExpensesConfig {
     final ApplicationUser TEST_USER = new ApplicationUser(TEST_USERNAME, "pass", "John");
     final MonthAndYearDate CURRENT_DATE = new MonthAndYearDate(Month.FEBRUARY, 2020);
     final MonthlyExpenses TEST_MONTHLY_EXPENSES =
-             new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, new HashSet<>(), BigDecimal.ZERO);
+             new MonthlyExpenses("1", TEST_USER.getEmail(), CURRENT_DATE, new ArrayList<>(), BigDecimal.ZERO);
 
     MonthlyExpensesRepository testMonthlyExpensesRepository() {
         var repository = mock(MonthlyExpensesRepository.class);
