@@ -3,7 +3,7 @@ version: "3.9"
 services:
   cobudget-backend:
     build: ./backend
-    image: dawids21/cobudget-backend:v1
+    image: dawids21/cobudget-backend
     container_name: cobudget-backend
     hostname: cobudget-backend
     depends_on:
@@ -31,13 +31,13 @@ services:
 
   cobudget-frontend:
     build: ./frontend
-    image: dawids21/cobudget-frontend:v1
+    image: dawids21/cobudget-frontend
     container_name: cobudget-frontend
     hostname: cobudget-frontend
     networks:
       - app
     ports:
-      - 80:80
+      - 5000:80
 
 networks:
   app:
