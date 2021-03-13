@@ -4,6 +4,9 @@ export default class WeekView {
         this.today = new Date();
         this.startWeekDate = this._getStartOfTheWeek(this.today);
         this.setCurrentWeek();
+        document.getElementById("previous-week").addEventListener("click", () => this.setPreviousWeek());
+        document.getElementById("today-button").addEventListener("click", () => this.setCurrentWeek());
+        document.getElementById("next-week").addEventListener("click", () => this.setNextWeek());
     }
 
     setCurrentWeek() {
