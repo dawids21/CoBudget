@@ -28,9 +28,12 @@ export default class WeekView {
     _setWeekInView() {
         const weekDaysElements = document.getElementsByClassName("week-day");
         for (let i = 0; i < weekDaysElements.length; i++) {
-            weekDaysElements.item(i).getElementsByClassName("week-day-number")[0].innerText = this.startWeekDate.getDate() + i;
+            const element = weekDaysElements.item(i);
+            element.getElementsByClassName("week-day-number")[0].innerText = this.startWeekDate.getDate() + i;
             if (this.today.getDate() === this.startWeekDate.getDate() + i) {
-                weekDaysElements.item(i).getElementsByClassName("week-day-number")[0].classList.add("today-number");
+                element.getElementsByClassName("week-day-number")[0].classList.add("today-number");
+            } else {
+                element.getElementsByClassName("week-day-number")[0].classList.remove("today-number");
             }
         }
         const monthNames = ["January", "February", "March", "April", "May", "June",
