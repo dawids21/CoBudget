@@ -14,7 +14,14 @@ This app helps you take control over your budget. You can:
 
 ## Technologies
 - JDK 15
+- Maven
 - Spring Boot 2.4.2
+- Hibernate
+- MongoDB
+- HTML
+- CSS
+- JavaScript
+- PWA
 
 ## Development status
 Developing version 0.1
