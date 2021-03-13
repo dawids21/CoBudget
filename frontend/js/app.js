@@ -1,6 +1,7 @@
 import JwtService from "./service/JwtService.js";
 import RequestService from "./service/RequestService.js";
 import ConfigApp from "./config.js";
+import WeekView from "./week.js";
 
 const config = new ConfigApp("prod");
 const jwtService = new JwtService();
@@ -66,4 +67,13 @@ function addEventListeners() {
     }
 }
 
+function weekViewSetup() {
+    const weekViewElement = document.getElementById("week-view");
+    if (!weekViewElement) {
+        return;
+    }
+    const weekView = new WeekView();
+}
+
 addEventListeners();
+weekViewSetup();

@@ -1,4 +1,4 @@
-const cacheName = "cobudget-v0.1";
+const cacheName = "cobudget-v0.2";
 
 // what to store in cache?
 const assets = [
@@ -42,6 +42,8 @@ const assets = [
     "/js/service/JwtService.js",
     "/js/service/RequestService.js",
     "/js/app.js",
+    "/js/config.js",
+    "/js/week.js",
 ];
 
 // runs when the service worker is installed

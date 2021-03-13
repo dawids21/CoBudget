@@ -58,24 +58,24 @@
             <a class="button disable-select" href="add-expense.html">Add</a>
         </div>
     </div>
-    <main>
+    <main id="week-view">
         <div id="change-week">
-            <h3>September 2021</h3>
+            <h3><span id="week-view-month"></span> <span id="week-view-year"></span></h3>
             <div id="view-control-buttons">
-                <button class="icon-button">
+                <button id="previous-week" class="icon-button">
                     <i class="fas fa-caret-left fa-4x"></i>
                 </button>
                 <button id="today-button" class="button disable-select">Today</button>
-                <button class="icon-button">
+                <button id="next-week" class="icon-button">
                     <i class="fas fa-caret-right fa-4x"></i>
                 </button>
             </div>
         </div>
-        <div id="week-view" class="disable-select">
+        <div id="week-view-days" class="disable-select">
             <ul class="week-list">
                 <li class="week-day">
                     <a href="inprogress.html">
-                        <h3><span class="week-day-number">20</span></h3>
+                        <h3><span class="week-day-number"></span></h3>
                         <p class="week-day-name">Monday</p>
                     </a>
                     <ul class="entry-list">
@@ -97,7 +97,7 @@
 
                 <li class="week-day">
                     <a href="inprogress.html">
-                        <h3><span class="week-day-number">21</span></h3>
+                        <h3><span class="week-day-number"></span></h3>
                         <p class="week-day-name">Tuesday</p>
                     </a>
                     <ul class="entry-list">
@@ -114,7 +114,7 @@
                 </li>
                 <li class="week-day">
                     <a href="inprogress.html">
-                        <h3><span class="week-day-number">22</span></h3>
+                        <h3><span class="week-day-number"></span></h3>
                         <p class="week-day-name">Wednesday</p>
                     </a>
                     <ul class="entry-list">
@@ -135,7 +135,7 @@
                 </li>
                 <li class="week-day">
                     <a href="inprogress.html">
-                        <h3><span class="week-day-number">23</span></h3>
+                        <h3><span class="week-day-number"></span></h3>
                         <p class="week-day-name">Thursday</p>
                     </a>
                     <ul class="entry-list">
@@ -156,7 +156,7 @@
                 </li>
                 <li class="week-day">
                     <a href="inprogress.html">
-                        <h3><span class="week-day-number today-number">24</span></h3>
+                        <h3><span class="week-day-number"></span></h3>
                         <p class="week-day-name">Friday</p>
                     </a>
                     <ul class="entry-list">
@@ -169,7 +169,7 @@
                 </li>
                 <li class="week-day">
                     <a href="inprogress.html">
-                        <h3><span class="week-day-number">25</span></h3>
+                        <h3><span class="week-day-number"></span></h3>
                         <p class="week-day-name">Saturday</p>
                     </a>
                     <ul class="entry-list">
@@ -186,7 +186,7 @@
                 </li>
                 <li class="week-day">
                     <a href="inprogress.html">
-                        <h3><span class="week-day-number">26</span></h3>
+                        <h3><span class="week-day-number"></span></h3>
                         <p class="week-day-name">Sunday</p>
                     </a>
                     <ul class="entry-list">
