@@ -26,6 +26,9 @@ This app helps you take control over your budget. You can:
 ## Development status
 Developing version 0.1
 
+## Local usage
+You need to install Docker and Docker Compose. In the main directory run `docker-compose up --build` to run application. You can reach it at `http://localhost:5000`.
+
 ## Example of use
 
 ### Budget plannning
