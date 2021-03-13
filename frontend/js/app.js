@@ -73,6 +73,7 @@ function weekViewSetup() {
         return;
     }
     const weekView = new WeekView();
+    weekView.setCurrentWeekInView();
 }
 
 addEventListeners();
