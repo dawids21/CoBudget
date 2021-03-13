@@ -1,7 +1,9 @@
 # Cobudget
 Control your money budget
 
-//TODO add images
+Week view | Phone
+:--------:|:--------:
+![2021-03-13_15-09-08_screenshot](https://user-images.githubusercontent.com/50179033/111032972-31cfa600-840f-11eb-829a-9d4c6ae7ea71.png)|<img src="https://user-images.githubusercontent.com/50179033/111032975-32683c80-840f-11eb-8263-e2b43a77b1c7.jpg" width="50%">
 
 ## Introduction
 This app helps you take control over your budget. You can:
