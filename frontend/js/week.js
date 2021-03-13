@@ -1,8 +1,7 @@
 export default class WeekView {
 
     constructor() {
-        this.today = new Date();
-        this.startWeekDate = this._getStartOfTheWeek(this.today);
+        this.today = this._dateWithZeroTime(new Date());
         this.setCurrentWeek();
         document.getElementById("previous-week").addEventListener("click", () => this.setPreviousWeek());
         document.getElementById("today-button").addEventListener("click", () => this.setCurrentWeek());
@@ -27,14 +26,16 @@ export default class WeekView {
 
     _setWeekInView() {
         const weekDaysElements = document.getElementsByClassName("week-day");
+        const currentDate = new Date(this.startWeekDate);
         for (let i = 0; i < weekDaysElements.length; i++) {
             const element = weekDaysElements.item(i);
-            element.getElementsByClassName("week-day-number")[0].innerText = this.startWeekDate.getDate() + i;
-            if (this.today.getDate() === this.startWeekDate.getDate() + i) {
+            element.getElementsByClassName("week-day-number")[0].innerText = currentDate.getDate();
+            if (this.today === currentDate) {
                 element.getElementsByClassName("week-day-number")[0].classList.add("today-number");
             } else {
                 element.getElementsByClassName("week-day-number")[0].classList.remove("today-number");
             }
+            currentDate.setDate(currentDate.getDate() + 1);
         }
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
@@ -47,8 +48,13 @@ export default class WeekView {
 
     _getStartOfTheWeek(date) {
         const day = date.getDay();
-        let startDate = new Date();
+        let startDate = this._dateWithZeroTime(new Date());
         startDate.setDate(this.today.getDate() - day + (day === 0 ? -6 : 1));
         return startDate;
+    }
+
+    _dateWithZeroTime(date) {
+        date.setHours(0, 0, 0, 0);
+        return date;
     }
 }

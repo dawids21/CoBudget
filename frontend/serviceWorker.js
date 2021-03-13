@@ -1,4 +1,4 @@
-const cacheName = "cobudget-v0.2";
+const cacheName = "cobudget-v0.3";
 
 // what to store in cache?
 const assets = [
