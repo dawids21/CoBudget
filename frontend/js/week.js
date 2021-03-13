@@ -15,5 +15,12 @@ export default class WeekView {
                 weekDaysElements.item(i).getElementsByClassName("week-day-number")[0].classList.add("today-number");
             }
         }
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const weekViewMonth = document.getElementById("week-view-month");
+        const weekViewYear = document.getElementById("week-view-year");
+        weekViewMonth.innerText = monthNames[this.startWeekDate.getMonth()];
+        weekViewYear.innerText = this.startWeekDate.getFullYear().toString();
     }
 }
