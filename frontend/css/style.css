@@ -283,11 +283,11 @@ main {
     margin: 0 var(--space-xs);
 }
 
-#week-view {
+#week-view-days {
     text-align: center;
 }
 
-#week-view a {
+#week-view-days a {
     text-decoration: none;
 }
 
