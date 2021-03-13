@@ -1,4 +1,4 @@
-const cacheName = "cobudget-v0.3";
+const cacheName = "cobudget-v0.4";
 
 // what to store in cache?
 const assets = [
@@ -47,14 +47,9 @@ const assets = [
 ];
 
 // runs when the service worker is installed
-self.addEventListener("install", installEvent => {
+self.addEventListener("install", () => {
     //TODO add popup for refreshing UI
     self.skipWaiting();
-    installEvent.waitUntil(
-        caches.open(cacheName).then(cache => {
-            cache.addAll(assets);
-        })
-    );
 });
 
 self.addEventListener("activate", event => {
@@ -67,6 +62,11 @@ self.addEventListener("activate", event => {
                     }
                 })
             );
+        })
+    );
+    event.waitUntil(
+        caches.open(cacheName).then(cache => {
+            cache.addAll(assets);
         })
     );
 });
