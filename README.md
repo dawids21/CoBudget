@@ -1,5 +1,5 @@
 # Cobudget
-Control your money budget
+Control your budget
 
 Week view | Phone
 :--------:|:--------:
