@@ -2,9 +2,7 @@ export default class WeekView {
 
     constructor() {
         this.today = new Date();
-        const day = this.today.getDay();
-        this.startWeekDate = new Date();
-        this.startWeekDate.setDate(this.today.getDate() - day + (day === 0 ? -6 : 1));
+        this.startWeekDate = this._getStartOfTheWeek(this.today);
     }
 
     setWeekInView() {
@@ -22,5 +20,12 @@ export default class WeekView {
         const weekViewYear = document.getElementById("week-view-year");
         weekViewMonth.innerText = monthNames[this.startWeekDate.getMonth()];
         weekViewYear.innerText = this.startWeekDate.getFullYear().toString();
+    }
+
+    _getStartOfTheWeek(date) {
+        const day = date.getDay();
+        let startDate = new Date();
+        startDate.setDate(this.today.getDate() - day + (day === 0 ? -6 : 1));
+        return startDate;
     }
 }
