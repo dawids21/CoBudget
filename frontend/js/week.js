@@ -3,9 +3,15 @@ export default class WeekView {
     constructor() {
         this.today = new Date();
         this.startWeekDate = this._getStartOfTheWeek(this.today);
+        this.setCurrentWeek();
     }
 
-    setWeekInView() {
+    setCurrentWeek() {
+        this.startWeekDate = this._getStartOfTheWeek(this.today);
+        this._setWeekInView();
+    }
+
+    _setWeekInView() {
         const weekDaysElements = document.getElementsByClassName("week-day");
         for (let i = 0; i < weekDaysElements.length; i++) {
             weekDaysElements.item(i).getElementsByClassName("week-day-number")[0].innerText = this.startWeekDate.getDate() + i;
