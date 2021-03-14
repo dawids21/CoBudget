@@ -9,6 +9,7 @@ const assets = [
     "/week.html",
     "/add-expense.html",
     "/inprogress.html",
+    "/manifest.json",
     "/browserconfig.xml",
     "/favicon-16x16.png",
     "/android-chrome-192x192.png",
