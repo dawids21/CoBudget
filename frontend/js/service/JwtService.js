@@ -15,12 +15,17 @@ export default class JwtService {
     }
 
     logout() {
-        localStorage.clear();
+        this.clearAuthData();
         window.location.href = "/";
     }
 
     getToken() {
         return localStorage.getItem("authorization");
+    }
+
+    clearAuthData() {
+        localStorage.removeItem("authorization");
+        localStorage.removeItem("authorizationExpires");
     }
 
     _parseJwt(token) {

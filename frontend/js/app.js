@@ -41,9 +41,9 @@ if ("serviceWorker" in navigator) {
 }
 
 function addEventListeners() {
-    addEventListener("logout-button", "click", jwtService.logout);
-    addEventListener("signup-password", "keyup", checkPasswords);
-    addEventListener("signup-password-repeat", "keyup", checkPasswords);
+    addEventListener("logout-button", "click", () => jwtService.logout());
+    addEventListener("signup-password", "keyup", () => checkPasswords());
+    addEventListener("signup-password-repeat", "keyup", () => checkPasswords());
 
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
