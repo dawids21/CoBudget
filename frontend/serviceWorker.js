@@ -74,7 +74,7 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", fetchEvent => {
     fetchEvent.respondWith(
         caches.match(fetchEvent.request).then(res => {
-            return res || fetch(fetchEvent.request);
+            return res || fetch(fetchEvent.request).catch(() => alert("You are offline. We cannot fetch data"));
         })
     );
 });
