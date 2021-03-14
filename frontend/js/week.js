@@ -30,7 +30,7 @@ export default class WeekView {
         for (let i = 0; i < weekDaysElements.length; i++) {
             const element = weekDaysElements.item(i);
             element.getElementsByClassName("week-day-number")[0].innerText = currentDate.getDate();
-            if (this.today === currentDate) {
+            if (this.today.getTime() === currentDate.getTime()) {
                 element.getElementsByClassName("week-day-number")[0].classList.add("today-number");
             } else {
                 element.getElementsByClassName("week-day-number")[0].classList.remove("today-number");
