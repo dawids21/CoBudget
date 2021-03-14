@@ -44,6 +44,7 @@ export default class WeekView {
             const entryList = weekDaysElements[i].getElementsByClassName("entry-list")[0];
 
             weekDayNumber.innerText = currentDate.getDate();
+            this._removeEntries(entryList);
             dayExpenses.forEach((expense) => this._createEntry(expense, entryList));
             this._markToday(currentDate, weekDayNumber);
             currentDate.setDate(currentDate.getDate() + 1);
@@ -53,6 +54,12 @@ export default class WeekView {
         const weekViewYear = document.getElementById("week-view-year");
         weekViewMonth.innerText = monthNames[this.startWeekDate.getMonth()];
         weekViewYear.innerText = this.startWeekDate.getFullYear().toString();
+    }
+
+    _removeEntries(entryList) {
+        while (entryList.firstChild) {
+            entryList.removeChild(entryList.firstChild);
+        }
     }
 
     _createEntry(entryData, entryList) {
