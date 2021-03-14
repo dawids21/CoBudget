@@ -1,8 +1,9 @@
-const cacheName = "cobudget-140320212148";
+const cacheName = "cobudget-140320212144";
 
 // what to store in cache?
 const assets = [
     "/",
+    "/index.html",
     "/login.html",
     "/register.html",
     "/week.html",
