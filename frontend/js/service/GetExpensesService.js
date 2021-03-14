@@ -3,7 +3,7 @@ export default class GetExpensesService {
         this.requestService = requestService;
     }
 
-    getMontlhlyExpenses(month, year) {
-        return this.requestService.getMontlhlyExpenses(month, year);
+    getMonthlyExpenses(month, year) {
+        return this.requestService.getMonthlyExpenses(month, year);
     }
 }
