@@ -46,6 +46,15 @@ export default class RequestService {
         }
     }
 
+    async getMonthlyExpenses(month, year) {
+        const headers = this._buildHeaders(this.jwtService.getToken());
+        const response = await this.fetchService.performGetHttpRequest(`${this.restUrl}/expense?month=${month}&year=${year}`, headers);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    }
+
     _buildJsonFormData(form) {
         const jsonFormData = {};
         for (const pair of new FormData(form)) {
