@@ -1,6 +1,7 @@
 export default class WeekView {
 
-    constructor() {
+    constructor(getExpenseService) {
+        this.getExpenseService = getExpenseService;
         this.today = this._dateWithZeroTime(new Date());
         this.setCurrentWeek();
         document.getElementById("previous-week").addEventListener("click", () => this.setPreviousWeek());

@@ -2,6 +2,7 @@ import JwtService from "./service/JwtService.js";
 import RequestService from "./service/RequestService.js";
 import ConfigApp from "./config.js";
 import WeekView from "./week.js";
+import GetExpensesService from "./service/GetExpensesService.js";
 
 const config = new ConfigApp("prod");
 const jwtService = new JwtService();
@@ -72,7 +73,8 @@ function weekViewSetup() {
     if (!weekViewElement) {
         return;
     }
-    const weekView = new WeekView();
+    const getExpenseService = new GetExpensesService(requestService);
+    const weekView = new WeekView(getExpenseService);
 }
 
 addEventListeners();
