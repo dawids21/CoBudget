@@ -24,11 +24,17 @@ export default class WeekView {
         this._setWeekInView();
     }
 
-
-    _setWeekInView() {
+    async _setWeekInView() {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
         const weekDaysElements = document.getElementsByClassName("week-day");
         const currentDate = new Date(this.startWeekDate);
+        let currentExpenses = await this.getExpenseService.getMonthlyExpenses(currentDate.getMonth() + 1, currentDate.getFullYear());
         for (let i = 0; i < weekDaysElements.length; i++) {
+            if (currentExpenses.month !== monthNames[currentDate.getMonth()].toUpperCase()) {
+                currentExpenses = await this.getExpenseService.getMonthlyExpenses(currentDate.getMonth() + 1, currentDate.getFullYear());
+            }
             const element = weekDaysElements.item(i);
             element.getElementsByClassName("week-day-number")[0].innerText = currentDate.getDate();
             if (this.today.getTime() === currentDate.getTime()) {
@@ -38,9 +44,6 @@ export default class WeekView {
             }
             currentDate.setDate(currentDate.getDate() + 1);
         }
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
         const weekViewMonth = document.getElementById("week-view-month");
         const weekViewYear = document.getElementById("week-view-year");
         weekViewMonth.innerText = monthNames[this.startWeekDate.getMonth()];
