@@ -11,7 +11,7 @@ export default class JwtService {
     checkExpire() {
         let exp = localStorage.getItem("authorizationExpires");
         let now = new Date();
-        return now >= new Date(exp);
+        return now >= new Date(+exp);
     }
 
     logout() {
