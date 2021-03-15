@@ -1,8 +1,10 @@
 package xyz.stasiak.cobudgetbackend.users;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import xyz.stasiak.cobudgetbackend.users.config.UserConfiguration;
 import xyz.stasiak.cobudgetbackend.validation.ValidationExceptionProcessing;
 
@@ -32,11 +34,13 @@ public class ApplicationUserController {
     @PostMapping("/sign-up")
     public ResponseEntity<ApplicationUserReadModel> createUser(
              @Valid @RequestBody ApplicationUserWriteModel applicationUser) {
+        if (userRepository.existsByEmail(applicationUser.getEmail())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "user already exists");
+        }
         ApplicationUser user = userRepository.save(applicationUser.toApplicationUser(bCryptPasswordEncoder));
         return ResponseEntity.ok(new ApplicationUserReadModel(user));
-        //TODO handle when email already exists
     }
-    
+
     @GetMapping("/config")
     public ResponseEntity<UserConfiguration> getUserConfiguration(Principal principal) {
         var user = userRepository.findByEmail(principal.getName());
@@ -47,6 +51,6 @@ public class ApplicationUserController {
         return ResponseEntity.ok(user.get()
                                      .getUserConfiguration());
     }
-  
+
     //TODO add method to get information about user
 }
