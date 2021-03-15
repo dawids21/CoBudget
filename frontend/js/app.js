@@ -49,7 +49,7 @@ function addEventListeners() {
     if (registerForm) {
         registerForm.addEventListener('submit', function (e) {
             requestService.submitSignUpForm(e, this).then(() => window.location.href = "/").catch((err) => {
-                if (err.code === 409) {
+                if (err.responseCode === 409) {
                     const errorMessage = document.getElementById("error-message");
                     if (errorMessage) {
                         errorMessage.innerText = 'Account with this email already exists';
