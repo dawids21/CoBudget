@@ -89,6 +89,17 @@ class ApplicationUserControllerIT {
                .statusCode(200);
     }
 
+    @Test
+    void return_status_409_if_user_already_exists(@Autowired WebApplicationContext context) {
+        given().webAppContextSetup(context)
+               .body(testUserDuplicateSignUpJson())
+               .contentType(ContentType.JSON)
+               .when()
+               .post("/user/sign-up")
+               .then()
+               .statusCode(409);
+    }
+
     private ApplicationUser testUser() {
         return new ApplicationUser("abc@def.com", "1234", "John");
     }
@@ -99,6 +110,16 @@ class ApplicationUserControllerIT {
                     "email": "abc@def.com",
                     "password": "1234",
                     "name": "John"
+                 }
+                 """;
+    }
+
+    private String testUserDuplicateSignUpJson() {
+        return """
+                 {
+                    "email": "ghi@jkl.com",
+                    "password": "5678",
+                    "name": "Adam"
                  }
                  """;
     }
@@ -130,6 +151,11 @@ class ApplicationUserControllerIT {
                    .thenReturn(Optional.of(new ApplicationUser("abc@def.com",
                                                                "$2a$10$hD0qs6lLCqm7myZvR8rYMOjB1SogzFx.Li5ZIFW/qTA.aziKTkqXO",
                                                                "John")));
+            Mockito.when(repository.existsByEmail(Mockito.anyString()))
+                   .then(invocation -> {
+                       String email = invocation.getArgument(0);
+                       return "ghi@jkl.com".equals(email);
+                   });
 
             return repository;
         }
