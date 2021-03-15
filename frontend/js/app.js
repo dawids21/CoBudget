@@ -48,7 +48,17 @@ function addEventListeners() {
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', function (e) {
-            requestService.submitSignUpForm(e, this).then(() => window.location.href = "/").catch(() => alert("Cannot perform sign up. Please try again"));
+            requestService.submitSignUpForm(e, this).then(() => window.location.href = "/").catch((err) => {
+                if (err.code === 409) {
+                    const errorMessage = document.getElementById("error-message");
+                    if (errorMessage) {
+                        errorMessage.innerText = 'Account with this email already exists';
+                        errorMessage.style.color = getComputedStyle(document.documentElement).getPropertyValue('--claret');
+                        return;
+                    }
+                }
+                alert("Cannot perform sign up. Please try again");
+            });
         });
     }
     const loginForm = document.getElementById('login-form');
