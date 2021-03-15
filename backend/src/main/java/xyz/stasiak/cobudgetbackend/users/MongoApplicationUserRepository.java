@@ -11,4 +11,7 @@ interface MongoApplicationUserRepository extends ApplicationUserRepository, Mong
 
     @Override
     Optional<ApplicationUser> findByEmail(String email);
+
+    @Override
+    boolean existsByEmail(String email);
 }

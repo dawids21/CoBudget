@@ -9,4 +9,6 @@ public interface ApplicationUserRepository {
     Optional<ApplicationUser> findByEmail(String email);
 
     ApplicationUser save(ApplicationUser applicationUser);
+
+    boolean existsByEmail(String email);
 }
