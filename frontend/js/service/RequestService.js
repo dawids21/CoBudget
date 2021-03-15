@@ -1,5 +1,6 @@
 import FetchService from "./FetchService.js";
 import JwtService from "./JwtService.js";
+import ResponseError from "../ResponseError.js";
 
 export default class RequestService {
 
@@ -17,6 +18,9 @@ export default class RequestService {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
         const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/sign-up', headers, jsonFormData);
+        if (!response.ok) {
+            throw new ResponseError(`HTTP error! status: ${response.status}`, response.status);
+        }
         const jsonResponse = await response.json();
         alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
     }
