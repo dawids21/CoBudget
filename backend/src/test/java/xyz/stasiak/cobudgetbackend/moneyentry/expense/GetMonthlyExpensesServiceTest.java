@@ -5,12 +5,10 @@ import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import xyz.stasiak.cobudgetbackend.date.MonthAndYearDate;
-import xyz.stasiak.cobudgetbackend.moneyentry.EntryNotFound;
 
 import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class GetMonthlyExpensesServiceTest {
@@ -32,12 +30,11 @@ class GetMonthlyExpensesServiceTest {
     }
 
     @Test
-    void throw_exception_when_expenses_not_found() {
-        assertThatThrownBy(() -> service.getExpenses(TestExpenseConfig.TEST_USERNAME,
-                                                     new MonthAndYearDate(Month.SEPTEMBER, 2020))).isInstanceOf(
-                 EntryNotFound.class)
-                                                                                                  .hasMessageContainingAll(
-                                                                                                           "expense",
-                                                                                                           "not found");
+    void return_empty_monthly_expenses_when_not_found() {
+        MonthlyExpenses expenses =
+                 service.getExpenses(TestExpenseConfig.TEST_USERNAME, new MonthAndYearDate(Month.SEPTEMBER, 2020));
+        assertThat(expenses.getMonth()).isEqualTo(Month.SEPTEMBER);
+        assertThat(expenses.getYear()).isEqualTo(2020);
+        assertThat(expenses.getExpenses()).hasSize(0);
     }
 }
