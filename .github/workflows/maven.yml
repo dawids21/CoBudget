@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ main ]
 
+defaults:
+  run:
+    working-directory: ./backend
+
 jobs:
   build:
 
@@ -20,7 +24,5 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 15
-    - name: Go to backend folder
-      run: cd backend && ls
     - name: Build with Maven
-      run: backend/mvnw -B package --file pom.xml
+      run: ./mvnw -B package --file pom.xml
