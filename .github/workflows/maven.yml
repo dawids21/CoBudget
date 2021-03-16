@@ -23,4 +23,4 @@ jobs:
     - name: Go to backend folder
       run: cd backend && ls
     - name: Build with Maven
-      run: ./mvnw -B package --file pom.xml
+      run: backend/mvnw -B package --file pom.xml
