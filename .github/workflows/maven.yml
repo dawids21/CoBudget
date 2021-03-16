@@ -14,7 +14,7 @@ defaults:
     working-directory: ./backend
 
 jobs:
-  build:
+  build_and_test:
 
     runs-on: ubuntu-latest
 
@@ -32,3 +32,5 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: ./mvnw -B package --file pom.xml
+    - name: Verify package with Maven
+      run: ./mvnw -B verify --file pom.xml
