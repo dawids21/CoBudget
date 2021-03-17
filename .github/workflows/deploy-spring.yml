@@ -36,3 +36,17 @@ jobs:
       - name: cancel flow
         if: steps.check_files.outputs.cancel_job == 'true'
         uses: andymckay/cancel-action@0.2
+  deploy:
+    name: Deploy to Heroku
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: cobudget-backend
+          heroku_email: dawid.stasiak21@gmail.com
+          appdir: backend
+          healthcheck: https://cobudget-backend.herokuapp.com/actuator/health
+          rollbackonhealthcheckfailed: true
