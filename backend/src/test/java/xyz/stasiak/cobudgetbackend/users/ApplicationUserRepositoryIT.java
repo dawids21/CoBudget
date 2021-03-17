@@ -51,6 +51,6 @@ class ApplicationUserRepositoryIT {
     }
 
     private ApplicationUser exampleUser() {
-        return new ApplicationUser("abc@def.com", "Power", "John");
+        return new ApplicationUser("abcd@def.com", "Power", "John");
     }
 }

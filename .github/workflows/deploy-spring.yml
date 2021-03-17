@@ -1,0 +1,52 @@
+name: Deploy Spring app on Heroku
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  check:
+    name: Check if backend files changed
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: check modified files
+        id: check_files
+        run: |
+          echo "=============== list modified files ==============="
+          git diff --name-only HEAD^ HEAD
+
+          echo "========== check paths of modified files =========="
+          git diff --name-only HEAD^ HEAD > files.txt
+          while IFS= read -r file
+          do
+            echo $file
+            if [[ $file = backend/* ]]; then
+              echo "This modified file is under the 'backend' folder."
+              echo "::set-output name=cancel_job::false"
+              break
+            else
+              echo "::set-output name=cancel_job::true"
+            fi
+          done < files.txt
+      - name: cancel flow
+        if: steps.check_files.outputs.cancel_job == 'true'
+        uses: andymckay/cancel-action@0.2
+  deploy:
+    name: Deploy to Heroku
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: cobudget-backend
+          heroku_email: dawid.stasiak21@gmail.com
+          appdir: backend
+          healthcheck: https://cobudget-backend.herokuapp.com/actuator/health
+          rollbackonhealthcheckfailed: true
