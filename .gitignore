@@ -2,3 +2,5 @@
 
 # Local Netlify folder
 .netlify
+
+.github/.github.iml
