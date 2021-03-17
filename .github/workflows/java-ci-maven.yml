@@ -34,12 +34,12 @@ jobs:
           while IFS= read -r file
           do
             echo $file
-            if [[ $file != backend/* ]]; then
-              echo "This modified file is not under the 'backend' folder."
-              echo "::set-output name=cancel_job::true"
+            if [[ $file = backend/* ]]; then
+              echo "This modified file is under the 'backend' folder."
+              echo "::set-output name=cancel_job::false"
               break
             else
-              echo "::set-output name=cancel_job::false"
+              echo "::set-output name=cancel_job::true"
             fi
           done < files.txt
       - name: cancel flow
