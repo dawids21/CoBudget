@@ -43,7 +43,7 @@ jobs:
             fi
           done < files.txt
       - name: cancel flow
-        if: steps.check.outputs.cancel_job == 'true'
+        if: steps.check_files.outputs.cancel_job == 'true'
         uses: andymckay/cancel-action@0.2
 
   build_and_test:
