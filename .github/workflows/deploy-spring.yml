@@ -1,4 +1,4 @@
-name: Deploy Spring app on Heroku
+name: Deploy Spring app to Heroku
 
 on:
   push:
