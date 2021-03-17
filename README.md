@@ -23,10 +23,7 @@ This app helps you take control over your budget. You can:
 - JavaScript
 - PWA
 
-## Development status
-Developing version 0.1
-
-### Current features
+## Current features
 - Login and sign-up
 - Adding expense
 - Week view
