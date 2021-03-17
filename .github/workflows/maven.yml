@@ -30,13 +30,6 @@ jobs:
           while IFS= read -r file
           do
             echo $file
-            if [[ $file != backend/* ]]; then
-              echo "This modified file is not under the 'backend' folder."
-              echo "::set-output name=cancel_job::true"
-              break
-            else
-              echo "::set-output name=cancel_job::false"
-            fi
           done < files.txt
       - name: cancel flow
         if: steps.check.outputs.cancel_job == 'true'
