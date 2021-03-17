@@ -45,7 +45,7 @@ class ApplicationUserRepositoryIT {
         var user = exampleUser();
         applicationUserRepository.save(user);
 
-        var found = applicationUserRepository.findByEmail(user.getEmail());
+        var found = applicationUserRepository.findByEmail("afadsg");
 
         assertThat(found).isNotEmpty();
     }
