@@ -54,17 +54,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 15
+      - name: set up JDK 15
         uses: actions/setup-java@v1
         with:
           java-version: 15
-      - name: Cache Maven packages
+      - name: cache Maven packages
         uses: actions/cache@v2
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build with Maven
+      - name: build with Maven
         run: ./mvnw -B package --file pom.xml
-      - name: Verify with Maven
+      - name: verify with Maven
         run: ./mvnw -B verify --file pom.xml
