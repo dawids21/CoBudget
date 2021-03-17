@@ -79,7 +79,7 @@ class AddExpenseServiceTest {
         MonthlyExpenses monthlyExpenses = getSavedMonthlyExpenses();
         assertThat(monthlyExpenses.getExpenses()).hasSize(1);
         assertThat(monthlyExpenses.getMonth()).isEqualTo(currentDate.getMonth());
-        assertThat(monthlyExpenses.getYear()).isEqualTo(2122);
+        assertThat(monthlyExpenses.getYear()).isEqualTo(currentDate.getYear());
     }
 
     @ParameterizedTest
