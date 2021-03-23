@@ -1,6 +1,8 @@
 const path = require('path');
+const base = require('./webpack.base.config.js');
+const {merge} = require('webpack-merge');
 
-module.exports = {
+module.exports = merge(base, {
     mode: 'development',
     output: {
         filename: '[name].bundle.js',
@@ -14,4 +16,4 @@ module.exports = {
             },
         ],
     },
-};
+});
