@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/fontawesome/all.min.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/fontawesome/all.min.css">
     <script type="module" src="js/app.js" defer></script>
     <title>CoBudget | Login</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -17,10 +17,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script type="module">
-        import JwtService from "./js/service/JwtService.js";
+        import JwtService from './js/service/JwtService.js';
 
         if (!new JwtService().checkExpire()) {
-            window.location.href = "/week.html";
+            window.location.href = '/week.html';
         }
     </script>
 </head>
