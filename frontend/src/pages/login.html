@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/css/style.css">
-    <link rel="stylesheet" href="src/css/fontawesome/all.min.css">
-    <script type="module" src="js/app.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/fontawesome/all.min.css">
+    <script type="module" src="../../js/app.js" defer></script>
     <title>CoBudget | Login</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,7 +17,7 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <script type="module">
-        import JwtService from './js/service/JwtService.js';
+        import JwtService from '../../js/service/JwtService.js';
 
         if (!new JwtService().checkExpire()) {
             window.location.href = '/week.html';
@@ -29,7 +29,7 @@
     <div class="logo-container">
         <h1 class="logo disable-select">CoBudget</h1>
     </div>
-    <a id="back-button" class="icon-button" href="./"><i class="fas fa-angle-left fa-3x"></i></a>
+    <a id="back-button" class="icon-button" href="../.."><i class="fas fa-angle-left fa-3x"></i></a>
     <form id="login-form" class="form" method="post" action="#">
         <div class="form-data">
             <label for="email">Email:</label>
