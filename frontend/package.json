@@ -12,5 +12,10 @@
   "bugs": {
     "url": "https://github.com/dawids21/CoBudget/issues"
   },
-  "homepage": "https://github.com/dawids21/CoBudget#readme"
+  "homepage": "https://github.com/dawids21/CoBudget#readme",
+  "devDependencies": {
+    "webpack": "^5.27.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
 }
