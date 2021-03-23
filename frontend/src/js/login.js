@@ -1,5 +1,4 @@
 import '../css/style.css';
-import '../css/fontawesome/all.min.css';
 import JwtService from './service/JwtService.js';
 import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
