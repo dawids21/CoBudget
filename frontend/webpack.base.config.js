@@ -11,6 +11,10 @@ module.exports = {
                 test: /\/.html$/,
                 use: ['html-loader'],
             },
+            {
+                test: /\.(svg|eot|woff|woff2|ttf)$/,
+                use: ['file-loader'],
+            },
         ],
     },
 };
