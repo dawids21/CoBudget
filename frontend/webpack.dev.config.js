@@ -1,6 +1,7 @@
 const path = require('path');
 const base = require('./webpack.base.config.js');
 const {merge} = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(base, {
     mode: 'development',
@@ -16,4 +17,13 @@ module.exports = merge(base, {
             },
         ],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'CoBudget | Login',
+            template: './src/pages/login.html',
+            filename: 'login.html',
+            chunks: ['login'],
+        }),
+    ],
+
 });
