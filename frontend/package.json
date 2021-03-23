@@ -1,0 +1,16 @@
+{
+  "name": "cobudget",
+  "version": "1.0.0",
+  "description": "Frontend for CoBudget project",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawids21/CoBudget.git"
+  },
+  "author": "Dawid Stasiak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dawids21/CoBudget/issues"
+  },
+  "homepage": "https://github.com/dawids21/CoBudget#readme"
+}
