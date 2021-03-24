@@ -1,6 +1,6 @@
-@import "src/css/_typography.css";
-@import "src/css/_spacing.css";
-@import "src/css/_colors.css";
+@import "./_typography.css";
+@import "./_spacing.css";
+@import "./_colors.css";
 
 * {
     margin: 0;
