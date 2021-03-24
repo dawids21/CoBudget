@@ -12,6 +12,12 @@ module.exports = merge(base, {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            title: 'CoBudget | Welcome',
+            template: './src/pages/index.html',
+            filename: 'index.html',
+            chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
             title: 'CoBudget | Login',
             template: './src/pages/login.html',
             filename: 'login.html', //TODO try to add content hash
@@ -22,6 +28,12 @@ module.exports = merge(base, {
             template: './src/pages/week.html',
             filename: 'week.html', // TODO try to add content hash
             chunks: ['week'],
+        }),
+        new HtmlWebpackPlugin({
+            title: 'CoBudget | Register',
+            template: './src/pages/register.html',
+            filename: 'register.html',
+            chunks: ['register'],
         }),
     ],
     module: {
