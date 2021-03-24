@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = merge(base, {
     mode: 'production',
     output: {
-        filename: '[name].[contenthash].bundle,js',
+        filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
