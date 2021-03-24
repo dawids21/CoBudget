@@ -8,22 +8,6 @@ const config = new ConfigApp('prod');
 const jwtService = new JwtService();
 const requestService = new RequestService(config.getRestUrl());
 
-function checkPasswords() {
-    if (document.getElementById('signup-password').value ===
-        document.getElementById('signup-password-repeat').value) {
-        document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
-            .getPropertyValue('--main-green');
-        document.getElementById('password-message').innerHTML = 'Passwords are the same';
-        document.getElementById('sign-up-submit').disabled = false;
-    } else {
-        document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
-            .getPropertyValue('--claret');
-
-        document.getElementById('password-message').innerHTML = 'Passwords are not the same';
-        document.getElementById('sign-up-submit').disabled = true;
-    }
-}
-
 function addEventListener(id, eventName, func) {
     const element = document.getElementById(id);
     if (element) {
@@ -42,25 +26,7 @@ if ('serviceWorker' in navigator) {
 
 function addEventListeners() {
     addEventListener('logout-button', 'click', () => jwtService.logout());
-    addEventListener('signup-password', 'keyup', () => checkPasswords());
-    addEventListener('signup-password-repeat', 'keyup', () => checkPasswords());
 
-    const registerForm = document.getElementById('register-form');
-    if (registerForm) {
-        registerForm.addEventListener('submit', function (e) {
-            requestService.submitSignUpForm(e, this).then(() => window.location.href = '/').catch((err) => {
-                if (err.responseCode === 409) {
-                    const errorMessage = document.getElementById('error-message');
-                    if (errorMessage) {
-                        errorMessage.innerText = 'Account with this email already exists';
-                        errorMessage.style.color = getComputedStyle(document.documentElement).getPropertyValue('--claret');
-                        return;
-                    }
-                }
-                alert('Cannot perform sign up. Please try again');
-            });
-        });
-    }
     const addExpenseForm = document.getElementById('add-expense-form');
     if (addExpenseForm) {
         addExpenseForm.addEventListener('submit', function (e) {
