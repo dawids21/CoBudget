@@ -1,6 +1,6 @@
-import FetchService from './FetchService.js';
-import JwtService from './JwtService.js';
-import ResponseError from './ResponseError.js';
+import FetchService from "./FetchService.js";
+import JwtService from "./JwtService.js";
+import ResponseError from "../ResponseError.js";
 
 export default class RequestService {
 
@@ -22,7 +22,7 @@ export default class RequestService {
             throw new ResponseError(`HTTP error! status: ${response.status}`, response.status);
         }
         const jsonResponse = await response.json();
-        alert(`Hello ${jsonResponse.name ? jsonResponse.name : 'user'}! Now you can login`);
+        alert(`Hello ${jsonResponse.name ? jsonResponse.name : "user"}! Now you can login`);
     }
 
     async submitLoginForm(e, form) {
@@ -69,7 +69,7 @@ export default class RequestService {
 
     _buildHeaders(auth = null) {
         const result = {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         };
         if (auth) {
             result.Authorization = `Bearer ${auth}`;
