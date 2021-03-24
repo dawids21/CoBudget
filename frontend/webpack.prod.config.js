@@ -35,6 +35,12 @@ module.exports = merge(base, {
             filename: 'register.html',
             chunks: ['register'],
         }),
+        new HtmlWebpackPlugin({
+            title: 'CoBudget | Add expense',
+            template: './src/pages/add-expense.html',
+            filename: 'add-expense.html',
+            chunks: ['addExpense'],
+        }),
     ],
     module: {
         rules: [

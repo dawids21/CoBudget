@@ -4,6 +4,7 @@ module.exports = {
         week: './src/js/week.js',
         register: './src/js/register.js',
         index: './src/js/index.js',
+        addExpense: './src/js/addExpense.js',
     },
     module: {
         rules: [

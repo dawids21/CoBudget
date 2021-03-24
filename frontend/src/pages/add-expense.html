@@ -4,19 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoBudget | Add expense</title>
-    <script type="module" src="js/app.js" defer></script>
-    <link rel="stylesheet" href="src/css/fontawesome/all.min.css">
-    <link rel="stylesheet" href="src/css/style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#478401">
-    <meta name="apple-mobile-web-app-title" content="CoBudget">
-    <meta name="application-name" content="CoBudget">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <script type="module" src="js/JwtCheck.js"></script>
 </head>
 <body>
 <header id="main-header">
@@ -26,9 +13,9 @@
     <div id="right-side-header">
         <nav>
             <ul id="links-list" class="disable-select">
-                <li class="button active-button"><a href="src/pages/week.html">Track</a></li>
-                <li class="button"><a href="inprogress.html">Plan</a></li>
-                <li class="button"><a href="inprogress.html">Analyze</a></li>
+                <li class="button active-button"><a href="week.html">Track</a></li>
+                <li class="button"><a href="#">Plan</a></li>
+                <li class="button"><a href="#">Analyze</a></li>
                 <li id="logout-button" class="button">Logout</li>
             </ul>
         </nav>
@@ -38,7 +25,7 @@
     <div id="control-panel">
         <div id="change-view-buttons" class="button-box disable-select">
             <a class="button active-button">Week</a>
-            <a class="button" href="inprogress.html">Month</a>
+            <a class="button" href="#">Month</a>
         </div>
         <div id="budget-info">
             <ul class="flex-list-row">
@@ -49,13 +36,13 @@
         </div>
     </div>
     <div class="form-container">
-        <a id="back-button" class="icon-button" href="src/pages/week.html"><i class="fas fa-angle-left fa-3x"></i></a>
+        <a id="back-button" class="icon-button" href="week.html"><i class="fas fa-angle-left fa-3x"></i></a>
         <form id="add-expense-form" class="form" method="post" action="#">
             <div class="form-data">
                 <label>Type:</label>
                 <div class="button-box disable-select">
                     <a class="button active-button">Expense</a>
-                    <a class="button" href="inprogress.html">Earning</a>
+                    <a class="button" href="#">Earning</a>
                 </div>
                 <!--TODO: Add setting date based on clicked button in week view-->
                 <label class="margin-top--sm" for="date">Date:</label>
