@@ -17,5 +17,11 @@ module.exports = merge(base, {
             filename: 'login.html', //TODO try to add content hash
             chunks: ['login'],
         }),
+        new HtmlWebpackPlugin({
+            title: 'CoBudget | Week view',
+            template: './src/pages/week.html',
+            filename: 'week.html', // TODO try to add content hash
+            chunks: ['week'],
+        }),
     ],
 });
