@@ -42,7 +42,11 @@ module.exports = merge(base, {
             filename: 'week.html',
             chunks: ['week'],
         }),
-
+        new HtmlWebpackPlugin({
+            title: 'CoBudget | Add expense',
+            template: './src/pages/add-expense.html',
+            filename: 'add-expense.html',
+            chunks: ['addExpense'],
+        }),
     ],
-
 });
