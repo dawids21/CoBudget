@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
     entry: {
         login: './src/js/login.js',
@@ -8,7 +6,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\/.html$/,
+                test: /\.html$/,
                 use: ['html-loader'],
             },
             {
