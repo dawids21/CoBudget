@@ -24,4 +24,12 @@ module.exports = merge(base, {
             chunks: ['week'],
         }),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+        ],
+    },
 });
