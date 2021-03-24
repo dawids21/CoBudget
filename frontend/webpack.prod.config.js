@@ -23,6 +23,12 @@ module.exports = merge(base, {
             filename: 'week.html', // TODO try to add content hash
             chunks: ['week'],
         }),
+        new HtmlWebpackPlugin({
+            title: 'CoBudget | Register',
+            template: './src/pages/register.html',
+            filename: 'register.html',
+            chunks: ['register'],
+        }),
     ],
     module: {
         rules: [

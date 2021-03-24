@@ -25,6 +25,12 @@ module.exports = merge(base, {
             chunks: ['login'],
         }),
         new HtmlWebpackPlugin({
+            title: 'CoBudget | Register',
+            template: './src/pages/register.html',
+            filename: 'register.html',
+            chunks: ['register'],
+        }),
+        new HtmlWebpackPlugin({
             title: 'CoBudget | Week view',
             template: './src/pages/week.html',
             filename: 'week.html',
