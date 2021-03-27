@@ -2,6 +2,7 @@ const path = require('path');
 const base = require('./webpack.base.config.js');
 const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(base, {
     mode: 'production',
@@ -11,6 +12,7 @@ module.exports = merge(base, {
         clean: true,
     },
     plugins: [
+        new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
         new HtmlWebpackPlugin({
             title: 'CoBudget | Welcome',
             template: './src/pages/index.html',
@@ -46,7 +48,7 @@ module.exports = merge(base, {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
     },
