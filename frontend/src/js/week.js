@@ -4,6 +4,8 @@ import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
 import GetExpensesService from './service/GetExpensesService.js';
 import WeekView from './components/WeekView.js';
+import {dom, library} from '@fortawesome/fontawesome-svg-core';
+import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp('prod');
 const jwtService = new JwtService();
@@ -12,6 +14,9 @@ const requestService = new RequestService(config.getRestUrl());
 if (jwtService.checkExpire()) {
     jwtService.logout();
 }
+
+library.add(faPlus, faBars, faCaretLeft, faCaretRight);
+dom.watch();
 
 //if ("serviceWorker" in navigator) {
 //    window.addEventListener("load", function () {

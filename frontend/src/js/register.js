@@ -2,6 +2,8 @@ import '../css/style.css';
 import ConfigApp from './config.js';
 import JwtService from './service/JwtService.js';
 import RequestService from './service/RequestService.js';
+import {dom, library} from '@fortawesome/fontawesome-svg-core';
+import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp('prod');
 const jwtService = new JwtService();
@@ -10,6 +12,9 @@ const requestService = new RequestService(config.getRestUrl());
 if (!jwtService.checkExpire()) {
     window.location.href = '/week.html';
 }
+
+library.add(faAngleLeft);
+dom.watch();
 
 //if ("serviceWorker" in navigator) {
 //    window.addEventListener("load", function () {
