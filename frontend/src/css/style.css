@@ -345,7 +345,7 @@ main {
     width: 100%;
 }
 
-.add-entry-button i {
+.add-entry-button .icon-button-bg {
     color: var(--white);
     background-color: var(--main-green);
     border-radius: 100%;
@@ -354,7 +354,7 @@ main {
     font-size: var(--text-lg);
 }
 
-.add-entry-button i:hover {
+.add-entry-button .icon-button-bg:hover {
     background-color: var(--claret);
 }
 
@@ -372,7 +372,7 @@ main {
     right: 3rem;
 }
 
-#float-add-button i {
+#float-add-button .icon-button-bg {
     border: 2px solid var(--dark-green);
     font-size: 4rem;
 }
