@@ -1,4 +1,5 @@
 const FaviconsPlugin = require('favicons-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -21,6 +22,10 @@ module.exports = {
                 orientation: 'portrait-primary',
                 start_url: '/index.html',
             },
+        }),
+        new WorkboxPlugin.GenerateSW({
+            skipWaiting: true,
+            clientsClaim: true,
         }),
     ],
     module: {
