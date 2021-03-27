@@ -1,4 +1,4 @@
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const FaviconsPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -9,7 +9,7 @@ module.exports = {
         addExpense: './src/js/addExpense.js',
     },
     plugins: [
-        new FaviconsWebpackPlugin({
+        new FaviconsPlugin({
             logo: './src/icon.png',
             cache: true,
             prefix: 'icons-[contenthash:8]/',
