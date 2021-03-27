@@ -2,6 +2,11 @@ import '../css/style.css';
 import ConfigApp from './config.js';
 import JwtService from './service/JwtService.js';
 import RequestService from './service/RequestService.js';
+import {dom, library} from '@fortawesome/fontawesome-svg-core';
+import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faAngleLeft);
+dom.watch();
 
 const config = new ConfigApp('prod');
 const jwtService = new JwtService();
