@@ -3,6 +3,8 @@ const base = require('./webpack.base.config.js');
 const {merge} = require('webpack-merge');
 const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(base, {
     mode: 'production',
@@ -10,6 +12,15 @@ module.exports = merge(base, {
         filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
+    },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new CssMinimizerPlugin({
+                test: /\.css$/,
+            }),
+            new TerserPlugin(),
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
