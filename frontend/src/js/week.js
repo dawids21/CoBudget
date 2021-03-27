@@ -7,9 +7,6 @@ import WeekView from './components/WeekView.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faPlus, faBars, faCaretLeft, faCaretRight);
-dom.watch();
-
 const config = new ConfigApp('prod');
 const jwtService = new JwtService();
 const requestService = new RequestService(config.getRestUrl());
@@ -17,6 +14,9 @@ const requestService = new RequestService(config.getRestUrl());
 if (jwtService.checkExpire()) {
     jwtService.logout();
 }
+
+library.add(faPlus, faBars, faCaretLeft, faCaretRight);
+dom.watch();
 
 //if ("serviceWorker" in navigator) {
 //    window.addEventListener("load", function () {
