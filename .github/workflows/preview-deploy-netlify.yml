@@ -75,3 +75,12 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Post Netlify CLI Comment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: ${{ github.event.pull_request.comments_url }}
+        run: |
+          curl -X POST \
+               -H "Authorization: token ${GITHUB_TOKEN}" \
+               -d "{\"body\": \"Preview deploy: https://$BRANCH_NAME--cobudget.netlify.app\"}" \
+               ${URL}
