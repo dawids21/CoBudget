@@ -69,6 +69,7 @@ jobs:
         run: npm run build
         env:
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
+      - uses: nelonoel/branch-name@v1.0.1
       - name: Deploy to Netlify
         run: npx netlify-cli deploy --dir=./dist --alias=${{ env.BRANCH_NAME }}
         env:
