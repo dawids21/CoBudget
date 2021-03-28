@@ -41,9 +41,9 @@ jobs:
         if: steps.check_files.outputs.cancel_job == 'true'
         uses: andymckay/cancel-action@0.2
 
-  build:
+  build_and_deploy:
 
-    name: Build
+    name: Build and deploy
     runs-on: ubuntu-latest
     needs: check
     environment: frontend
@@ -69,29 +69,8 @@ jobs:
         run: npm run build
         env:
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
-      - name: Save built artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          path: frontend/dist
-
-  deploy:
-
-    name: Deploy to Netlify
-    runs-on: ubuntu-latest
-    needs: build
-    environment: frontend
-
-    steps:
-      - name: Download dist artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: dist
-          path: frontend/dist
       - name: Deploy to Netlify
-        uses: jsmrcaga/action-netlify-deploy@v1.1.0
-        with:
+        run: npx netlify-cli deploy --dir=./dist --alias=${{ env.BRANCH_NAME }}
+        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_DEPLOY_TO_PROD: false
-          build_directory: frontend/dist
