@@ -69,12 +69,12 @@ jobs:
         run: npm run build
         env:
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
-      - run: ls
+      - run: ls dist
       - name: Save built artifacts
         uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: dist
+          path: dist/
 
   deploy:
 
