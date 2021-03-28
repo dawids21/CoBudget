@@ -69,9 +69,8 @@ jobs:
         run: npm run build
         env:
           BACKEND_URL: ${{ secrets.BACKEND_URL }}
-      - uses: nelonoel/branch-name@v1.0.1
       - name: Deploy to Netlify
-        run: npx netlify-cli deploy --dir=./dist --alias=${{ env.BRANCH_NAME }}
+        run: npx netlify-cli deploy --dir=./dist > file.txt
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -82,5 +81,5 @@ jobs:
         run: |
           curl -X POST \
                -H "Authorization: token ${GITHUB_TOKEN}" \
-               -d "{\"body\": \"Preview deploy: https://${BRANCH_NAME}--cobudget.netlify.app\"}" \
+               -d "{\"body\": \"Preview deploy: $(grep 'Website Draft URL:' file.txt | sed 's/^.*: //')\"}" \
                ${URL}
