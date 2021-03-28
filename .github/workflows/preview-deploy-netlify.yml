@@ -82,5 +82,5 @@ jobs:
         run: |
           curl -X POST \
                -H "Authorization: token ${GITHUB_TOKEN}" \
-               -d "{\"body\": \"Preview deploy: https://$BRANCH_NAME--cobudget.netlify.app\"}" \
+               -d "{\"body\": \"Preview deploy: https://${BRANCH_NAME}--cobudget.netlify.app\"}" \
                ${URL}
