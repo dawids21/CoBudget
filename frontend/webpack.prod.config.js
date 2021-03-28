@@ -5,6 +5,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = merge(base, {
     mode: 'production',
@@ -23,6 +24,11 @@ module.exports = merge(base, {
         ],
     },
     plugins: [
+        new Dotenv({
+            path: '',
+            systemvars: true,
+            safe: true,
+        }),
         new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
         new HtmlPlugin({
             title: 'CoBudget | Welcome',

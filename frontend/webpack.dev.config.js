@@ -2,6 +2,7 @@ const path = require('path');
 const base = require('./webpack.base.config.js');
 const {merge} = require('webpack-merge');
 const HtmlPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = merge(base, {
     mode: 'development',
@@ -18,6 +19,9 @@ module.exports = merge(base, {
         ],
     },
     plugins: [
+        new Dotenv({
+            safe: true,
+        }),
         new HtmlPlugin({
             title: 'CoBudget | Welcome',
             template: './src/pages/index.html',

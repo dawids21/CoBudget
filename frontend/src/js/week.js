@@ -7,7 +7,7 @@ import WeekView from './components/WeekView.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 
-const config = new ConfigApp('prod');
+const config = new ConfigApp();
 const jwtService = new JwtService();
 const requestService = new RequestService(config.getRestUrl());
 
