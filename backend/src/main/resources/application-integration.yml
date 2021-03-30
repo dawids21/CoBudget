@@ -5,3 +5,5 @@ security:
     header-string: Authorization
     token-prefix: "Bearer "
     sign-up-url: /user/sign-up
+    access-token-cookie-name: accessCookie
+    refresh-token-cookie-name: refreshCookie

@@ -24,6 +24,8 @@ public class SecurityProperties {
         private String tokenPrefix;
         private String headerString;
         private String signUpUrl;
+        private String accessTokenCookieName;
+        private String refreshTokenCookieName;
 
         public String getSecret() {
             return secret;
@@ -63,6 +65,22 @@ public class SecurityProperties {
 
         public void setSignUpUrl(String signUpUrl) {
             this.signUpUrl = signUpUrl;
+        }
+
+        public String getAccessTokenCookieName() {
+            return accessTokenCookieName;
+        }
+
+        public void setAccessTokenCookieName(String accessTokenCookieName) {
+            this.accessTokenCookieName = accessTokenCookieName;
+        }
+
+        public String getRefreshTokenCookieName() {
+            return refreshTokenCookieName;
+        }
+
+        public void setRefreshTokenCookieName(String refreshTokenCookieName) {
+            this.refreshTokenCookieName = refreshTokenCookieName;
         }
     }
 }
