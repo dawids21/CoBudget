@@ -1,7 +1,7 @@
 package xyz.stasiak.cobudgetbackend.security.jwt;
 
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Objects;
 
 public class Token {
@@ -9,9 +9,9 @@ public class Token {
     private TokenType tokenType;
     private String tokenValue;
     private Long duration;
-    private LocalDateTime expiryDate;
+    private Instant expiryDate;
 
-    public Token(TokenType tokenType, String tokenValue, Long duration, LocalDateTime expiryDate) {
+    public Token(TokenType tokenType, String tokenValue, Long duration, Instant expiryDate) {
         this.tokenType = tokenType;
         this.tokenValue = tokenValue;
         this.duration = duration;
@@ -42,11 +42,11 @@ public class Token {
         this.duration = duration;
     }
 
-    public LocalDateTime getExpiryDate() {
+    public Instant getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(LocalDateTime expiryDate) {
+    public void setExpiryDate(Instant expiryDate) {
         this.expiryDate = expiryDate;
     }
 
