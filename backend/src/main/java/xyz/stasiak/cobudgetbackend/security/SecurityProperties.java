@@ -18,9 +18,11 @@ public class SecurityProperties {
     }
 
     public static class Jwt {
+        //TODO change env vars in production
 
         private String secret;
-        private long expirationDate;
+        private long accessTokenExpirationDate;
+        private long refreshTokenExpirationDate;
         private String tokenPrefix;
         private String headerString;
         private String signUpUrl;
@@ -35,12 +37,20 @@ public class SecurityProperties {
             this.secret = secret;
         }
 
-        public long getExpirationDate() {
-            return expirationDate;
+        public long getAccessTokenExpirationDate() {
+            return accessTokenExpirationDate;
         }
 
-        public void setExpirationDate(long expirationDate) {
-            this.expirationDate = expirationDate;
+        public void setAccessTokenExpirationDate(long accessTokenExpirationDate) {
+            this.accessTokenExpirationDate = accessTokenExpirationDate;
+        }
+
+        public long getRefreshTokenExpirationDate() {
+            return refreshTokenExpirationDate;
+        }
+
+        public void setRefreshTokenExpirationDate(long refreshTokenExpirationDate) {
+            this.refreshTokenExpirationDate = refreshTokenExpirationDate;
         }
 
         public String getTokenPrefix() {

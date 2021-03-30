@@ -1,7 +1,8 @@
 security:
   jwt:
     secret: secret
-    expiration-date: 36000000
+    access-token-expiration-date: 3600000
+    refresh-token-expiration-date: 7776000000
     header-string: Authorization
     token-prefix: "Bearer "
     sign-up-url: /user/sign-up
