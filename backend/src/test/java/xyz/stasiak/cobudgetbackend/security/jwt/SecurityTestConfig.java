@@ -4,7 +4,7 @@ import xyz.stasiak.cobudgetbackend.security.SecurityProperties;
 
 class SecurityTestConfig {
 
-    private final SecurityProperties securityProperties;
+    final SecurityProperties securityProperties;
 
     public SecurityTestConfig() {
         this.securityProperties = testSecurityProperties();
