@@ -1,8 +1,10 @@
 package xyz.stasiak.cobudgetbackend.security;
 
+import org.springframework.http.ResponseEntity;
+
 public interface AuthUserService {
 
-    void login(String email, String password, String accessToken, String refreshToken);
+    ResponseEntity<LoginResponse> login(LoginRequest loginRequest, String accessToken, String refreshToken);
 
-    void refresh(String accessToken, String refreshToken);
+    ResponseEntity<LoginResponse> refresh(String accessToken, String refreshToken);
 }
