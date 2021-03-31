@@ -2,11 +2,11 @@ package xyz.stasiak.cobudgetbackend.security.jwt;
 
 import xyz.stasiak.cobudgetbackend.security.SecurityProperties;
 
-class SecurityTestConfig {
+class TestJwtConfig {
 
     final SecurityProperties securityProperties;
 
-    public SecurityTestConfig() {
+    public TestJwtConfig() {
         this.securityProperties = testSecurityProperties();
     }
 

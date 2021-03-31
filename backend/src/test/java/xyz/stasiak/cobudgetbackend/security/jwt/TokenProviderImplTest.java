@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TokenProviderImplTest {
 
     private final Clock clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
-    private final SecurityProperties securityProperties = new SecurityTestConfig().securityProperties;
+    private final SecurityProperties securityProperties = new TestJwtConfig().securityProperties;
     private final TokenProvider tokenProvider = new TokenProviderImpl(clock, securityProperties);
 
     @Test
