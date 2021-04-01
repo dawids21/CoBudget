@@ -30,7 +30,11 @@ document.getElementById('logout-button').addEventListener('click', () => jwtServ
 const addExpenseForm = document.getElementById('add-expense-form');
 if (addExpenseForm) {
     addExpenseForm.addEventListener('submit', function (e) {
-        requestService.submitExpenseForm(e, this).then(() => {
+        e.preventDefault();
+        const btnSubmit = document.getElementById('add-expense-button');
+        btnSubmit.disabled = true;
+        setTimeout(() => btnSubmit.disabled = false, 2000);
+        requestService.addExpense(this).then(() => {
             alert('Expense added!');
             window.location.href = '/week.html';
         }).catch(() => alert('Cannot add expense. Please try again'));

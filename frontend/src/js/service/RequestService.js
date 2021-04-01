@@ -29,11 +29,7 @@ export default class RequestService {
         this.jwtService.store(jsonResponse.token);
     }
 
-    async submitExpenseForm(e, form) {
-        e.preventDefault();
-        const btnSubmit = document.getElementById('add-expense-button');
-        btnSubmit.disabled = true;
-        setTimeout(() => btnSubmit.disabled = false, 2000);
+    async addExpense(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders(this.jwtService.getToken());
         const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/expense', headers, jsonFormData);
