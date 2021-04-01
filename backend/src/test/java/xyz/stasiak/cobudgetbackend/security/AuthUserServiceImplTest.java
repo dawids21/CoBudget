@@ -77,6 +77,28 @@ class AuthUserServiceImplTest {
         }
     }
 
+    @Nested
+    class Refresh {
+
+        @Test
+        void throws_an_exception_when_refresh_token_is_invalid() {
+            //TODO implement throws_an_exception_when_refresh_token_is_invalid
+            throw new UnsupportedOperationException("Not implemented yet");
+        }
+
+        @Test
+        void create_new_access_token_when_refresh_is_valid() {
+            //TODO implement create_new_access_token_when_refresh_is_valid
+            throw new UnsupportedOperationException("Not implemented yet");
+        }
+
+        @Test
+        void return_success_status_when_successful_refreshing() {
+            //TODO implement return_success_status_when_successful_refreshing
+            throw new UnsupportedOperationException("Not implemented yet");
+        }
+    }
+
     private LoginRequest testLoginRequest() {
         return new LoginRequest("abc@def.com", "pass");
     }
@@ -98,20 +120,4 @@ class AuthUserServiceImplTest {
                   .withExpiresAt(Date.from(now.plusMillis(jwtProperties.getRefreshTokenExpirationDate())))
                   .sign(Algorithm.HMAC512(jwtProperties.getSecret()));
     }
-
-    private SecurityProperties testSecurityProperties() {
-        var securityProperties = new SecurityProperties();
-        var jwtProperties = new SecurityProperties.Jwt();
-        jwtProperties.setSecret("secret");
-        jwtProperties.setAccessTokenCookieName("accessCookie");
-        jwtProperties.setRefreshTokenCookieName("refreshCookie");
-        jwtProperties.setHeaderString("Authorization");
-        jwtProperties.setTokenPrefix("Bearer ");
-        jwtProperties.setAccessTokenExpirationDate(3600000L);
-        jwtProperties.setRefreshTokenExpirationDate(7776000000L);
-        jwtProperties.setSignUpUrl("/user/sign-up");
-        securityProperties.setJwt(jwtProperties);
-        return securityProperties;
-    }
-
 }
