@@ -13,10 +13,6 @@ export default class AuthenticationService {
         window.location.href = '/landing.html';
     }
 
-    getToken() {
-        return localStorage.getItem('authorization');
-    }
-
     _clearAuthData() {
         document.cookie = 'accessCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
         document.cookie = 'refreshCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';

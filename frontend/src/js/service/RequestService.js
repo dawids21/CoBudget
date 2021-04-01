@@ -31,7 +31,7 @@ export default class RequestService {
 
     async addExpense(form) {
         const jsonFormData = this._buildJsonFormData(form);
-        const headers = this._buildHeaders(this.jwtService.getToken());
+        const headers = this._buildHeaders();
         const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/expense', headers, jsonFormData);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -39,7 +39,7 @@ export default class RequestService {
     }
 
     async getMonthlyExpenses(month, year) {
-        const headers = this._buildHeaders(this.jwtService.getToken());
+        const headers = this._buildHeaders();
         const response = await this.fetchService.performGetHttpRequest(`${this.restUrl}/expense?month=${month}&year=${year}`, headers);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -62,13 +62,9 @@ export default class RequestService {
         return jsonFormData;
     }
 
-    _buildHeaders(auth = null) {
-        const result = {
+    _buildHeaders() {
+        return {
             'Content-Type': 'application/json',
         };
-        if (auth) {
-            result.Authorization = `Bearer ${auth}`;
-        }
-        return result;
     }
 }
