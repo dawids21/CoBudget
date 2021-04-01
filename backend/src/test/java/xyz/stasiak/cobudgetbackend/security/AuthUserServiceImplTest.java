@@ -1,13 +1,22 @@
 package xyz.stasiak.cobudgetbackend.security;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpHeaders;
+
+import java.time.Instant;
+import java.util.Date;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AuthUserServiceImplTest {
 
+    private final SecurityProperties.Jwt jwtProperties = new TestSecurityConfig().securityProperties.getJwt();
     private final AuthUserServiceImpl authUserService = new AuthUserServiceImpl();
 
     @Nested
@@ -15,8 +24,10 @@ class AuthUserServiceImplTest {
 
         @Test
         void create_access_and_refresh_tokens_for_unauthenticated_user() {
-            //TODO implement create_access_and_refresh_tokens_for_unauthenticated_user
-            throw new UnsupportedOperationException("Not implemented yet");
+            var response = authUserService.login(testLoginRequest(), "", "");
+            var cookies = response.getHeaders()
+                                  .get(HttpHeaders.SET_COOKIE);
+            assertThat(cookies).hasSize(2);
         }
 
         @Test
@@ -44,11 +55,25 @@ class AuthUserServiceImplTest {
         }
     }
 
+    private LoginRequest testLoginRequest() {
+        return new LoginRequest("abc@def.com", "pass");
+    }
+
     private String testAccessToken() {
-        return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhYmMiLCJpYXQiOjE2MDk0ODQ0MDAsImV4cCI6MTYwOTU3MDgwMH0.d-nDkd8TjNQbXDGpu9YmvXxrcMRlg_AdljPEFPEr8qNKBjxQduMOPN0brqV47MhS5oTWS-ke8p7MYt-VzHz-Vg";
+        return JWT.create()
+                  .withIssuedAt(Date.from(Instant.now()))
+                  .withSubject("abc@def.com")
+                  .withExpiresAt(Date.from(Instant.now()
+                                                  .plusMillis(jwtProperties.getAccessTokenExpirationDate())))
+                  .sign(Algorithm.HMAC512(jwtProperties.getSecret()));
     }
 
     private String testRefreshToken() {
-        return "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhYmMiLCJpYXQiOjE2MDk0ODQ0MDAsImV4cCI6MTYxNzI1NjgwMH0.8ASQW8-RYc1rp9KMhOKR3vk1q4KLFygit2QV3b2y0JifZnfhSv8SvZsVPexoiUJuWdSXl0prEJfL6eiYArlaDw";
+        return JWT.create()
+                  .withIssuedAt(Date.from(Instant.now()))
+                  .withSubject("abc@def.com")
+                  .withExpiresAt(Date.from(Instant.now()
+                                                  .plusMillis(jwtProperties.getRefreshTokenExpirationDate())))
+                  .sign(Algorithm.HMAC512(jwtProperties.getSecret()));
     }
 }
