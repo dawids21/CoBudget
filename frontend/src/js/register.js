@@ -47,7 +47,11 @@ document.getElementById('signup-password-repeat').addEventListener('keyup', () =
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
     registerForm.addEventListener('submit', function (e) {
-        requestService.submitSignUpForm(e, this).then(() => window.location.href = '/').catch((err) => {
+        e.preventDefault();
+        const btnSubmit = document.getElementById('sign-up-submit');
+        btnSubmit.disabled = true;
+        setTimeout(() => btnSubmit.disabled = false, 2000);
+        requestService.signUp(this).then(() => window.location.href = '/').catch((err) => {
             if (err.responseCode === 409) {
                 const errorMessage = document.getElementById('error-message');
                 if (errorMessage) {

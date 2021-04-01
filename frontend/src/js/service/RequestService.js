@@ -10,11 +10,7 @@ export default class RequestService {
         this.jwtService = new AuthenticationService();
     }
 
-    async submitSignUpForm(e, form) {
-        e.preventDefault();
-        const btnSubmit = document.getElementById('sign-up-submit');
-        btnSubmit.disabled = true;
-        setTimeout(() => btnSubmit.disabled = false, 2000);
+    async signUp(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
         const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/sign-up', headers, jsonFormData);
