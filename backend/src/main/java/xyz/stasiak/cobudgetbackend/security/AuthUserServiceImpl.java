@@ -64,7 +64,7 @@ public class AuthUserServiceImpl implements AuthUserService {
     }
 
     @Override
-    public ResponseEntity<LoginResponse> refresh(String accessToken, String refreshToken) {
+    public ResponseEntity<LoginResponse> refresh(String refreshToken) {
         boolean refreshTokenValid = tokenProvider.validateToken(refreshToken);
         if (!refreshTokenValid) {
             throw new IllegalArgumentException("Refresh Token is invalid!");

@@ -82,13 +82,13 @@ class AuthUserServiceImplTest {
 
         @Test
         void throws_an_exception_when_refresh_token_is_invalid() {
-            assertThatThrownBy(() -> authUserService.refresh("", "")).isInstanceOf(IllegalArgumentException.class)
-                                                                     .hasMessageContaining("invalid");
+            assertThatThrownBy(() -> authUserService.refresh("")).isInstanceOf(IllegalArgumentException.class)
+                                                                 .hasMessageContaining("invalid");
         }
 
         @Test
         void create_new_access_token_when_refresh_is_valid() {
-            var response = authUserService.refresh("", testRefreshToken());
+            var response = authUserService.refresh(testRefreshToken());
             var cookies = response.getHeaders()
                                   .get(HttpHeaders.SET_COOKIE);
             assertThat(cookies).hasSize(1);
@@ -97,7 +97,7 @@ class AuthUserServiceImplTest {
 
         @Test
         void return_success_status_when_successful_refreshing() {
-            var response = authUserService.refresh("", testRefreshToken());
+            var response = authUserService.refresh(testRefreshToken());
             assertThat(response.getBody()
                                .getStatus()).isEqualTo(LoginResponse.SuccessFailure.SUCCESS);
         }
