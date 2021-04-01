@@ -30,30 +30,42 @@ class AuthUserServiceImplTest {
             var cookies = response.getHeaders()
                                   .get(HttpHeaders.SET_COOKIE);
             assertThat(cookies).hasSize(2);
+            assertThat(cookies).anyMatch(s -> s.contains("access"));
+            assertThat(cookies).anyMatch(s -> s.contains("refresh"));
         }
 
         @Test
         void create_access_token_when_refresh_token_is_valid() {
-            //TODO implement createAccessTokenWhenRefreshTokenIsValid
-            throw new UnsupportedOperationException("Not implemented yet");
+            var response = authUserService.login(testLoginRequest(), "", testRefreshToken());
+            var cookies = response.getHeaders()
+                                  .get(HttpHeaders.SET_COOKIE);
+            assertThat(cookies).hasSize(1);
+            assertThat(cookies).anyMatch(s -> s.contains("access"));
+            assertThat(cookies).anyMatch(s -> !s.contains("refresh"));
         }
 
         @Test
         void create_new_access_and_refresh_tokens_for_authenticated_user() {
-            //TODO implement createNewAccessAndRefreshTokensForAuthenticatedUser
-            throw new UnsupportedOperationException("Not implemented yet");
+            var response = authUserService.login(testLoginRequest(), testAccessToken(), testRefreshToken());
+            var cookies = response.getHeaders()
+                                  .get(HttpHeaders.SET_COOKIE);
+            assertThat(cookies).hasSize(2);
+            assertThat(cookies).anyMatch(s -> s.contains("access"));
+            assertThat(cookies).anyMatch(s -> s.contains("refresh"));
         }
 
         @Test
         void return_success_for_successful_authentication() {
-            //TODO implement returnSuccessForSuccessfulAuthentication
-            throw new UnsupportedOperationException("Not implemented yet");
+            var response = authUserService.login(testLoginRequest(), "", "");
+            assertThat(response.getBody()
+                               .getStatus()).isEqualTo(LoginResponse.SuccessFailure.SUCCESS);
         }
 
         @Test
         void return_failure_for_unsuccessful_authentication() {
-            //TODO implement returnFailureForUnsuccessfulAuthentication
-            throw new UnsupportedOperationException("Not implemented yet");
+            var response = authUserService.login(new LoginRequest("wrong@mail.com", "asd"), "", "");
+            assertThat(response.getBody()
+                               .getStatus()).isEqualTo(LoginResponse.SuccessFailure.FAILURE);
         }
     }
 
