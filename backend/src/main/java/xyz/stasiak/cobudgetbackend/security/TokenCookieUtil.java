@@ -11,12 +11,13 @@ public class TokenCookieUtil {
         this.jwtProperties = jwtProperties;
     }
 
-    // TODO secure(true)?
+    // TODO secure(true) - check if it works everywhere
     public ResponseCookie createAccessTokenCookie(String token, Long duration) {
         return ResponseCookie.from(jwtProperties.getAccessTokenCookieName(), token)
                              .maxAge(duration)
                              .httpOnly(true)
                              .path("/")
+                             .secure(true)
                              .build();
     }
 
@@ -25,6 +26,7 @@ public class TokenCookieUtil {
                              .maxAge(duration)
                              .httpOnly(true)
                              .path("/")
+                             .secure(true)
                              .build();
     }
 
