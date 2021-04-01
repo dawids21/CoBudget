@@ -67,7 +67,7 @@ public class AuthUserServiceImpl implements AuthUserService {
     public ResponseEntity<LoginResponse> refresh(String refreshToken) {
         boolean refreshTokenValid = tokenProvider.validateToken(refreshToken);
         if (!refreshTokenValid) {
-            throw new IllegalArgumentException("Refresh Token is invalid!");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Refresh Token is invalid!");
         }
 
         String currentUserEmail = tokenProvider.getUsernameFromToken(refreshToken);

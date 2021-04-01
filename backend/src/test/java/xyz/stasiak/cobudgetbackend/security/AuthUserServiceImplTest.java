@@ -82,7 +82,7 @@ class AuthUserServiceImplTest {
 
         @Test
         void throws_an_exception_when_refresh_token_is_invalid() {
-            assertThatThrownBy(() -> authUserService.refresh("")).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> authUserService.refresh("")).isInstanceOf(ResponseStatusException.class)
                                                                  .hasMessageContaining("invalid");
         }
 
