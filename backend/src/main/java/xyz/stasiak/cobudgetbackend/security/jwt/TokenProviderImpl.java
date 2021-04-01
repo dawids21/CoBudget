@@ -29,8 +29,8 @@ public class TokenProviderImpl implements TokenProvider {
                           .withExpiresAt(Date.from(expiryDate))
                           .sign(Algorithm.HMAC512(jwtProperties.getSecret()
                                                                .getBytes()));
-        //TODO duration is wrong, check it!
-        return new Token(Token.TokenType.ACCESS, token, expiryDate.toEpochMilli(), expiryDate);
+        return new Token(Token.TokenType.ACCESS, token, jwtProperties.getAccessTokenExpirationDate() / 1000,
+                         expiryDate);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class TokenProviderImpl implements TokenProvider {
                           .withExpiresAt(Date.from(expiryDate))
                           .sign(Algorithm.HMAC512(jwtProperties.getSecret()
                                                                .getBytes()));
-        //TODO duration is wrong, check it!
-        return new Token(Token.TokenType.REFRESH, token, expiryDate.toEpochMilli(), expiryDate);
+        return new Token(Token.TokenType.REFRESH, token, jwtProperties.getRefreshTokenExpirationDate() / 1000,
+                         expiryDate);
     }
 
     @Override
