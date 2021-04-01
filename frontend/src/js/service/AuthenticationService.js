@@ -15,7 +15,7 @@ export default class AuthenticationService {
     }
 
     logout() {
-        this.clearAuthData();
+        this._clearAuthData();
         window.location.href = '/';
     }
 
@@ -23,9 +23,9 @@ export default class AuthenticationService {
         return localStorage.getItem('authorization');
     }
 
-    clearAuthData() {
-        localStorage.removeItem('authorization');
-        localStorage.removeItem('authorizationExpires');
+    _clearAuthData() {
+        document.cookie = 'accessCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+        document.cookie = 'refreshCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
     }
 
     _parseJwt(token) {
