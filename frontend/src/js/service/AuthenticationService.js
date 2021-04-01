@@ -16,7 +16,7 @@ export default class AuthenticationService {
 
     logout() {
         this._clearAuthData();
-        window.location.href = '/';
+        window.location.href = '/landing.html';
     }
 
     getToken() {

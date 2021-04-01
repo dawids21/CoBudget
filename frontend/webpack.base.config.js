@@ -6,7 +6,7 @@ module.exports = {
         login: './src/js/login.js',
         week: './src/js/week.js',
         register: './src/js/register.js',
-        index: './src/js/index.js',
+        landing: './src/js/landing.js',
         addExpense: './src/js/addExpense.js',
     },
     plugins: [

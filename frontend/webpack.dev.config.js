@@ -24,9 +24,9 @@ module.exports = merge(base, {
         }),
         new HtmlPlugin({
             title: 'CoBudget | Welcome',
-            template: './src/pages/index.html',
-            filename: 'index.html',
-            chunks: ['index'],
+            template: './src/pages/landing.html',
+            filename: 'landing.html',
+            chunks: ['landing'],
         }),
         new HtmlPlugin({
             title: 'CoBudget | Login',
