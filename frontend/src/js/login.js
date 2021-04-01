@@ -28,6 +28,10 @@ if ('serviceWorker' in navigator) {
 const loginForm = document.getElementById('login-form');
 if (loginForm) {
     loginForm.addEventListener('submit', function (e) {
-        requestService.submitLoginForm(e, this).then(() => window.location.href = '/week.html').catch(() => alert('Cannot perform login. Please try again'));
+        e.preventDefault();
+        const btnSubmit = document.getElementById('sign-in-submit');
+        btnSubmit.disabled = true;
+        setTimeout(() => btnSubmit.disabled = false, 2000);
+        requestService.login(this).then(() => window.location.href = '/week.html').catch(() => alert('Cannot perform login. Please try again'));
     });
 }

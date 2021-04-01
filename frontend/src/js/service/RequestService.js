@@ -25,11 +25,7 @@ export default class RequestService {
         alert(`Hello ${jsonResponse.name ? jsonResponse.name : 'user'}! Now you can login`);
     }
 
-    async submitLoginForm(e, form) {
-        e.preventDefault();
-        const btnSubmit = document.getElementById('sign-in-submit');
-        btnSubmit.disabled = true;
-        setTimeout(() => btnSubmit.disabled = false, 2000);
+    async login(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
         const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/login', headers, jsonFormData);
