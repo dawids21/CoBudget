@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class TokenCookieUtilTest {
 
-    private final SecurityProperties securityProperties = new TestSecurityConfig().securityProperties;
+    private final SecurityProperties securityProperties = new TestSecurityConfig().testSecurityProperties();
     private final TokenCookieUtil tokenCookieUtil = new TokenCookieUtil(securityProperties.getJwt());
 
     @Nested
@@ -28,7 +28,7 @@ class TokenCookieUtilTest {
             assertThat(cookie.getPath()).isEqualTo("/");
         }
     }
-   
+
     @Nested
     class RefreshCookie {
 
