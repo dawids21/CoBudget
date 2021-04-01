@@ -65,7 +65,25 @@ public class AuthUserServiceImpl implements AuthUserService {
 
     @Override
     public ResponseEntity<LoginResponse> refresh(String accessToken, String refreshToken) {
-        return null;
+        boolean refreshTokenValid = tokenProvider.validateToken(refreshToken);
+        if (!refreshTokenValid) {
+            throw new IllegalArgumentException("Refresh Token is invalid!");
+        }
+
+        String currentUserEmail = tokenProvider.getUsernameFromToken(refreshToken);
+
+        Token newAccessToken = tokenProvider.generateAccessToken(currentUserEmail);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add(HttpHeaders.SET_COOKIE,
+                            tokenCookieUtil.createAccessTokenCookie(newAccessToken.getTokenValue(),
+                                                                    newAccessToken.getDuration())
+                                           .toString());
+
+        LoginResponse loginResponse = new LoginResponse(LoginResponse.SuccessFailure.SUCCESS,
+                                                        "Auth successful. Tokens are created in cookie.");
+        return ResponseEntity.ok()
+                             .headers(responseHeaders)
+                             .body(loginResponse);
     }
 
     private void addAccessTokenCookie(HttpHeaders httpHeaders, Token token) {
