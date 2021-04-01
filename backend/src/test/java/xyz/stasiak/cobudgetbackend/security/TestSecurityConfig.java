@@ -36,8 +36,11 @@ class TestSecurityConfig extends SecurityConfig {
 
     private ApplicationUserRepository testApplicationUserRepository() {
         var userRepository = mock(ApplicationUserRepository.class);
-        when(userRepository.findByEmail(Mockito.anyString())).thenReturn(
-                 Optional.of(new ApplicationUser("abc@def.com", "pass", "John")));
+        when(userRepository.findByEmail(Mockito.anyString())).then(invocation -> {
+            String email = invocation.getArgument(0, String.class);
+            return email.equals("abc@def.com") ? Optional.of(new ApplicationUser("abc@def.com", "pass", "John")) :
+                     Optional.empty();
+        });
         return userRepository;
     }
 }

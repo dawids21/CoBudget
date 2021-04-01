@@ -1,7 +1,9 @@
 package xyz.stasiak.cobudgetbackend.security;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
 import xyz.stasiak.cobudgetbackend.security.jwt.Token;
 import xyz.stasiak.cobudgetbackend.security.jwt.TokenProvider;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
@@ -24,8 +26,9 @@ public class AuthUserServiceImpl implements AuthUserService {
     public ResponseEntity<LoginResponse> login(LoginRequest loginRequest, String accessToken, String refreshToken) {
         String email = loginRequest.getEmail();
         ApplicationUser user = userRepository.findByEmail(email)
-                                             .orElseThrow(() -> new IllegalArgumentException(
-                                                      "User not found with email " + email));
+                                             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                                                                            "User with email " + email +
+                                                                                            " not found"));
 
         boolean accessTokenValid = tokenProvider.validateToken(accessToken);
         boolean refreshTokenValid = tokenProvider.validateToken(refreshToken);
@@ -34,6 +37,18 @@ public class AuthUserServiceImpl implements AuthUserService {
         Token newAccessToken;
         Token newRefreshToken;
         if (!accessTokenValid && !refreshTokenValid) {
+            newAccessToken = tokenProvider.generateAccessToken(user.getEmail());
+            newRefreshToken = tokenProvider.generateRefreshToken(user.getEmail());
+            addAccessTokenCookie(responseHeaders, newAccessToken);
+            addRefreshTokenCookie(responseHeaders, newRefreshToken);
+        }
+
+        if (!accessTokenValid && refreshTokenValid) {
+            newAccessToken = tokenProvider.generateAccessToken(user.getEmail());
+            addAccessTokenCookie(responseHeaders, newAccessToken);
+        }
+
+        if (accessTokenValid && refreshTokenValid) {
             newAccessToken = tokenProvider.generateAccessToken(user.getEmail());
             newRefreshToken = tokenProvider.generateRefreshToken(user.getEmail());
             addAccessTokenCookie(responseHeaders, newAccessToken);

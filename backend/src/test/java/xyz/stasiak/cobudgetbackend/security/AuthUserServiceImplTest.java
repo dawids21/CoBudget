@@ -7,12 +7,15 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Clock;
 import java.time.Instant;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AuthUserServiceImplTest {
@@ -63,9 +66,14 @@ class AuthUserServiceImplTest {
 
         @Test
         void return_failure_for_unsuccessful_authentication() {
-            var response = authUserService.login(new LoginRequest("wrong@mail.com", "asd"), "", "");
-            assertThat(response.getBody()
-                               .getStatus()).isEqualTo(LoginResponse.SuccessFailure.FAILURE);
+            assertThatThrownBy(
+                     () -> authUserService.login(new LoginRequest("wrong@mail.com", "asd"), "", "")).isInstanceOf(
+                     ResponseStatusException.class)
+                                                                                                    .hasMessageContaining(
+                                                                                                             "not found")
+                                                                                                    .hasFieldOrPropertyWithValue(
+                                                                                                             "status",
+                                                                                                             HttpStatus.NOT_FOUND);
         }
     }
 
