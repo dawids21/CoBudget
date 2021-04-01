@@ -82,20 +82,24 @@ class AuthUserServiceImplTest {
 
         @Test
         void throws_an_exception_when_refresh_token_is_invalid() {
-            //TODO implement throws_an_exception_when_refresh_token_is_invalid
-            throw new UnsupportedOperationException("Not implemented yet");
+            assertThatThrownBy(() -> authUserService.refresh("", "")).isInstanceOf(IllegalArgumentException.class)
+                                                                     .hasMessageContaining("invalid");
         }
 
         @Test
         void create_new_access_token_when_refresh_is_valid() {
-            //TODO implement create_new_access_token_when_refresh_is_valid
-            throw new UnsupportedOperationException("Not implemented yet");
+            var response = authUserService.refresh("", testRefreshToken());
+            var cookies = response.getHeaders()
+                                  .get(HttpHeaders.SET_COOKIE);
+            assertThat(cookies).hasSize(1);
+            assertThat(cookies).anyMatch(s -> s.contains("access"));
         }
 
         @Test
         void return_success_status_when_successful_refreshing() {
-            //TODO implement return_success_status_when_successful_refreshing
-            throw new UnsupportedOperationException("Not implemented yet");
+            var response = authUserService.refresh("", testRefreshToken());
+            assertThat(response.getBody()
+                               .getStatus()).isEqualTo(LoginResponse.SuccessFailure.SUCCESS);
         }
     }
 
