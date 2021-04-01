@@ -10,12 +10,12 @@ public class LoginRequest {
     @Email(message = "Please provide valid email address")
     private String email;
 
-    @NotBlank("Password is mandatory")
+    @NotBlank(message = "Password is mandatory")
     private String password;
 
     public LoginRequest(
              @NotBlank(message = "Email is mandatory") @Email(message = "Please provide valid email address") String email,
-             @NotBlank("Password is mandatory") String password) {
+             @NotBlank(message = "Password is mandatory") String password) {
         this.email = email;
         this.password = password;
     }
