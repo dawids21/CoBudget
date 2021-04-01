@@ -10,7 +10,7 @@ const jwtService = new AuthenticationService();
 const requestService = new RequestService(config.getRestUrl());
 
 if (!jwtService.checkExpire()) {
-    window.location.href = '/week.html';
+    window.location.href = '/';
 }
 
 library.add(faAngleLeft);
@@ -32,6 +32,6 @@ if (loginForm) {
         const btnSubmit = document.getElementById('sign-in-submit');
         btnSubmit.disabled = true;
         setTimeout(() => btnSubmit.disabled = false, 2000);
-        requestService.login(this).then(() => window.location.href = '/week.html').catch(() => alert('Cannot perform login. Please try again'));
+        requestService.login(this).then(() => window.location.href = '/').catch(() => alert('Cannot perform login. Please try again'));
     });
 }

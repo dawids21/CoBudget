@@ -4,7 +4,7 @@ import AuthenticationService from './service/AuthenticationService.js';
 const jwtService = new AuthenticationService();
 
 if (!jwtService.checkExpire()) {
-    window.location.href = '/week.html';
+    window.location.href = '/';
 }
 
 if ('serviceWorker' in navigator) {

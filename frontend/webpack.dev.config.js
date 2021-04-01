@@ -42,9 +42,9 @@ module.exports = merge(base, {
         }),
         new HtmlPlugin({
             title: 'CoBudget | Week view',
-            template: './src/pages/week.html',
-            filename: 'week.html',
-            chunks: ['week'],
+            template: './src/pages/index.html',
+            filename: 'index.html',
+            chunks: ['index'],
         }),
         new HtmlPlugin({
             title: 'CoBudget | Add expense',

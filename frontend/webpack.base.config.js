@@ -4,7 +4,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 module.exports = {
     entry: {
         login: './src/js/login.js',
-        week: './src/js/week.js',
+        index: './src/js/index.js',
         register: './src/js/register.js',
         landing: './src/js/landing.js',
         addExpense: './src/js/addExpense.js',

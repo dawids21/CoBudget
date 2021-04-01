@@ -10,7 +10,7 @@ const jwtService = new AuthenticationService();
 const requestService = new RequestService(config.getRestUrl());
 
 if (!jwtService.checkExpire()) {
-    window.location.href = '/week.html';
+    window.location.href = '/';
 }
 
 library.add(faAngleLeft);
@@ -51,7 +51,7 @@ if (registerForm) {
         const btnSubmit = document.getElementById('sign-up-submit');
         btnSubmit.disabled = true;
         setTimeout(() => btnSubmit.disabled = false, 2000);
-        requestService.signUp(this).then(() => window.location.href = '/').catch((err) => {
+        requestService.signUp(this).then(() => window.location.href = '/landing.html').catch((err) => {
             if (err.responseCode === 409) {
                 const errorMessage = document.getElementById('error-message');
                 if (errorMessage) {

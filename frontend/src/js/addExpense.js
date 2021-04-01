@@ -32,7 +32,7 @@ if (addExpenseForm) {
         setTimeout(() => btnSubmit.disabled = false, 2000);
         requestService.addExpense(this).then(() => {
             alert('Expense added!');
-            window.location.href = '/week.html';
+            window.location.href = '/';
         }).catch(() => alert('Cannot add expense. Please try again'));
     });
 }
