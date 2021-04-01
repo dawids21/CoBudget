@@ -68,6 +68,9 @@ public class TokenProviderImpl implements TokenProvider {
 
     @Override
     public boolean validateToken(String token) {
+        if (token == null) {
+            return false;
+        }
         try {
             JWT.require(Algorithm.HMAC512(jwtProperties.getSecret()
                                                        .getBytes()))

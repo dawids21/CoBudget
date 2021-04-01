@@ -27,7 +27,6 @@ class TokenProviderImplTest {
                                                                                          .getAccessTokenExpirationDate()));
     }
 
-
     @Test
     void set_expiry_date_for_refresh_token_based_on_properties() {
         var token = testRefreshToken();
@@ -73,6 +72,11 @@ class TokenProviderImplTest {
         var tokenValue = testAccessToken().getTokenValue();
         var changedTokenValue = tokenValue.concat("a");
         assertThat(tokenProvider.validateToken(changedTokenValue)).isFalse();
+    }
+
+    @Test
+    void mark_null_token_as_invalid() {
+        assertThat(tokenProvider.validateToken(null)).isFalse();
     }
 
     private Token testAccessToken() {
