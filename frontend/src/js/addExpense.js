@@ -9,10 +9,6 @@ const config = new ConfigApp();
 const jwtService = new AuthenticationService();
 const requestService = new RequestService(config.getRestUrl());
 
-if (jwtService.checkExpire()) {
-    jwtService.logout();
-}
-
 library.add(faBars, faAngleLeft);
 dom.watch();
 
