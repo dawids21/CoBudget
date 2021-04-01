@@ -5,13 +5,14 @@ export default class FetchService {
 
     async performGetHttpRequest(fetchLink, headers, query = null) {
         if (!fetchLink || !headers) {
-            throw new Error("One or more GET request parameters was not passed.");
+            throw new Error('One or more GET request parameters was not passed.');
         }
         try {
             const rawResponse = await fetch(fetchLink, {
-                method: "GET",
+                method: 'GET',
                 headers: headers,
-                query: (query != null) ? query : ""
+                query: (query != null) ? query : '',
+                credentials: 'include',
             });
             return rawResponse;
         } catch (err) {
@@ -22,13 +23,14 @@ export default class FetchService {
 
     async performPostHttpRequest(fetchLink, headers, body) {
         if (!fetchLink || !headers || !body) {
-            throw new Error("One or more POST request parameters was not passed.");
+            throw new Error('One or more POST request parameters was not passed.');
         }
         try {
             const rawResponse = await fetch(fetchLink, {
-                method: "POST",
+                method: 'POST',
                 headers: headers,
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
+                credentials: 'include',
             });
             return rawResponse;
         } catch (err) {
@@ -39,13 +41,14 @@ export default class FetchService {
 
     async performPutHttpRequest(fetchLink, headers, body) {
         if (!fetchLink || !headers || !body) {
-            throw new Error("One or more POST request parameters was not passed.");
+            throw new Error('One or more POST request parameters was not passed.');
         }
         try {
             const rawResponse = await fetch(fetchLink, {
-                method: "PUT",
+                method: 'PUT',
                 headers: headers,
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
+                credentials: 'include',
             });
             return rawResponse;
         } catch (err) {
