@@ -25,7 +25,7 @@ public class SecurityProperties {
         private long refreshTokenExpirationDate;
         private String tokenPrefix;
         private String headerString;
-        private String signUpUrl; //TODO delete
+        private String signUpUrl;
         private String accessTokenCookieName;
         private String refreshTokenCookieName;
 

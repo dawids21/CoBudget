@@ -3,6 +3,7 @@ package xyz.stasiak.cobudgetbackend.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import xyz.stasiak.cobudgetbackend.security.jwt.TokenAuthenticationFilter;
 import xyz.stasiak.cobudgetbackend.security.jwt.TokenProvider;
 import xyz.stasiak.cobudgetbackend.security.jwt.TokenProviderImpl;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUserRepository;
@@ -31,5 +32,12 @@ public class SecurityConfig {
     public AuthUserService authUserService(ApplicationUserRepository userRepository, TokenProvider tokenProvider,
                                            SecurityProperties securityProperties) {
         return new AuthUserServiceImpl(userRepository, tokenProvider, new TokenCookieUtil(securityProperties.getJwt()));
+    }
+
+    @Bean
+    public TokenAuthenticationFilter tokenAuthenticationFilter(SecurityProperties securityProperties,
+                                                               TokenProvider tokenProvider,
+                                                               UserDetailsServiceImpl userDetailsService) {
+        return new TokenAuthenticationFilter(securityProperties, tokenProvider, userDetailsService);
     }
 }
