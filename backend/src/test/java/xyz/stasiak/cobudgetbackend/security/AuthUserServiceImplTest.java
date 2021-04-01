@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 
+import java.time.Clock;
 import java.time.Instant;
 import java.util.Date;
 
@@ -16,8 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AuthUserServiceImplTest {
 
-    private final SecurityProperties.Jwt jwtProperties = new TestSecurityConfig().securityProperties.getJwt();
-    private final AuthUserServiceImpl authUserService = new AuthUserServiceImpl();
+    private final SecurityProperties.Jwt jwtProperties = new TestSecurityConfig().testSecurityProperties()
+                                                                                 .getJwt();
+    private final AuthUserService authUserService = new TestSecurityConfig().testAuthUserService();
 
     @Nested
     class Login {
@@ -60,20 +62,36 @@ class AuthUserServiceImplTest {
     }
 
     private String testAccessToken() {
+        var now = Instant.now(Clock.systemUTC());
         return JWT.create()
-                  .withIssuedAt(Date.from(Instant.now()))
+                  .withIssuedAt(Date.from(now))
                   .withSubject("abc@def.com")
-                  .withExpiresAt(Date.from(Instant.now()
-                                                  .plusMillis(jwtProperties.getAccessTokenExpirationDate())))
+                  .withExpiresAt(Date.from(now.plusMillis(jwtProperties.getAccessTokenExpirationDate())))
                   .sign(Algorithm.HMAC512(jwtProperties.getSecret()));
     }
 
     private String testRefreshToken() {
+        var now = Instant.now(Clock.systemUTC());
         return JWT.create()
-                  .withIssuedAt(Date.from(Instant.now()))
+                  .withIssuedAt(Date.from(now))
                   .withSubject("abc@def.com")
-                  .withExpiresAt(Date.from(Instant.now()
-                                                  .plusMillis(jwtProperties.getRefreshTokenExpirationDate())))
+                  .withExpiresAt(Date.from(now.plusMillis(jwtProperties.getRefreshTokenExpirationDate())))
                   .sign(Algorithm.HMAC512(jwtProperties.getSecret()));
     }
+
+    private SecurityProperties testSecurityProperties() {
+        var securityProperties = new SecurityProperties();
+        var jwtProperties = new SecurityProperties.Jwt();
+        jwtProperties.setSecret("secret");
+        jwtProperties.setAccessTokenCookieName("accessCookie");
+        jwtProperties.setRefreshTokenCookieName("refreshCookie");
+        jwtProperties.setHeaderString("Authorization");
+        jwtProperties.setTokenPrefix("Bearer ");
+        jwtProperties.setAccessTokenExpirationDate(3600000L);
+        jwtProperties.setRefreshTokenExpirationDate(7776000000L);
+        jwtProperties.setSignUpUrl("/user/sign-up");
+        securityProperties.setJwt(jwtProperties);
+        return securityProperties;
+    }
+
 }
