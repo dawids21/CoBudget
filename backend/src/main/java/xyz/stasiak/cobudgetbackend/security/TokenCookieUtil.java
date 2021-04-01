@@ -6,9 +6,11 @@ import org.springframework.http.ResponseCookie;
 public class TokenCookieUtil {
 
     private final SecurityProperties.Jwt jwtProperties;
+    private final boolean isDev;
 
-    public TokenCookieUtil(SecurityProperties.Jwt jwtProperties) {
+    public TokenCookieUtil(SecurityProperties.Jwt jwtProperties, boolean isDev) {
         this.jwtProperties = jwtProperties;
+        this.isDev = isDev;
     }
 
     // TODO secure(true) - check if it works everywhere
@@ -16,8 +18,8 @@ public class TokenCookieUtil {
         return ResponseCookie.from(jwtProperties.getAccessTokenCookieName(), token)
                              .maxAge(duration)
                              .httpOnly(true)
+                             .secure(!isDev)
                              .path("/")
-                             .secure(true)
                              .build();
     }
 
@@ -25,8 +27,8 @@ public class TokenCookieUtil {
         return ResponseCookie.from(jwtProperties.getRefreshTokenCookieName(), token)
                              .maxAge(duration)
                              .httpOnly(true)
+                             .secure(!isDev)
                              .path("/")
-                             .secure(true)
                              .build();
     }
 

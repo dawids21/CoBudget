@@ -1,6 +1,7 @@
 package xyz.stasiak.cobudgetbackend.security;
 
 import org.mockito.Mockito;
+import org.springframework.core.env.StandardEnvironment;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUser;
 import xyz.stasiak.cobudgetbackend.users.ApplicationUserRepository;
 
@@ -16,7 +17,10 @@ class TestSecurityConfig extends SecurityConfig {
 
     AuthUserService testAuthUserService() {
         var securityProperties = testSecurityProperties();
-        return authUserService(testApplicationUserRepository(), tokenProvider(securityProperties), securityProperties);
+        var environment = new StandardEnvironment();
+        environment.setActiveProfiles("dev");
+        return authUserService(testApplicationUserRepository(), tokenProvider(securityProperties), securityProperties,
+                               environment);
     }
 
     SecurityProperties testSecurityProperties() {

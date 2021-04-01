@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TokenCookieUtilTest {
 
     private final SecurityProperties securityProperties = new TestSecurityConfig().testSecurityProperties();
-    private final TokenCookieUtil tokenCookieUtil = new TokenCookieUtil(securityProperties.getJwt());
+    private final TokenCookieUtil tokenCookieUtil = new TokenCookieUtil(securityProperties.getJwt(), true);
 
     @Nested
     class AccessCookie {
