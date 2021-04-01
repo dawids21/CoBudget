@@ -59,6 +59,13 @@ export default class RequestService {
         return await response.json();
     }
 
+    async refreshToken() {
+        const response = await this.fetchService.performPostHttpRequest(`${this.restUrl}/auth/refresh`);
+        if (!response.ok) {
+            throw new ResponseError('Refreshing not successful', response.status);
+        }
+    }
+
     _buildJsonFormData(form) {
         const jsonFormData = {};
         for (const pair of new FormData(form)) {
