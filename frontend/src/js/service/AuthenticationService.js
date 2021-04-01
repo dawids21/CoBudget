@@ -8,12 +8,6 @@ export default class AuthenticationService {
         localStorage.setItem('authorizationExpires', (jwt.exp * 1000).toString());
     }
 
-    checkExpire() {
-        let exp = localStorage.getItem('authorizationExpires');
-        let now = new Date();
-        return now >= new Date(+exp);
-    }
-
     logout() {
         this._clearAuthData();
         window.location.href = '/landing.html';

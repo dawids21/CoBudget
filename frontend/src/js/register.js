@@ -9,10 +9,6 @@ const config = new ConfigApp();
 const jwtService = new AuthenticationService();
 const requestService = new RequestService(config.getRestUrl());
 
-if (!jwtService.checkExpire()) {
-    window.location.href = '/';
-}
-
 library.add(faAngleLeft);
 dom.watch();
 

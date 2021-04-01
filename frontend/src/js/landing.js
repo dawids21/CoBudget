@@ -3,10 +3,6 @@ import AuthenticationService from './service/AuthenticationService.js';
 
 const jwtService = new AuthenticationService();
 
-if (!jwtService.checkExpire()) {
-    window.location.href = '/';
-}
-
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker
