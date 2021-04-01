@@ -1,5 +1,5 @@
 import FetchService from './FetchService.js';
-import JwtService from './JwtService.js';
+import AuthenticationService from './AuthenticationService.js';
 import ResponseError from './ResponseError.js';
 
 export default class RequestService {
@@ -7,7 +7,7 @@ export default class RequestService {
     constructor(restUrl) {
         this.restUrl = restUrl;
         this.fetchService = new FetchService();
-        this.jwtService = new JwtService();
+        this.jwtService = new AuthenticationService();
     }
 
     async submitSignUpForm(e, form) {

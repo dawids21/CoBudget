@@ -1,7 +1,7 @@
 import '../css/style.css';
-import JwtService from './service/JwtService.js';
+import AuthenticationService from './service/AuthenticationService.js';
 
-const jwtService = new JwtService();
+const jwtService = new AuthenticationService();
 
 if (!jwtService.checkExpire()) {
     window.location.href = '/week.html';

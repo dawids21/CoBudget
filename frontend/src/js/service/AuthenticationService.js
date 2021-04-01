@@ -1,31 +1,31 @@
-export default class JwtService {
+export default class AuthenticationService {
     constructor() {
     }
 
     store(token) {
         let jwt = this._parseJwt(token);
-        localStorage.setItem("authorization", token);
-        localStorage.setItem("authorizationExpires", (jwt.exp * 1000).toString());
+        localStorage.setItem('authorization', token);
+        localStorage.setItem('authorizationExpires', (jwt.exp * 1000).toString());
     }
 
     checkExpire() {
-        let exp = localStorage.getItem("authorizationExpires");
+        let exp = localStorage.getItem('authorizationExpires');
         let now = new Date();
         return now >= new Date(+exp);
     }
 
     logout() {
         this.clearAuthData();
-        window.location.href = "/";
+        window.location.href = '/';
     }
 
     getToken() {
-        return localStorage.getItem("authorization");
+        return localStorage.getItem('authorization');
     }
 
     clearAuthData() {
-        localStorage.removeItem("authorization");
-        localStorage.removeItem("authorizationExpires");
+        localStorage.removeItem('authorization');
+        localStorage.removeItem('authorizationExpires');
     }
 
     _parseJwt(token) {

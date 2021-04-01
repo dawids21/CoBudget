@@ -1,12 +1,12 @@
 import '../css/style.css';
-import JwtService from './service/JwtService.js';
+import AuthenticationService from './service/AuthenticationService.js';
 import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faAngleLeft, faBars} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
-const jwtService = new JwtService();
+const jwtService = new AuthenticationService();
 const requestService = new RequestService(config.getRestUrl());
 
 if (jwtService.checkExpire()) {
