@@ -7,7 +7,7 @@ security:
     access-token-cookie-name: accessCookie
     refresh-token-cookie-name: refreshCookie
   cors:
-    allowed-origins: ${FRONTEND_URL}
+    allowed-origins: https://cobudget.stasiak.xyz
     allowed-methods: GET, POST, PUT, PATCH, DELETE, ORIGIN, OPTIONS
     allowed-headers: Origin, Content-Type, Accept, Authorization, Cache-Control
     max-age: 3600
