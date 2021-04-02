@@ -24,7 +24,7 @@ export default class RequestService {
     async login(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        return await this.fetchService.performPostHttpRequest(this.restUrl + '/user/login', headers, jsonFormData);
+        return await this.fetchService.performPostHttpRequest(this.restUrl + '/auth/login', headers, jsonFormData);
     }
 
     async addExpense(form) {
