@@ -1,3 +1,5 @@
+import ResponseError from './ResponseError.js';
+
 export default class AuthenticationService {
     constructor(requestService) {
         this.requestService = requestService;
@@ -16,7 +18,7 @@ export default class AuthenticationService {
         } catch (e) {
             throw e;
         }
-        this.refreshInterval = setInterval(() => this.refreshToken().catch(() => this.logout()), 1800000);
+        this.refreshInterval = setInterval(() => this.refreshToken(), 1800000);
         return response;
     }
 
@@ -29,7 +31,11 @@ export default class AuthenticationService {
     }
 
     async refreshToken() {
-        return await this.requestService.refreshToken();
+        const response = await this.requestService.refreshToken();
+        if (!response.ok) {
+            this.logout();
+            throw new ResponseError('Refreshing not successful', response.status);
+        }
     }
 
 
