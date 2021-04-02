@@ -16,8 +16,6 @@ class TestJwtConfig {
         jwtProperties.setSecret("secret");
         jwtProperties.setAccessTokenCookieName("accessCookie");
         jwtProperties.setRefreshTokenCookieName("refreshCookie");
-        jwtProperties.setHeaderString("Authorization");
-        jwtProperties.setTokenPrefix("Bearer ");
         jwtProperties.setAccessTokenExpirationDate(3600000L);
         jwtProperties.setRefreshTokenExpirationDate(7776000000L);
         jwtProperties.setSignUpUrl("/user/sign-up");

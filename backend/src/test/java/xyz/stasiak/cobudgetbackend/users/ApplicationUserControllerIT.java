@@ -64,29 +64,7 @@ class ApplicationUserControllerIT {
                .when()
                .get("/user/auth")
                .then()
-               .statusCode(403);
-    }
-
-    @Test
-    void return_valid_jwt_token_after_successful_sign_up_and_login(@Autowired WebApplicationContext context) {
-        var token = given().webAppContextSetup(context)
-                           .body(testUserLoginJson())
-                           .contentType(ContentType.JSON)
-                           .when()
-                           .post("/user/login")
-                           .then()
-                           .statusCode(200)
-                           .body("token",
-                                 Matchers.matchesRegex("^[a-zA-Z0-9\\-_]+?\\.[a-zA-Z0-9\\-_]+?\\.([a-zA-Z0-9\\-_]+)?$"))
-                           .extract()
-                           .path("token");
-        given().webAppContextSetup(context)
-               .header(securityProperties.getJwt()
-                                         .getHeaderString(), "Bearer " + token)
-               .when()
-               .get("/user/auth")
-               .then()
-               .statusCode(200);
+               .statusCode(401);
     }
 
     @Test
