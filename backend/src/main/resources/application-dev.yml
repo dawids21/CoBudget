@@ -9,7 +9,7 @@ security:
   cors:
     allowed-origins: http://localhost:5000
     allowed-methods: GET, POST, PUT, PATCH, DELETE, ORIGIN, OPTIONS
-    allowed-headers: Origin, Content-Type, Accept, Authorization, Cache-Control
+    allowed-headers: Origin, Content-Type, Accept, Authorization, Cache-Control, Set-Cookie
     max-age: 3600
 
 spring:
