@@ -8,6 +8,11 @@ security:
     sign-up-url: /user/sign-up
     access-token-cookie-name: accessCookie
     refresh-token-cookie-name: refreshCookie
+  cors:
+    allowed-origins: http://localhost:5000
+    allowed-methods: GET, POST, PUT, PATCH, DELETE, ORIGIN, OPTIONS
+    allowed-headers: Origin, Content-Type, Accept
+    max-age: 3600
 
 spring:
   devtools:
