@@ -34,8 +34,6 @@ public class SecurityProperties {
         private String secret;
         private long accessTokenExpirationDate;
         private long refreshTokenExpirationDate;
-        private String tokenPrefix;
-        private String headerString;
         private String signUpUrl;
         private String accessTokenCookieName;
         private String refreshTokenCookieName;
@@ -62,22 +60,6 @@ public class SecurityProperties {
 
         public void setRefreshTokenExpirationDate(long refreshTokenExpirationDate) {
             this.refreshTokenExpirationDate = refreshTokenExpirationDate;
-        }
-
-        public String getTokenPrefix() {
-            return tokenPrefix;
-        }
-
-        public void setTokenPrefix(String tokenPrefix) {
-            this.tokenPrefix = tokenPrefix;
-        }
-
-        public String getHeaderString() {
-            return headerString;
-        }
-
-        public void setHeaderString(String headerString) {
-            this.headerString = headerString;
         }
 
         public String getSignUpUrl() {

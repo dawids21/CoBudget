@@ -3,8 +3,6 @@ security:
     secret: ${TOKEN_SECRET_KEY}
     access-token-expiration-date: ${ACCESS_TOKEN_EXPIRATION_DATE}
     refresh-token-expiration-date: ${REFRESH_TOKEN_EXPIRATION_DATE}
-    header-string: Authorization
-    token-prefix: "Bearer "
     sign-up-url: /user/sign-up
     access-token-cookie-name: ${ACCESS_TOKEN_COOKIE_NAME}
     refresh-token-cookie-name: ${REFRESH_TOKEN_COOKIE_NAME}
