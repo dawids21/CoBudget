@@ -103,6 +103,20 @@ class AuthUserServiceImplTest {
         }
     }
 
+    @Nested
+    class Logout {
+
+        @Test
+        void should_set_access_and_refresh_cookies_to_null_and_expire_immediately() {
+            var response = authUserService.logout();
+            var cookies = response.getHeaders()
+                                  .get(HttpHeaders.SET_COOKIE);
+            assertThat(cookies).hasSize(2)
+                               .anyMatch(s -> s.contains("accessCookie=;"))
+                               .anyMatch(s -> s.contains("refreshCookie=;"));
+        }
+    }
+
     private LoginRequest testLoginRequest() {
         return new LoginRequest("abc@def.com", "pass");
     }

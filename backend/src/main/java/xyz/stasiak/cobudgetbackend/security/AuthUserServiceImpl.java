@@ -86,6 +86,11 @@ public class AuthUserServiceImpl implements AuthUserService {
                              .body(loginResponse);
     }
 
+    @Override
+    public ResponseEntity<?> logout() {
+        return null;
+    }
+
     private void addAccessTokenCookie(HttpHeaders httpHeaders, Token token) {
         httpHeaders.add(HttpHeaders.SET_COOKIE,
                         tokenCookieUtil.createAccessTokenCookie(token.getTokenValue(), token.getDuration())

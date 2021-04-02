@@ -7,4 +7,6 @@ public interface AuthUserService {
     ResponseEntity<LoginResponse> login(LoginRequest loginRequest, String accessToken, String refreshToken);
 
     ResponseEntity<LoginResponse> refresh(String refreshToken);
+
+    ResponseEntity<?> logout();
 }
