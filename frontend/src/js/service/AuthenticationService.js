@@ -9,6 +9,10 @@ export default class AuthenticationService {
         localStorage.setItem('authorizationExpires', (jwt.exp * 1000).toString());
     }
 
+    login(form) {
+        this.requestService.login(form).then(() => window.location.href = '/').catch(() => alert('Cannot perform login. Please try again'));
+    }
+
     logout() {
         this._clearAuthData();
         window.location.href = '/landing.html';

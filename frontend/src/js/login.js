@@ -28,6 +28,6 @@ if (loginForm) {
         const btnSubmit = document.getElementById('sign-in-submit');
         btnSubmit.disabled = true;
         setTimeout(() => btnSubmit.disabled = false, 2000);
-        requestService.login(this).then(() => window.location.href = '/').catch(() => alert('Cannot perform login. Please try again'));
+        jwtService.login(this);
     });
 }
