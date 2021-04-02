@@ -1,7 +1,4 @@
 import '../css/style.css';
-import AuthenticationService from './service/AuthenticationService.js';
-
-const jwtService = new AuthenticationService();
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {

@@ -8,8 +8,8 @@ import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
-const jwtService = new AuthenticationService();
 const requestService = new RequestService(config.getRestUrl());
+const jwtService = new AuthenticationService(requestService);
 
 library.add(faPlus, faBars, faCaretLeft, faCaretRight);
 dom.watch();

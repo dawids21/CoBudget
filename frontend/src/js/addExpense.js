@@ -6,8 +6,8 @@ import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faAngleLeft, faBars} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
-const jwtService = new AuthenticationService();
 const requestService = new RequestService(config.getRestUrl());
+const jwtService = new AuthenticationService(requestService);
 
 library.add(faBars, faAngleLeft);
 dom.watch();

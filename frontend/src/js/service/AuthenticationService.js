@@ -1,5 +1,6 @@
 export default class AuthenticationService {
-    constructor() {
+    constructor(requestService) {
+        this.requestService = requestService;
     }
 
     store(token) {
