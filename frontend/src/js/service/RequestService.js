@@ -7,7 +7,7 @@ export default class RequestService {
     constructor(restUrl) {
         this.restUrl = restUrl;
         this.fetchService = new FetchService();
-        this.jwtService = new AuthenticationService();
+        this.authenticationService = new AuthenticationService();
     }
 
     async signUp(form) {
@@ -24,15 +24,23 @@ export default class RequestService {
     async login(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/login', headers, jsonFormData);
-        const jsonResponse = await response.json();
-        this.jwtService.store(jsonResponse.token);
+        return await this.fetchService.performPostHttpRequest(this.restUrl + '/user/login', headers, jsonFormData);
     }
 
     async addExpense(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/expense', headers, jsonFormData);
+        const fetch = () => this.fetchService.performPostHttpRequest(this.restUrl + '/expense', headers, jsonFormData);
+        let response = await fetch();
+
+        if (response.status === 401) {
+            try {
+                response = await this._retryRequest(fetch);
+            } catch {
+                return;
+            }
+        }
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -48,10 +56,16 @@ export default class RequestService {
     }
 
     async refreshToken() {
-        const response = await this.fetchService.performPostHttpRequest(`${this.restUrl}/auth/refresh`);
-        if (!response.ok) {
-            throw new ResponseError('Refreshing not successful', response.status);
+        return await this.fetchService.performPostHttpRequest(`${this.restUrl}/auth/refresh`);
+    }
+
+    async _retryRequest(request) {
+        try {
+            await this.authenticationService.refreshToken();
+        } catch (e) {
+            throw e;
         }
+        return await request();
     }
 
     _buildJsonFormData(form) {
