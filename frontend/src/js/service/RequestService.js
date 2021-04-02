@@ -48,7 +48,17 @@ export default class RequestService {
 
     async getMonthlyExpenses(month, year) {
         const headers = this._buildHeaders();
-        const response = await this.fetchService.performGetHttpRequest(`${this.restUrl}/expense?month=${month}&year=${year}`, headers);
+        const fetch = () => this.fetchService.performGetHttpRequest(`${this.restUrl}/expense?month=${month}&year=${year}`, headers);
+        let response = await fetch();
+
+        if (response.status === 401) {
+            try {
+                response = await this._retryRequest(fetch);
+            } catch {
+                return;
+            }
+        }
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
