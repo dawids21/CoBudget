@@ -74,10 +74,7 @@ public class AuthUserServiceImpl implements AuthUserService {
 
         Token newAccessToken = tokenProvider.generateAccessToken(currentUserEmail);
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.add(HttpHeaders.SET_COOKIE,
-                            tokenCookieUtil.createAccessTokenCookie(newAccessToken.getTokenValue(),
-                                                                    newAccessToken.getDuration())
-                                           .toString());
+        addAccessTokenCookie(responseHeaders, newAccessToken);
 
         LoginResponse loginResponse = new LoginResponse(LoginResponse.SuccessFailure.SUCCESS,
                                                         "Auth successful. Tokens are created in cookie.");
@@ -88,7 +85,12 @@ public class AuthUserServiceImpl implements AuthUserService {
 
     @Override
     public ResponseEntity<?> logout() {
-        return null;
+        HttpHeaders responseHeaders = new HttpHeaders();
+        deleteAccessTokenCookie(responseHeaders);
+        deleteRefreshTokenCookie(responseHeaders);
+        return ResponseEntity.ok()
+                             .headers(responseHeaders)
+                             .build();
     }
 
     private void addAccessTokenCookie(HttpHeaders httpHeaders, Token token) {
@@ -101,5 +103,15 @@ public class AuthUserServiceImpl implements AuthUserService {
         httpHeaders.add(HttpHeaders.SET_COOKIE,
                         tokenCookieUtil.createRefreshTokenCookie(token.getTokenValue(), token.getDuration())
                                        .toString());
+    }
+
+    private void deleteAccessTokenCookie(HttpHeaders httpHeaders) {
+        httpHeaders.add(HttpHeaders.SET_COOKIE, tokenCookieUtil.deleteAccessTokenCookie()
+                                                               .toString());
+    }
+
+    private void deleteRefreshTokenCookie(HttpHeaders httpHeaders) {
+        httpHeaders.add(HttpHeaders.SET_COOKIE, tokenCookieUtil.deleteRefreshTokenCookie()
+                                                               .toString());
     }
 }
