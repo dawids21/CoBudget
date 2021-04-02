@@ -40,4 +40,9 @@ public class AuthController {
              @CookieValue(name = "refreshCookie", required = false) String refreshToken) {
         return userService.refresh(refreshToken);
     }
+
+    @PostMapping(value = "/logout")
+    public ResponseEntity<?> logout() {
+        return userService.logout();
+    }
 }
