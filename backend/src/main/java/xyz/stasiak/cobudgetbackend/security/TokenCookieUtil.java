@@ -39,4 +39,12 @@ public class TokenCookieUtil {
                              .path("/")
                              .build();
     }
+   
+    public ResponseCookie deleteRefreshTokenCookie() {
+        return ResponseCookie.from(jwtProperties.getRefreshTokenCookieName(), "")
+                             .maxAge(0)
+                             .httpOnly(true)
+                             .path("/")
+                             .build();
+    }
 }
