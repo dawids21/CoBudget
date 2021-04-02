@@ -6,10 +6,11 @@ import GetExpensesService from './service/GetExpensesService.js';
 import WeekView from './components/WeekView.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid-svg-icons';
+import FetchService from './service/FetchService.js';
 
 const config = new ConfigApp();
-const requestService = new RequestService(config.getRestUrl());
-const authenticationService = new AuthenticationService(requestService);
+const authenticationService = new AuthenticationService(new FetchService(), config.getRestUrl());
+const requestService = new RequestService(config.getRestUrl(), authenticationService);
 
 library.add(faPlus, faBars, faCaretLeft, faCaretRight);
 dom.watch();
