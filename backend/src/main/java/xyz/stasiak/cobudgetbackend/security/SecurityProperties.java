@@ -10,6 +10,7 @@ import java.util.List;
 public class SecurityProperties {
 
     private Jwt jwt;
+    private Cors cors;
 
     public Jwt getJwt() {
         return jwt;
@@ -17,6 +18,14 @@ public class SecurityProperties {
 
     public void setJwt(Jwt jwt) {
         this.jwt = jwt;
+    }
+
+    public Cors getCors() {
+        return cors;
+    }
+
+    public void setCors(Cors cors) {
+        this.cors = cors;
     }
 
     public static class Jwt {
