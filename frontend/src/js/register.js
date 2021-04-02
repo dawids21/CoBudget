@@ -7,7 +7,7 @@ import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
 const requestService = new RequestService(config.getRestUrl());
-const jwtService = new AuthenticationService(requestService);
+const authenticationService = new AuthenticationService(requestService);
 
 library.add(faAngleLeft);
 dom.watch();

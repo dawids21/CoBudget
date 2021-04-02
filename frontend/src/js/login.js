@@ -7,7 +7,7 @@ import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
 const requestService = new RequestService(config.getRestUrl());
-const jwtService = new AuthenticationService(requestService);
+const authenticationService = new AuthenticationService(requestService);
 
 library.add(faAngleLeft);
 dom.watch();
@@ -28,6 +28,6 @@ if (loginForm) {
         const btnSubmit = document.getElementById('sign-in-submit');
         btnSubmit.disabled = true;
         setTimeout(() => btnSubmit.disabled = false, 2000);
-        jwtService.login(this);
+        authenticationService.login(this);
     });
 }

@@ -9,7 +9,7 @@ import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid
 
 const config = new ConfigApp();
 const requestService = new RequestService(config.getRestUrl());
-const jwtService = new AuthenticationService(requestService);
+const authenticationService = new AuthenticationService(requestService);
 
 library.add(faPlus, faBars, faCaretLeft, faCaretRight);
 dom.watch();
@@ -23,6 +23,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-document.getElementById('logout-button').addEventListener('click', () => jwtService.logout());
+document.getElementById('logout-button').addEventListener('click', () => authenticationService.logout());
 const getExpenseService = new GetExpensesService(requestService);
 new WeekView(getExpenseService);

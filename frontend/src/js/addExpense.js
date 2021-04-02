@@ -7,7 +7,7 @@ import {faAngleLeft, faBars} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
 const requestService = new RequestService(config.getRestUrl());
-const jwtService = new AuthenticationService(requestService);
+const authenticationService = new AuthenticationService(requestService);
 
 library.add(faBars, faAngleLeft);
 dom.watch();
@@ -21,7 +21,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-document.getElementById('logout-button').addEventListener('click', () => jwtService.logout());
+document.getElementById('logout-button').addEventListener('click', () => authenticationService.logout());
 
 const addExpenseForm = document.getElementById('add-expense-form');
 if (addExpenseForm) {
