@@ -1,13 +1,12 @@
 import FetchService from './FetchService.js';
-import AuthenticationService from './AuthenticationService.js';
 import ResponseError from './ResponseError.js';
 
 export default class RequestService {
 
-    constructor(restUrl) {
+    constructor(restUrl, authenticationService) {
         this.restUrl = restUrl;
         this.fetchService = new FetchService();
-        this.authenticationService = new AuthenticationService();
+        this.authenticationService = authenticationService;
     }
 
     async signUp(form) {
@@ -19,12 +18,6 @@ export default class RequestService {
         }
         const jsonResponse = await response.json();
         alert(`Hello ${jsonResponse.name ? jsonResponse.name : 'user'}! Now you can login`);
-    }
-
-    async login(form) {
-        const jsonFormData = this._buildJsonFormData(form);
-        const headers = this._buildHeaders();
-        return await this.fetchService.performPostHttpRequest(this.restUrl + '/auth/login', headers, jsonFormData);
     }
 
     async addExpense(form) {
@@ -52,28 +45,19 @@ export default class RequestService {
         let response = await fetch();
 
         if (response.status === 401) {
-            try {
-                response = await this._retryRequest(fetch);
-            } catch {
-                return;
-            }
+            response = await this._retryRequest(fetch);
         }
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new ResponseError(`Fetch error`, response.status);
         }
         return await response.json();
     }
 
-    async refreshToken() {
-        return await this.fetchService.performPostHttpRequest(`${this.restUrl}/auth/refresh`);
-    }
-
     async _retryRequest(request) {
-        try {
-            await this.authenticationService.refreshToken();
-        } catch (e) {
-            throw e;
+        const refreshResponse = await this.authenticationService.refreshToken();
+        if (!refreshResponse.ok) {
+            return refreshResponse;
         }
         return await request();
     }

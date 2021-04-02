@@ -1,19 +1,19 @@
 import ResponseError from './ResponseError.js';
 
 export default class AuthenticationService {
-    constructor(requestService) {
-        this.requestService = requestService;
+    constructor(fetchService, restUrl) {
+        this.fetchService = fetchService;
+        this.restUrl = restUrl;
     }
 
     async login(form) {
-        let response;
-        try {
-            response = await this.requestService.login(form);
-        } catch (e) {
-            throw e;
+        const jsonFormData = this._buildJsonFormData(form);
+        const headers = this._buildHeaders();
+        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/auth/login', headers, jsonFormData);
+        if (!response.ok) {
+            throw new ResponseError('Cannot login', response.status);
         }
         this.refreshInterval = setInterval(() => this.refreshToken(), 1800000);
-        return response;
     }
 
     logout() {
@@ -25,26 +25,29 @@ export default class AuthenticationService {
     }
 
     async refreshToken() {
-        const response = await this.requestService.refreshToken();
+        const response = await this.fetchService.performPostHttpRequest(`${this.restUrl}/auth/refresh`, {}, {});
         if (!response.ok) {
             this.logout();
-            throw new ResponseError('Refreshing not successful', response.status);
         }
+        return response;
     }
-
 
     _clearAuthData() {
         document.cookie = 'accessCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
         document.cookie = 'refreshCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
     }
 
-    _parseJwt(token) {
-        let base64Url = token.split('.')[1];
-        let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
+    _buildJsonFormData(form) {
+        const jsonFormData = {};
+        for (const pair of new FormData(form)) {
+            jsonFormData[pair[0]] = pair[1];
+        }
+        return jsonFormData;
+    }
 
-        return JSON.parse(jsonPayload);
-    };
+    _buildHeaders() {
+        return {
+            'Content-Type': 'application/json',
+        };
+    }
 }
