@@ -5,12 +5,6 @@ export default class AuthenticationService {
         this.requestService = requestService;
     }
 
-    store(token) {
-        let jwt = this._parseJwt(token);
-        localStorage.setItem('authorization', token);
-        localStorage.setItem('authorizationExpires', (jwt.exp * 1000).toString());
-    }
-
     async login(form) {
         let response;
         try {
