@@ -1,13 +1,11 @@
 import '../css/style.css';
 import ConfigApp from './config.js';
-import AuthenticationService from './service/AuthenticationService.js';
 import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
 const requestService = new RequestService(config.getRestUrl());
-const authenticationService = new AuthenticationService(requestService);
 
 library.add(faAngleLeft);
 dom.watch();
