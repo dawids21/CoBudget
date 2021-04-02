@@ -14,6 +14,11 @@ export default class AuthenticationService {
         window.location.href = '/landing.html';
     }
 
+    refreshToken() {
+        this.requestService.refreshToken().catch(() => this.logout());
+    }
+
+
     _clearAuthData() {
         document.cookie = 'accessCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
         document.cookie = 'refreshCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
