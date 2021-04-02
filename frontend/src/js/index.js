@@ -24,6 +24,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-document.getElementById('logout-button').addEventListener('click', () => authenticationService.logout());
+document.getElementById('logout-button').addEventListener('click', async () => await authenticationService.logout());
 const getExpenseService = new GetExpensesService(requestService);
 new WeekView(getExpenseService);

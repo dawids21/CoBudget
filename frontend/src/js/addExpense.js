@@ -22,7 +22,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-document.getElementById('logout-button').addEventListener('click', () => authenticationService.logout());
+document.getElementById('logout-button').addEventListener('click', async () => await authenticationService.logout());
 
 const addExpenseForm = document.getElementById('add-expense-form');
 if (addExpenseForm) {

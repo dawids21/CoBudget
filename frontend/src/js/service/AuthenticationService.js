@@ -16,8 +16,9 @@ export default class AuthenticationService {
         this.refreshInterval = setInterval(() => this.refreshToken(), 1800000);
     }
 
-    logout() {
-        this._clearAuthData();
+    async logout() {
+        const response = await this.fetchService.performPostHttpRequest(`${this.restUrl}/auth/logout`, {}, {});
+        console.log(response);
         if (this.refreshInterval) {
             clearInterval(this.refreshInterval);
         }
@@ -27,14 +28,9 @@ export default class AuthenticationService {
     async refreshToken() {
         const response = await this.fetchService.performPostHttpRequest(`${this.restUrl}/auth/refresh`, {}, {});
         if (!response.ok) {
-            this.logout();
+            await this.logout();
         }
         return response;
-    }
-
-    _clearAuthData() {
-        document.cookie = 'accessCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
-        document.cookie = 'refreshCookie= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
     }
 
     _buildJsonFormData(form) {
