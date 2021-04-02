@@ -10,11 +10,21 @@ export default class AuthenticationService {
     }
 
     async login(form) {
-        return await this.requestService.login(form);
+        let response;
+        try {
+            response = await this.requestService.login(form);
+        } catch (e) {
+            throw e;
+        }
+        this.refreshInterval = setInterval(() => this.refreshToken().catch(() => this.logout()), 1800000);
+        return response;
     }
 
     logout() {
         this._clearAuthData();
+        if (this.refreshInterval) {
+            clearInterval(this.refreshInterval);
+        }
         window.location.href = '/landing.html';
     }
 
