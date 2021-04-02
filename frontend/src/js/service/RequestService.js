@@ -1,20 +1,15 @@
 import FetchService from './FetchService.js';
-import JwtService from './JwtService.js';
 import ResponseError from './ResponseError.js';
 
 export default class RequestService {
 
-    constructor(restUrl) {
+    constructor(restUrl, authenticationService) {
         this.restUrl = restUrl;
         this.fetchService = new FetchService();
-        this.jwtService = new JwtService();
+        this.authenticationService = authenticationService;
     }
 
-    async submitSignUpForm(e, form) {
-        e.preventDefault();
-        const btnSubmit = document.getElementById('sign-up-submit');
-        btnSubmit.disabled = true;
-        setTimeout(() => btnSubmit.disabled = false, 2000);
+    async signUp(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
         const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/sign-up', headers, jsonFormData);
@@ -25,38 +20,46 @@ export default class RequestService {
         alert(`Hello ${jsonResponse.name ? jsonResponse.name : 'user'}! Now you can login`);
     }
 
-    async submitLoginForm(e, form) {
-        e.preventDefault();
-        const btnSubmit = document.getElementById('sign-in-submit');
-        btnSubmit.disabled = true;
-        setTimeout(() => btnSubmit.disabled = false, 2000);
+    async addExpense(form) {
         const jsonFormData = this._buildJsonFormData(form);
         const headers = this._buildHeaders();
-        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/login', headers, jsonFormData);
-        const jsonResponse = await response.json();
-        this.jwtService.store(jsonResponse.token);
-    }
+        const fetch = () => this.fetchService.performPostHttpRequest(this.restUrl + '/expense', headers, jsonFormData);
+        let response = await fetch();
 
-    async submitExpenseForm(e, form) {
-        e.preventDefault();
-        const btnSubmit = document.getElementById('add-expense-button');
-        btnSubmit.disabled = true;
-        setTimeout(() => btnSubmit.disabled = false, 2000);
-        const jsonFormData = this._buildJsonFormData(form);
-        const headers = this._buildHeaders(this.jwtService.getToken());
-        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/expense', headers, jsonFormData);
+        if (response.status === 401) {
+            try {
+                response = await this._retryRequest(fetch);
+            } catch {
+                return;
+            }
+        }
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
     }
 
     async getMonthlyExpenses(month, year) {
-        const headers = this._buildHeaders(this.jwtService.getToken());
-        const response = await this.fetchService.performGetHttpRequest(`${this.restUrl}/expense?month=${month}&year=${year}`, headers);
+        const headers = this._buildHeaders();
+        const fetch = () => this.fetchService.performGetHttpRequest(`${this.restUrl}/expense?month=${month}&year=${year}`, headers);
+        let response = await fetch();
+
+        if (response.status === 401) {
+            response = await this._retryRequest(fetch);
+        }
+
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new ResponseError(`Fetch error`, response.status);
         }
         return await response.json();
+    }
+
+    async _retryRequest(request) {
+        const refreshResponse = await this.authenticationService.refreshToken();
+        if (!refreshResponse.ok) {
+            return refreshResponse;
+        }
+        return await request();
     }
 
     _buildJsonFormData(form) {
@@ -67,13 +70,9 @@ export default class RequestService {
         return jsonFormData;
     }
 
-    _buildHeaders(auth = null) {
-        const result = {
+    _buildHeaders() {
+        return {
             'Content-Type': 'application/json',
         };
-        if (auth) {
-            result.Authorization = `Bearer ${auth}`;
-        }
-        return result;
     }
 }

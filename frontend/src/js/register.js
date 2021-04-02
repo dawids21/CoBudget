@@ -1,17 +1,11 @@
 import '../css/style.css';
 import ConfigApp from './config.js';
-import JwtService from './service/JwtService.js';
 import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 const config = new ConfigApp();
-const jwtService = new JwtService();
 const requestService = new RequestService(config.getRestUrl());
-
-if (!jwtService.checkExpire()) {
-    window.location.href = '/week.html';
-}
 
 library.add(faAngleLeft);
 dom.watch();
@@ -47,7 +41,11 @@ document.getElementById('signup-password-repeat').addEventListener('keyup', () =
 const registerForm = document.getElementById('register-form');
 if (registerForm) {
     registerForm.addEventListener('submit', function (e) {
-        requestService.submitSignUpForm(e, this).then(() => window.location.href = '/').catch((err) => {
+        e.preventDefault();
+        const btnSubmit = document.getElementById('sign-up-submit');
+        btnSubmit.disabled = true;
+        setTimeout(() => btnSubmit.disabled = false, 2000);
+        requestService.signUp(this).then(() => window.location.href = '/landing.html').catch((err) => {
             if (err.responseCode === 409) {
                 const errorMessage = document.getElementById('error-message');
                 if (errorMessage) {

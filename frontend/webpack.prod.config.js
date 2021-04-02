@@ -32,9 +32,9 @@ module.exports = merge(base, {
         new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
         new HtmlPlugin({
             title: 'CoBudget | Welcome',
-            template: './src/pages/index.html',
-            filename: 'index.html',
-            chunks: ['index'],
+            template: './src/pages/landing.html',
+            filename: 'landing.html',
+            chunks: ['landing'],
         }),
         new HtmlPlugin({
             title: 'CoBudget | Login',
@@ -44,9 +44,9 @@ module.exports = merge(base, {
         }),
         new HtmlPlugin({
             title: 'CoBudget | Week view',
-            template: './src/pages/week.html',
-            filename: 'week.html', // TODO try to add content hash
-            chunks: ['week'],
+            template: './src/pages/index.html',
+            filename: 'index.html', // TODO try to add content hash
+            chunks: ['index'],
         }),
         new HtmlPlugin({
             title: 'CoBudget | Register',

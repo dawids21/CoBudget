@@ -1,10 +1,16 @@
 security:
   jwt:
     secret: secret
-    expiration-date: 3600000
-    header-string: Authorization
-    token-prefix: "Bearer "
+    access-token-expiration-date: 3600000
+    refresh-token-expiration-date: 7776000000
     sign-up-url: /user/sign-up
+    access-token-cookie-name: accessCookie
+    refresh-token-cookie-name: refreshCookie
+  cors:
+    allowed-origins: http://localhost:5000
+    allowed-methods: GET, POST, PUT, PATCH, DELETE, ORIGIN, OPTIONS
+    allowed-headers: Origin, Content-Type, Accept, Authorization, Cache-Control
+    max-age: 3600
 
 spring:
   devtools:

@@ -1,17 +1,14 @@
 import '../css/style.css';
-import JwtService from './service/JwtService.js';
+import AuthenticationService from './service/AuthenticationService.js';
 import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faAngleLeft, faBars} from '@fortawesome/free-solid-svg-icons';
+import FetchService from './service/FetchService.js';
 
 const config = new ConfigApp();
-const jwtService = new JwtService();
-const requestService = new RequestService(config.getRestUrl());
-
-if (jwtService.checkExpire()) {
-    jwtService.logout();
-}
+const authenticationService = new AuthenticationService(new FetchService(), config.getRestUrl());
+const requestService = new RequestService(config.getRestUrl(), authenticationService);
 
 library.add(faBars, faAngleLeft);
 dom.watch();
@@ -25,14 +22,18 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-document.getElementById('logout-button').addEventListener('click', () => jwtService.logout());
+document.getElementById('logout-button').addEventListener('click', async () => await authenticationService.logout());
 
 const addExpenseForm = document.getElementById('add-expense-form');
 if (addExpenseForm) {
     addExpenseForm.addEventListener('submit', function (e) {
-        requestService.submitExpenseForm(e, this).then(() => {
+        e.preventDefault();
+        const btnSubmit = document.getElementById('add-expense-button');
+        btnSubmit.disabled = true;
+        setTimeout(() => btnSubmit.disabled = false, 2000);
+        requestService.addExpense(this).then(() => {
             alert('Expense added!');
-            window.location.href = '/week.html';
+            window.location.href = '/';
         }).catch(() => alert('Cannot add expense. Please try again'));
     });
 }

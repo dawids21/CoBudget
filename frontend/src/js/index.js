@@ -1,11 +1,19 @@
 import '../css/style.css';
-import JwtService from './service/JwtService.js';
+import AuthenticationService from './service/AuthenticationService.js';
+import ConfigApp from './config.js';
+import RequestService from './service/RequestService.js';
+import GetExpensesService from './service/GetExpensesService.js';
+import WeekView from './components/WeekView.js';
+import {dom, library} from '@fortawesome/fontawesome-svg-core';
+import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid-svg-icons';
+import FetchService from './service/FetchService.js';
 
-const jwtService = new JwtService();
+const config = new ConfigApp();
+const authenticationService = new AuthenticationService(new FetchService(), config.getRestUrl());
+const requestService = new RequestService(config.getRestUrl(), authenticationService);
 
-if (!jwtService.checkExpire()) {
-    window.location.href = '/week.html';
-}
+library.add(faPlus, faBars, faCaretLeft, faCaretRight);
+dom.watch();
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
@@ -15,3 +23,7 @@ if ('serviceWorker' in navigator) {
             .catch(err => console.log('service worker not registered', err));
     });
 }
+
+document.getElementById('logout-button').addEventListener('click', async () => await authenticationService.logout());
+const getExpenseService = new GetExpensesService(requestService);
+new WeekView(getExpenseService);

@@ -10,6 +10,7 @@ module.exports = merge(base, {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -24,9 +25,9 @@ module.exports = merge(base, {
         }),
         new HtmlPlugin({
             title: 'CoBudget | Welcome',
-            template: './src/pages/index.html',
-            filename: 'index.html',
-            chunks: ['index'],
+            template: './src/pages/landing.html',
+            filename: 'landing.html',
+            chunks: ['landing'],
         }),
         new HtmlPlugin({
             title: 'CoBudget | Login',
@@ -42,9 +43,9 @@ module.exports = merge(base, {
         }),
         new HtmlPlugin({
             title: 'CoBudget | Week view',
-            template: './src/pages/week.html',
-            filename: 'week.html',
-            chunks: ['week'],
+            template: './src/pages/index.html',
+            filename: 'index.html',
+            chunks: ['index'],
         }),
         new HtmlPlugin({
             title: 'CoBudget | Add expense',

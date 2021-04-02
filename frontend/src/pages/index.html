@@ -3,18 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoBudget | Welcome</title>
+    <title>CoBudget | Week view</title>
 </head>
 <body>
-<div class="container-column">
-    <div class="logo-container">
-        <h1 class="logo disable-select">CoBudget</h1>
+<header id="main-header">
+    <div id="left-side-header"><i id="hamburger" class="fas fa-bars fa-2x"></i>
+        <h2 class="logo disable-select">CoBudget</h2>
     </div>
-    <h2 id="landing-sentence" class="disable-select">Control your budget</h2>
-    <div class="button-box disable-select">
-        <a class="button" href="login.html">Sign in</a>
-        <a class="button" href="register.html">Sign up</a>
+    <div id="right-side-header">
+        <nav>
+            <ul id="links-list" class="disable-select">
+                <li class="button active-button"><a href="./">Track</a></li>
+                <li class="button"><a href="#">Plan</a></li>
+                <li class="button"><a href="#">Analyze</a></li>
+                <li id="logout-button" class="button">Logout</li>
+            </ul>
+        </nav>
     </div>
+</header>
+<div class="main-container">
+    <div id="control-panel">
+        <div id="change-view-buttons" class="button-box disable-select">
+            <a class="button active-button">Week</a>
+            <a class="button" href="#">Month</a>
+        </div>
+        <div id="budget-info">
+            <ul class="flex-list-row">
+                <li>Left: 123,54 zł</li>
+                <li>Expenses: 324,64 zł</li>
+                <li>Earnings: 553,98 zł</li>
+            </ul>
+        </div>
+        <div id="add-entry-button">
+            <a class="button disable-select" href="./add-expense.html">Add</a>
+        </div>
+    </div>
+    <main id="week-view">
+        <div id="change-week">
+            <h3><span id="week-view-month"></span> <span id="week-view-year"></span></h3>
+            <div id="view-control-buttons">
+                <button id="previous-week" class="icon-button">
+                    <i class="fas fa-caret-left fa-4x"></i>
+                </button>
+                <button id="today-button" class="button disable-select">Today</button>
+                <button id="next-week" class="icon-button">
+                    <i class="fas fa-caret-right fa-4x"></i>
+                </button>
+            </div>
+        </div>
+        <div id="week-view-days" class="disable-select">
+            <ul class="week-list">
+                <li class="week-day">
+                    <a href="#">
+                        <h3><span class="week-day-number"></span></h3>
+                        <p class="week-day-name">Monday</p>
+                    </a>
+                    <ul class="entry-list"></ul>
+                    <div class="add-entry-button">
+                        <a href="./add-expense.html">
+                            <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="week-day">
+                    <a href="#">
+                        <h3><span class="week-day-number"></span></h3>
+                        <p class="week-day-name">Tuesday</p>
+                    </a>
+                    <ul class="entry-list"></ul>
+                    <div class="add-entry-button">
+                        <a href="./add-expense.html">
+                            <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="#">
+                        <h3><span class="week-day-number"></span></h3>
+                        <p class="week-day-name">Wednesday</p>
+                    </a>
+                    <ul class="entry-list"></ul>
+                    <div class="add-entry-button">
+                        <a href="./add-expense.html">
+                            <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="#">
+                        <h3><span class="week-day-number"></span></h3>
+                        <p class="week-day-name">Thursday</p>
+                    </a>
+                    <ul class="entry-list"></ul>
+                    <div class="add-entry-button">
+                        <a href="./add-expense.html">
+                            <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="#">
+                        <h3><span class="week-day-number"></span></h3>
+                        <p class="week-day-name">Friday</p>
+                    </a>
+                    <ul class="entry-list"></ul>
+                    <div class="add-entry-button">
+                        <a href="./add-expense.html">
+                            <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="#">
+                        <h3><span class="week-day-number"></span></h3>
+                        <p class="week-day-name">Saturday</p>
+                    </a>
+                    <ul class="entry-list"></ul>
+                    <div class="add-entry-button">
+                        <a href="./add-expense.html">
+                            <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="week-day">
+                    <a href="">
+                        <h3><span class="week-day-number"></span></h3>
+                        <p class="week-day-name">Sunday</p>
+                    </a>
+                    <ul class="entry-list"></ul>
+                    <div class="add-entry-button">
+                        <a href="./add-expense.html">
+                            <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <a id="float-add-button" class="add-entry-button" href="./add-expense.html">
+                <span class="icon-button-bg"><i class="fas fa-plus"></i></span>
+            </a>
+        </div>
+    </main>
 </div>
 </body>
 </html>

@@ -1,10 +1,16 @@
 security:
   jwt:
-    secret: ${JWT_SECRET_KEY}
-    expiration-date: ${JWT_EXPIRATION_DATE}
-    header-string: Authorization
-    token-prefix: "Bearer "
+    secret: ${TOKEN_SECRET_KEY}
+    access-token-expiration-date: ${ACCESS_TOKEN_EXPIRATION_DATE}
+    refresh-token-expiration-date: ${REFRESH_TOKEN_EXPIRATION_DATE}
     sign-up-url: /user/sign-up
+    access-token-cookie-name: accessCookie
+    refresh-token-cookie-name: refreshCookie
+  cors:
+    allowed-origins: https://cobudget.stasiak.xyz
+    allowed-methods: GET, POST, PUT, PATCH, DELETE, ORIGIN, OPTIONS
+    allowed-headers: Origin, Content-Type, Accept, Authorization, Cache-Control
+    max-age: 3600
 
 spring:
   data:

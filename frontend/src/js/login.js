@@ -1,17 +1,12 @@
 import '../css/style.css';
-import JwtService from './service/JwtService.js';
+import AuthenticationService from './service/AuthenticationService.js';
 import ConfigApp from './config.js';
-import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
 import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
+import FetchService from './service/FetchService.js';
 
 const config = new ConfigApp();
-const jwtService = new JwtService();
-const requestService = new RequestService(config.getRestUrl());
-
-if (!jwtService.checkExpire()) {
-    window.location.href = '/week.html';
-}
+const authenticationService = new AuthenticationService(new FetchService(), config.getRestUrl());
 
 library.add(faAngleLeft);
 dom.watch();
@@ -28,6 +23,10 @@ if ('serviceWorker' in navigator) {
 const loginForm = document.getElementById('login-form');
 if (loginForm) {
     loginForm.addEventListener('submit', function (e) {
-        requestService.submitLoginForm(e, this).then(() => window.location.href = '/week.html').catch(() => alert('Cannot perform login. Please try again'));
+        e.preventDefault();
+        const btnSubmit = document.getElementById('sign-in-submit');
+        btnSubmit.disabled = true;
+        setTimeout(() => btnSubmit.disabled = false, 2000);
+        authenticationService.login(this).then(() => window.location.href = '/').catch(() => alert('Cannot perform login. Please try again'));
     });
 }
