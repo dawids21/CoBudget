@@ -8,6 +8,11 @@ security:
     sign-up-url: /user/sign-up
     access-token-cookie-name: ${ACCESS_TOKEN_COOKIE_NAME}
     refresh-token-cookie-name: ${REFRESH_TOKEN_COOKIE_NAME}
+  cors:
+    allowed-origins: ${FRONTEND_URL}
+    allowed-methods: GET, POST, PUT, PATCH, DELETE, ORIGIN, OPTIONS
+    allowed-headers: Origin, Content-Type, Accept, Authorization, Cache-Control
+    max-age: 3600
 
 spring:
   data:
