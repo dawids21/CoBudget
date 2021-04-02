@@ -9,8 +9,8 @@ export default class AuthenticationService {
         localStorage.setItem('authorizationExpires', (jwt.exp * 1000).toString());
     }
 
-    login(form) {
-        this.requestService.login(form).then(() => window.location.href = '/').catch(() => alert('Cannot perform login. Please try again'));
+    async login(form) {
+        return await this.requestService.login(form);
     }
 
     logout() {
@@ -18,8 +18,8 @@ export default class AuthenticationService {
         window.location.href = '/landing.html';
     }
 
-    refreshToken() {
-        this.requestService.refreshToken().catch(() => this.logout());
+    async refreshToken() {
+        return await this.requestService.refreshToken();
     }
 
 
