@@ -29,8 +29,7 @@ public class SecurityProperties {
     }
 
     public static class Jwt {
-        //TODO change env vars in production
-
+       
         private String secret;
         private long accessTokenExpirationDate;
         private long refreshTokenExpirationDate;

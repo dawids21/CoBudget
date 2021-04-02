@@ -52,7 +52,8 @@ jobs:
           healthcheck: https://cobudget-backend.herokuapp.com/actuator/health
           rollbackonhealthcheckfailed: true
         env:
-          HD_JWT_EXPIRATION_DATE: ${{secrets.JWT_EXPIRATION_DATE}}
-          HD_JWT_SERCET_KEY: ${{secrets.JWT_SECRET_KEY}}
+          HD_ACCESS_TOKEN_EXPIRATION_DATE: ${{secrets.ACCESS_TOKEN_EXPIRATION_DATE}}
+          HD_REFRESH_TOKEN_EXPIRATION_DATE: ${{secrets.REFRESH_TOKEN_EXPIRATION_DATE}}
+          HD_TOKEN_SERCET_KEY: ${{secrets.TOKEN_SECRET_KEY}}
           HD_MONGO_URI: ${{secrets.MONGO_URI}}
           HD_SPRING_PROFILES_ACTIVE: prod
