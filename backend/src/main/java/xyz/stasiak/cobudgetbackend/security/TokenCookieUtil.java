@@ -20,6 +20,7 @@ public class TokenCookieUtil {
                              .httpOnly(true)
                              .secure(!isDev)
                              .path("/")
+                             .sameSite("None")
                              .build();
     }
 
@@ -29,6 +30,7 @@ public class TokenCookieUtil {
                              .httpOnly(true)
                              .secure(!isDev)
                              .path("/")
+                             .sameSite("None")
                              .build();
     }
 
@@ -36,15 +38,19 @@ public class TokenCookieUtil {
         return ResponseCookie.from(jwtProperties.getAccessTokenCookieName(), "")
                              .maxAge(0)
                              .httpOnly(true)
+                             .secure(!isDev)
                              .path("/")
+                             .sameSite("None")
                              .build();
     }
-   
+
     public ResponseCookie deleteRefreshTokenCookie() {
         return ResponseCookie.from(jwtProperties.getRefreshTokenCookieName(), "")
                              .maxAge(0)
                              .httpOnly(true)
+                             .secure(!isDev)
                              .path("/")
+                             .sameSite("None")
                              .build();
     }
 }
