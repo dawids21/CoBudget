@@ -206,7 +206,7 @@ main {
     width: 100%;
 }
 
-#hamburger {
+#config-page-button {
     color: var(--white);
 }
 
@@ -486,7 +486,7 @@ main {
         justify-content: flex-start;
     }
 
-    #hamburger {
+    #config-page-button {
         margin-right: var(--space-unit);
     }
 
