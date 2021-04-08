@@ -20,7 +20,7 @@ public class TokenCookieUtil {
                              .httpOnly(true)
                              .secure(!isDev)
                              .path("/")
-                             .sameSite("None")
+                             .sameSite(isDev ? null : "None")
                              .build();
     }
 
@@ -30,7 +30,7 @@ public class TokenCookieUtil {
                              .httpOnly(true)
                              .secure(!isDev)
                              .path("/")
-                             .sameSite("None")
+                             .sameSite(isDev ? null : "None")
                              .build();
     }
 
@@ -40,7 +40,7 @@ public class TokenCookieUtil {
                              .httpOnly(true)
                              .secure(!isDev)
                              .path("/")
-                             .sameSite("None")
+                             .sameSite(isDev ? null : "None")
                              .build();
     }
 
