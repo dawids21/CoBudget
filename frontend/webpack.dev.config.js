@@ -53,5 +53,11 @@ module.exports = merge(base, {
             filename: 'add-expense.html',
             chunks: ['addExpense'],
         }),
+        new HtmlPlugin({
+            title: 'CoBudget | Configuration',
+            template: './src/pages/user-config.html',
+            filename: 'user-config.html',
+            chunks: ['userConfig'],
+        }),
     ],
 });

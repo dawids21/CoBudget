@@ -8,6 +8,7 @@ module.exports = {
         register: './src/js/register.js',
         landing: './src/js/landing.js',
         addExpense: './src/js/addExpense.js',
+        userConfig: './src/js/userConfig.js',
     },
     plugins: [
         new FaviconsPlugin({
