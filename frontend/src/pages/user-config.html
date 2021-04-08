@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoBudget | Add expense</title>
+</head>
+<body>
+<header id="main-header">
+    <div id="left-side-header"><i id="config-page-button" class="fas fa-cog fa-2x"></i>
+        <h2 class="logo disable-select">CoBudget</h2>
+    </div>
+    <div id="right-side-header">
+        <nav>
+            <ul id="links-list" class="disable-select">
+                <li class="button active-button"><a href="./">Track</a></li>
+                <li class="button"><a href="#">Plan</a></li>
+                <li class="button"><a href="#">Analyze</a></li>
+                <li id="logout-button" class="button">Logout</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="main-container">
+    <div id="control-panel">
+        <div id="change-view-buttons" class="button-box disable-select">
+            <a class="button active-button">Week</a>
+            <a class="button" href="#">Month</a>
+        </div>
+        <div id="budget-info">
+            <ul class="flex-list-row">
+                <li>Left: 123,54 zł</li>
+                <li>Expenses: 324,64 zł</li>
+                <li>Earnings: 553,98 zł</li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-container">
+        <a id="back-button" class="icon-button" href="./"><i class="fas fa-angle-left fa-3x"></i></a>
+        <form id="add-expense-form" class="form" method="post" action="#">
+            <div class="form-data">
+                <label>Type:</label>
+                <div class="button-box disable-select">
+                    <a class="button active-button">Expense</a>
+                    <a class="button" href="#">Earning</a>
+                </div>
+                <!--TODO: Add setting date based on clicked button in week view-->
+                <label class="margin-top--sm" for="date">Date:</label>
+                <input class="form-text" type="date" id="date" name="date" required>
+                <label class="margin-top--sm" for="amount">Amount:</label>
+                <!--TODO: add period and comma-->
+                <input class="form-text" type="number" step="0.01" id="amount" name="amount" required>
+                <label class="margin-top--sm" for="category">Category:</label>
+                <input class="form-text" type="text" id="category" name="category" required>
+                <label class="margin-top--sm" for="subcategory">Subcategory:</label>
+                <input class="form-text" type="text" id="subcategory" name="subcategory" required>
+                <label class="margin-top--sm" for="comment">Comment:</label>
+                <input class="form-text" type="text" id="comment" name="comment">
+            </div>
+            <input id="add-expense-button" type="submit" class="button disable-select" name="add" value="Add">
+        </form>
+    </div>
+</div>
+</body>
+</html>
