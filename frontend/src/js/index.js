@@ -5,14 +5,14 @@ import RequestService from './service/RequestService.js';
 import GetExpensesService from './service/GetExpensesService.js';
 import WeekView from './components/WeekView.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
-import {faBars, faCaretLeft, faCaretRight, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faCaretLeft, faCaretRight, faCog, faPlus} from '@fortawesome/free-solid-svg-icons';
 import FetchService from './service/FetchService.js';
 
 const config = new ConfigApp();
 const authenticationService = new AuthenticationService(new FetchService(), config.getRestUrl());
 const requestService = new RequestService(config.getRestUrl(), authenticationService);
 
-library.add(faPlus, faBars, faCaretLeft, faCaretRight);
+library.add(faPlus, faCog, faCaretLeft, faCaretRight);
 dom.watch();
 
 if ('serviceWorker' in navigator) {
