@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoBudget | Add expense</title>
+    <title>CoBudget | Configuration</title>
 </head>
 <body>
 <header id="main-header">
@@ -22,42 +22,17 @@
     </div>
 </header>
 <div class="main-container">
-    <div id="control-panel">
-        <div id="change-view-buttons" class="button-box disable-select">
-            <a class="button active-button">Week</a>
-            <a class="button" href="#">Month</a>
-        </div>
-        <div id="budget-info">
-            <ul class="flex-list-row">
-                <li>Left: 123,54 zł</li>
-                <li>Expenses: 324,64 zł</li>
-                <li>Earnings: 553,98 zł</li>
-            </ul>
-        </div>
-    </div>
     <div class="form-container">
         <a id="back-button" class="icon-button" href="./"><i class="fas fa-angle-left fa-3x"></i></a>
-        <form id="add-expense-form" class="form" method="post" action="#">
+        <form id="config-form" class="form" method="post" action="#">
             <div class="form-data">
-                <label>Type:</label>
-                <div class="button-box disable-select">
-                    <a class="button active-button">Expense</a>
-                    <a class="button" href="#">Earning</a>
+                <div class="config-option">
+                    <input type="checkbox" id="entry-notification-enable" name="entry-notification-enable"
+                           value="enabled">
+                    <label class="margin-top--sm" for="entry-notification-enable">Entry notifications</label>
                 </div>
-                <!--TODO: Add setting date based on clicked button in week view-->
-                <label class="margin-top--sm" for="date">Date:</label>
-                <input class="form-text" type="date" id="date" name="date" required>
-                <label class="margin-top--sm" for="amount">Amount:</label>
-                <!--TODO: add period and comma-->
-                <input class="form-text" type="number" step="0.01" id="amount" name="amount" required>
-                <label class="margin-top--sm" for="category">Category:</label>
-                <input class="form-text" type="text" id="category" name="category" required>
-                <label class="margin-top--sm" for="subcategory">Subcategory:</label>
-                <input class="form-text" type="text" id="subcategory" name="subcategory" required>
-                <label class="margin-top--sm" for="comment">Comment:</label>
-                <input class="form-text" type="text" id="comment" name="comment">
             </div>
-            <input id="add-expense-button" type="submit" class="button disable-select" name="add" value="Add">
+            <input id="save-config-button" type="submit" class="button disable-select" name="save" value="Save">
         </form>
     </div>
 </div>
