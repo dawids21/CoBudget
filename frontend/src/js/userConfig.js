@@ -3,14 +3,14 @@ import AuthenticationService from './service/AuthenticationService.js';
 import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
-import {faAngleLeft, faCog} from '@fortawesome/free-solid-svg-icons';
+import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 import FetchService from './service/FetchService.js';
 
 const config = new ConfigApp();
 const authenticationService = new AuthenticationService(new FetchService(), config.getRestUrl());
 const requestService = new RequestService(config.getRestUrl(), authenticationService);
 
-library.add(faCog, faAngleLeft);
+library.add(faAngleLeft);
 dom.watch();
 
 if ('serviceWorker' in navigator) {
@@ -35,5 +35,19 @@ if (addExpenseForm) {
             alert('Expense added!');
             window.location.href = '/';
         }).catch(() => alert('Cannot add expense. Please try again'));
+    });
+}
+
+const entryNotificationEnable = document.querySelector('#entry-notification-enable');
+if (entryNotificationEnable) {
+    entryNotificationEnable.addEventListener('change', () => {
+        const entryNotificationTimeOption = document.querySelector('#entry-notification-time-option');
+        if (entryNotificationTimeOption) {
+            entryNotificationTimeOption.innerHTML = entryNotificationEnable.checked ?
+                `
+                <label class="margin-top--sm" for="entry-notification-time">Time</label>
+                <input type="time" id="entry-notification-time" name="entry-notification-time">
+                ` : '&nbsp;';
+        }
     });
 }
