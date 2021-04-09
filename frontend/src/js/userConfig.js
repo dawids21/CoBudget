@@ -1,4 +1,4 @@
-import '../css/style.css';
+import '../css/pages/user-config.css';
 import AuthenticationService from './service/AuthenticationService.js';
 import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
