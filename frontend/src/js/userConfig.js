@@ -54,7 +54,7 @@ if (entryNotificationEnable) {
             entryNotificationTimeOption.innerHTML = entryNotificationEnable.checked ?
                 `
                 <label class="margin-top--sm" for="entry-notification-time">Time</label>
-                <input type="time" id="entry-notification-time" name="entry-notification-time">
+                <input type="time" id="entry-notification-time" name="entry-notification-time" value="17:00">
                 ` : '&nbsp;';
         }
     });
