@@ -3,14 +3,14 @@ import AuthenticationService from './service/AuthenticationService.js';
 import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
-import {faAngleLeft} from '@fortawesome/free-solid-svg-icons';
+import {faAngleLeft, faCog} from '@fortawesome/free-solid-svg-icons';
 import FetchService from './service/FetchService.js';
 
 const config = new ConfigApp();
 const authenticationService = new AuthenticationService(new FetchService(), config.getRestUrl());
 const requestService = new RequestService(config.getRestUrl(), authenticationService);
 
-library.add(faAngleLeft);
+library.add(faAngleLeft, faCog);
 dom.watch();
 
 if ('serviceWorker' in navigator) {
