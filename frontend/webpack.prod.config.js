@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = merge(base, {
     mode: 'production',
@@ -24,6 +25,10 @@ module.exports = merge(base, {
         ],
     },
     plugins: [
+        new WorkboxPlugin.GenerateSW({
+            skipWaiting: true,
+            clientsClaim: true,
+        }),
         new Dotenv({
             path: '',
             systemvars: true,
