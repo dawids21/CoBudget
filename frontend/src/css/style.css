@@ -86,10 +86,6 @@ main {
     background-color: var(--light-gray);
 }
 
-.icon-button:hover {
-    color: var(--claret);
-}
-
 #links-list > .button {
     border-right: 2px solid var(--light-gray);
     border-top: 2px solid var(--light-gray);
@@ -99,8 +95,19 @@ main {
     border-right: 0;
 }
 
-.button:hover, .active-button {
+.active-button {
     background-color: var(--claret);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .button:hover, .icon-button:hover {
+        background-color: var(--claret);
+    }
+
+    .add-entry-button .icon-button-bg:hover {
+        background-color: var(--claret);
+    }
 }
 
 .form {
@@ -352,10 +359,6 @@ main {
     padding: var(--space-xs);
     transition: 0.2s;
     font-size: var(--text-lg);
-}
-
-.add-entry-button .icon-button-bg:hover {
-    background-color: var(--claret);
 }
 
 .expense {
