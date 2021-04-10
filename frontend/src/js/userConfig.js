@@ -24,17 +24,25 @@ if ('serviceWorker' in navigator) {
 
 document.getElementById('logout-button').addEventListener('click', async () => await authenticationService.logout());
 
-const addExpenseForm = document.getElementById('add-expense-form');
-if (addExpenseForm) {
-    addExpenseForm.addEventListener('submit', function (e) {
+const configForm = document.querySelector('#config-form');
+if (configForm) {
+    configForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        const btnSubmit = document.getElementById('add-expense-button');
+        const btnSubmit = document.querySelector('#save-config-button');
         btnSubmit.disabled = true;
         setTimeout(() => btnSubmit.disabled = false, 2000);
-        requestService.addExpense(this).then(() => {
-            alert('Expense added!');
-            window.location.href = '/';
-        }).catch(() => alert('Cannot add expense. Please try again'));
+        const message = document.querySelector('#message');
+        requestService.saveConfig(this).then(() => {
+            if (message) {
+                message.innerHTML = 'Configuration saved';
+                message.style.color = getComputedStyle(document.documentElement).getPropertyValue('--dark-green');
+            }
+        }).catch(() => {
+            if (message) {
+                message.innerHTML = 'Error during saving';
+                message.style.color = getComputedStyle(document.documentElement).getPropertyValue('--claret');
+            }
+        });
     });
 }
 

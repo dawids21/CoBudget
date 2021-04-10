@@ -75,4 +75,8 @@ export default class RequestService {
             'Content-Type': 'application/json',
         };
     }
+
+    async saveConfig(form) {
+        //TODO
+    }
 }
