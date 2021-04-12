@@ -69,7 +69,22 @@ export default class RequestService {
     }
 
     async saveConfig(form) {
-        //TODO
+        const jsonFormData = this._buildJsonFormData(form);
+        const headers = this._buildHeaders();
+        const fetch = () => this.fetchService.performPostHttpRequest(this.restUrl + '/user/config', headers, jsonFormData);
+        let response = await fetch();
+
+        if (response.status === 401) {
+            try {
+                response = await this._retryRequest(fetch);
+            } catch {
+                return;
+            }
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
     }
 
     async _retryRequest(request) {
