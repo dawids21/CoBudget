@@ -53,13 +53,13 @@ async function loadConfig() {
     }
     if (userConfig.entryNotification) {
         const entryNotificationEnable = document.querySelector('#entry-notification-enable-input');
-        entryNotificationEnable.checked = userConfig.addExpenseNotificationConfig.enabled;
-        const entryNotificationTimeOption = document.querySelector('#entry-notification-time-option');
+        entryNotificationEnable.checked = userConfig.entryNotification.enabled;
+        const entryNotificationTimeOption = document.querySelector('#entry-notification-time');
         if (entryNotificationTimeOption) {
             entryNotificationTimeOption.innerHTML = entryNotificationEnable.checked ?
                 `
                 <label class="margin-top--sm" for="entry-notification-time">Time</label>
-                <input type="time" id="entry-notification-time" name="entry-notification-time" value="17:00">
+                <input type="time" id="entry-notification-time" name="entryNotificationTime" value="17:00">
                 ` : '&nbsp;';
         }
     }
@@ -75,7 +75,7 @@ if (entryNotificationEnableInput) {
             entryNotificationTime.innerHTML = entryNotificationEnableInput.checked ?
                 `
                 <label class="margin-top--sm" for="entry-notification-time-input">Time</label>
-                <input type="time" id="entry-notification-time-input" name="entry-notification-time" value="17:00">
+                <input type="time" id="entry-notification-time-input" name="entryNotificationTime" value="17:00">
                 ` : '&nbsp;';
         }
     });

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import xyz.stasiak.cobudgetbackend.users.config.UserConfiguration;
+import xyz.stasiak.cobudgetbackend.users.config.UserConfigurationWriteModel;
 
 import javax.validation.constraints.Email;
 
@@ -80,11 +81,8 @@ public class ApplicationUser {
         this.userConfiguration = userConfiguration;
     }
 
-    public void updateConfiguration(UserConfiguration userConfiguration) {
-        if (userConfiguration.getEntryNotification() != null) {
-            var config = userConfiguration.getEntryNotification();
-            this.userConfiguration.getEntryNotification()
-                                  .setEnabled(config.isEnabled());
-        }
+    public void updateConfiguration(UserConfigurationWriteModel toWrite) {
+        this.userConfiguration.getEntryNotification()
+                              .setEnabled(toWrite.isEntryNotificationEnable());
     }
 }
