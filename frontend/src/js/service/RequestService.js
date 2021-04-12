@@ -54,6 +54,24 @@ export default class RequestService {
         return await response.json();
     }
 
+    async getConfig() {
+        const fetch = () => this.fetchService.performGetHttpRequest(`${this.restUrl}/user/config`, {});
+        let response = await fetch();
+
+        if (response.status === 401) {
+            response = await this._retryRequest(fetch);
+        }
+
+        if (!response.ok) {
+            throw new ResponseError(`Fetch error`, response.status);
+        }
+        return await response.json();
+    }
+
+    async saveConfig(form) {
+        //TODO
+    }
+
     async _retryRequest(request) {
         const refreshResponse = await this.authenticationService.refreshToken();
         if (!refreshResponse.ok) {
@@ -74,9 +92,5 @@ export default class RequestService {
         return {
             'Content-Type': 'application/json',
         };
-    }
-
-    async saveConfig(form) {
-        //TODO
     }
 }

@@ -46,6 +46,13 @@ if (configForm) {
     });
 }
 
+async function loadConfig() {
+    const userConfig = await requestService.getConfig();
+    console.log(userConfig);
+}
+
+loadConfig();
+
 const entryNotificationEnable = document.querySelector('#entry-notification-enable');
 if (entryNotificationEnable) {
     entryNotificationEnable.addEventListener('change', () => {
