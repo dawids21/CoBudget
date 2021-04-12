@@ -48,7 +48,6 @@ if (configForm) {
 
 async function loadConfig() {
     const userConfig = await requestService.getConfig();
-    console.log(userConfig);
     if (!userConfig) {
         return;
     }

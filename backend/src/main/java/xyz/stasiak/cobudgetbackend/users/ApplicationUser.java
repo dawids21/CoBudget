@@ -79,4 +79,12 @@ public class ApplicationUser {
     public void setUserConfiguration(UserConfiguration userConfiguration) {
         this.userConfiguration = userConfiguration;
     }
+
+    public void updateConfiguration(UserConfiguration userConfiguration) {
+        if (userConfiguration.getAddExpenseNotificationConfig() != null) {
+            var config = userConfiguration.getAddExpenseNotificationConfig();
+            this.userConfiguration.getAddExpenseNotificationConfig()
+                                  .setEnabled(config.isEnabled());
+        }
+    }
 }

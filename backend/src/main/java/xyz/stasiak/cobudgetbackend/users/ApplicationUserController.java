@@ -52,5 +52,16 @@ public class ApplicationUserController {
                                      .getUserConfiguration());
     }
 
+    @PostMapping("/config")
+    public ResponseEntity<?> setUserConfiguration(Principal principal,
+                                                  @RequestBody UserConfiguration userConfiguration) {
+        var user = userRepository.findByEmail(principal.getName())
+                                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        user.updateConfiguration(userConfiguration);
+        userRepository.save(user);
+        return ResponseEntity.ok()
+                             .build();
+    }
+
     //TODO add method to get information about user
 }
