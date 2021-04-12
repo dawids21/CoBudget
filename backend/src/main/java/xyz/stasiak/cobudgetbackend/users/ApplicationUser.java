@@ -81,9 +81,9 @@ public class ApplicationUser {
     }
 
     public void updateConfiguration(UserConfiguration userConfiguration) {
-        if (userConfiguration.getAddExpenseNotificationConfig() != null) {
-            var config = userConfiguration.getAddExpenseNotificationConfig();
-            this.userConfiguration.getAddExpenseNotificationConfig()
+        if (userConfiguration.getEntryNotification() != null) {
+            var config = userConfiguration.getEntryNotification();
+            this.userConfiguration.getEntryNotification()
                                   .setEnabled(config.isEnabled());
         }
     }

@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class UserConfiguration {
 
-    private AddExpenseNotificationConfig addExpenseNotificationConfig = new AddExpenseNotificationConfig();
+    private EntryNotification entryNotification = new EntryNotification();
 
     public static UserConfiguration defaultConfiguration() {
         var config = new UserConfiguration();
-        config.addExpenseNotificationConfig.setEnabled(true);
+        config.entryNotification.setEnabled(true);
         return config;
     }
 
     public UserConfiguration() {
     }
 
-    public AddExpenseNotificationConfig getAddExpenseNotificationConfig() {
-        return addExpenseNotificationConfig;
+    public EntryNotification getEntryNotification() {
+        return entryNotification;
     }
 
     @Override
@@ -28,11 +28,11 @@ public class UserConfiguration {
             return false;
         }
         UserConfiguration that = (UserConfiguration) o;
-        return Objects.equals(addExpenseNotificationConfig, that.addExpenseNotificationConfig);
+        return Objects.equals(entryNotification, that.entryNotification);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addExpenseNotificationConfig);
+        return Objects.hash(entryNotification);
     }
 }

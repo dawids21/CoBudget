@@ -51,8 +51,8 @@ async function loadConfig() {
     if (!userConfig) {
         return;
     }
-    if (userConfig.addExpenseNotificationConfig) {
-        const entryNotificationEnable = document.querySelector('#entry-notification-enable');
+    if (userConfig.entryNotification) {
+        const entryNotificationEnable = document.querySelector('#entry-notification-enable-input');
         entryNotificationEnable.checked = userConfig.addExpenseNotificationConfig.enabled;
         const entryNotificationTimeOption = document.querySelector('#entry-notification-time-option');
         if (entryNotificationTimeOption) {
@@ -67,15 +67,15 @@ async function loadConfig() {
 
 loadConfig();
 
-const entryNotificationEnable = document.querySelector('#entry-notification-enable');
-if (entryNotificationEnable) {
-    entryNotificationEnable.addEventListener('change', () => {
-        const entryNotificationTimeOption = document.querySelector('#entry-notification-time-option');
-        if (entryNotificationTimeOption) {
-            entryNotificationTimeOption.innerHTML = entryNotificationEnable.checked ?
+const entryNotificationEnableInput = document.querySelector('#entry-notification-enable-input');
+if (entryNotificationEnableInput) {
+    entryNotificationEnableInput.addEventListener('change', () => {
+        const entryNotificationTime = document.querySelector('#entry-notification-time');
+        if (entryNotificationTime) {
+            entryNotificationTime.innerHTML = entryNotificationEnableInput.checked ?
                 `
-                <label class="margin-top--sm" for="entry-notification-time">Time</label>
-                <input type="time" id="entry-notification-time" name="entry-notification-time" value="17:00">
+                <label class="margin-top--sm" for="entry-notification-time-input">Time</label>
+                <input type="time" id="entry-notification-time-input" name="entry-notification-time" value="17:00">
                 ` : '&nbsp;';
         }
     });
