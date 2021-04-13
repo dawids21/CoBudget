@@ -101,8 +101,12 @@ main {
 
 @media (hover: hover) and (pointer: fine) {
 
-    .button:hover, .icon-button:hover {
+    .button:hover {
         background-color: var(--claret);
+    }
+
+    .icon-button:hover {
+        color: var(--claret);
     }
 
     .add-entry-button .icon-button-bg:hover {
