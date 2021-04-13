@@ -180,20 +180,6 @@ main {
     margin: var(--space-xs) var(--space-unit);
 }
 
-#remember-me-flexbox {
-    margin-top: var(--space-unit);
-    align-self: flex-end;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#remember-me-flexbox > input {
-    transform: scale(1);
-    margin-right: var(--space-xxs);
-}
-
 #password-message {
     width: 100%;
     text-align: left;
