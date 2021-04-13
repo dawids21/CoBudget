@@ -81,6 +81,7 @@ main {
 }
 
 .icon-button {
+    cursor: pointer;
     border: none;
     color: var(--main-green);
     transition: 0.2s;
