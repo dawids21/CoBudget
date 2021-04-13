@@ -2,14 +2,14 @@ package xyz.stasiak.cobudgetbackend.users.config;
 
 import java.util.Objects;
 
-public class AddExpenseNotificationConfig {
+public class EntryNotification {
 
     private boolean enabled;
 
-    public AddExpenseNotificationConfig() {
+    public EntryNotification() {
     }
 
-    public AddExpenseNotificationConfig(boolean enabled) {
+    public EntryNotification(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -29,7 +29,7 @@ public class AddExpenseNotificationConfig {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AddExpenseNotificationConfig that = (AddExpenseNotificationConfig) o;
+        EntryNotification that = (EntryNotification) o;
         return isEnabled() == that.isEnabled();
     }
 

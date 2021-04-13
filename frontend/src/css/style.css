@@ -68,6 +68,7 @@ main {
 }
 
 .button {
+    cursor: pointer;
     display: block;
     text-decoration: none;
     color: var(--white);
@@ -80,14 +81,11 @@ main {
 }
 
 .icon-button {
+    cursor: pointer;
     border: none;
     color: var(--main-green);
     transition: 0.2s;
     background-color: var(--light-gray);
-}
-
-.icon-button:hover {
-    color: var(--claret);
 }
 
 #links-list > .button {
@@ -99,8 +97,23 @@ main {
     border-right: 0;
 }
 
-.button:hover, .active-button {
+.active-button {
     background-color: var(--claret);
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .button:hover {
+        background-color: var(--claret);
+    }
+
+    .icon-button:hover {
+        color: var(--claret);
+    }
+
+    .add-entry-button .icon-button-bg:hover {
+        background-color: var(--claret);
+    }
 }
 
 .form {
@@ -168,20 +181,6 @@ main {
     margin: var(--space-xs) var(--space-unit);
 }
 
-#remember-me-flexbox {
-    margin-top: var(--space-unit);
-    align-self: flex-end;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#remember-me-flexbox > input {
-    transform: scale(1);
-    margin-right: var(--space-xxs);
-}
-
 #password-message {
     width: 100%;
     text-align: left;
@@ -206,7 +205,7 @@ main {
     width: 100%;
 }
 
-#hamburger {
+#config-page-button {
     color: var(--white);
 }
 
@@ -354,10 +353,6 @@ main {
     font-size: var(--text-lg);
 }
 
-.add-entry-button .icon-button-bg:hover {
-    background-color: var(--claret);
-}
-
 .expense {
     border: 8px solid var(--claret);
 }
@@ -486,7 +481,7 @@ main {
         justify-content: flex-start;
     }
 
-    #hamburger {
+    #config-page-button {
         margin-right: var(--space-unit);
     }
 

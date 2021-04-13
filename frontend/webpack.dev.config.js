@@ -3,6 +3,7 @@ const base = require('./webpack.base.config.js');
 const {merge} = require('webpack-merge');
 const HtmlPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(base, {
     mode: 'development',
@@ -20,6 +21,13 @@ module.exports = merge(base, {
         ],
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: './src/service-worker.js',
+                },
+            ],
+        }),
         new Dotenv({
             safe: true,
         }),
@@ -52,6 +60,12 @@ module.exports = merge(base, {
             template: './src/pages/add-expense.html',
             filename: 'add-expense.html',
             chunks: ['addExpense'],
+        }),
+        new HtmlPlugin({
+            title: 'CoBudget | Configuration',
+            template: './src/pages/user-config.html',
+            filename: 'user-config.html',
+            chunks: ['userConfig'],
         }),
     ],
 });

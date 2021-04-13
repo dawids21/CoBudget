@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoBudget | Configuration</title>
+</head>
+<body>
+<header id="main-header">
+    <div id="left-side-header">
+        <i id="config-page-button" class="fas fa-cog fa-2x"></i>
+        <h2 class="logo disable-select">CoBudget</h2>
+    </div>
+    <div id="right-side-header">
+        <nav>
+            <ul id="links-list" class="disable-select">
+                <li class="button"><a href="./">Track</a></li>
+                <li class="button"><a href="#">Plan</a></li>
+                <li class="button"><a href="#">Analyze</a></li>
+                <li id="logout-button" class="button">Logout</li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="main-container">
+    <div class="form-container">
+        <a id="back-button" class="icon-button" href="./"><i class="fas fa-angle-left fa-3x"></i></a>
+        <form id="config-form" class="form" method="post" action="#">
+            <span id='message'></span>
+            <div class="form-data">
+                <div id="entry-notification-enable" class="config-option">
+                    <label class="margin-top--sm" for="entry-notification-enable-input">Entry notifications</label>
+                    <input type="checkbox" id="entry-notification-enable-input" name="entryNotificationEnable"
+                           value="true">
+                </div>
+                <div id="entry-notification-time" class="config-option">&nbsp;</div>
+            </div>
+            <input id="save-config-button" type="submit" class="button disable-select" name="save" value="Save">
+        </form>
+    </div>
+</div>
+</body>
+</html>

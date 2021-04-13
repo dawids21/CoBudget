@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import xyz.stasiak.cobudgetbackend.users.config.UserConfiguration;
+import xyz.stasiak.cobudgetbackend.users.config.UserConfigurationWriteModel;
 import xyz.stasiak.cobudgetbackend.validation.ValidationExceptionProcessing;
 
 import javax.validation.Valid;
@@ -50,6 +51,17 @@ public class ApplicationUserController {
         }
         return ResponseEntity.ok(user.get()
                                      .getUserConfiguration());
+    }
+
+    @PostMapping("/config")
+    public ResponseEntity<?> setUserConfiguration(Principal principal,
+                                                  @RequestBody UserConfigurationWriteModel userConfiguration) {
+        var user = userRepository.findByEmail(principal.getName())
+                                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        user.updateConfiguration(userConfiguration);
+        userRepository.save(user);
+        return ResponseEntity.ok()
+                             .build();
     }
 
     //TODO add method to get information about user

@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = merge(base, {
     mode: 'production',
@@ -24,6 +25,10 @@ module.exports = merge(base, {
         ],
     },
     plugins: [
+        new WorkboxPlugin.GenerateSW({
+            skipWaiting: true,
+            clientsClaim: true,
+        }),
         new Dotenv({
             path: '',
             systemvars: true,
@@ -59,6 +64,12 @@ module.exports = merge(base, {
             template: './src/pages/add-expense.html',
             filename: 'add-expense.html',
             chunks: ['addExpense'],
+        }),
+        new HtmlPlugin({
+            title: 'CoBudget | Configuration',
+            template: './src/pages/user-config.html',
+            filename: 'user-config.html',
+            chunks: ['userConfig'],
         }),
     ],
     module: {

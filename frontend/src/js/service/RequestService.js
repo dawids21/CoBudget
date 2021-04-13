@@ -54,6 +54,39 @@ export default class RequestService {
         return await response.json();
     }
 
+    async getConfig() {
+        const fetch = () => this.fetchService.performGetHttpRequest(`${this.restUrl}/user/config`, {});
+        let response = await fetch();
+
+        if (response.status === 401) {
+            response = await this._retryRequest(fetch);
+        }
+
+        if (!response.ok) {
+            throw new ResponseError(`Fetch error`, response.status);
+        }
+        return await response.json();
+    }
+
+    async saveConfig(form) {
+        const jsonFormData = this._buildJsonFormData(form);
+        const headers = this._buildHeaders();
+        const fetch = () => this.fetchService.performPostHttpRequest(this.restUrl + '/user/config', headers, jsonFormData);
+        let response = await fetch();
+
+        if (response.status === 401) {
+            try {
+                response = await this._retryRequest(fetch);
+            } catch {
+                return;
+            }
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    }
+
     async _retryRequest(request) {
         const refreshResponse = await this.authenticationService.refreshToken();
         if (!refreshResponse.ok) {
