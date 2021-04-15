@@ -13,7 +13,6 @@ module.exports = {
         new FaviconsPlugin({
             logo: './src/icon.png',
             cache: true,
-            prefix: 'icons-[contenthash:8]/',
             favicons: {
                 appName: 'CoBudget',
                 appShortName: 'CoBudget',
