@@ -22,7 +22,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-render(<RegisterForm/>, document.getElementById('root'));
+render(<RegisterForm requestService={requestService}/>, document.getElementById('root'));
 
 function checkPasswords() {
     if (document.getElementById('signup-password').value ===
@@ -42,24 +42,3 @@ function checkPasswords() {
 
 document.getElementById('signup-password').addEventListener('keyup', () => checkPasswords());
 document.getElementById('signup-password-repeat').addEventListener('keyup', () => checkPasswords());
-
-const registerForm = document.getElementById('register-form');
-if (registerForm) {
-    registerForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const btnSubmit = document.getElementById('sign-up-submit');
-        btnSubmit.disabled = true;
-        setTimeout(() => btnSubmit.disabled = false, 2000);
-        requestService.signUp(this).then(() => window.location.href = '/landing.html').catch((err) => {
-            if (err.responseCode === 409) {
-                const errorMessage = document.getElementById('error-message');
-                if (errorMessage) {
-                    errorMessage.innerText = 'Account with this email already exists';
-                    errorMessage.style.color = getComputedStyle(document.documentElement).getPropertyValue('--claret');
-                    return;
-                }
-            }
-            alert('Cannot perform sign up. Please try again');
-        });
-    });
-}

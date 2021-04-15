@@ -1,6 +1,22 @@
 import React from 'react';
 
 export default class RegisterForm extends React.Component {
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.requestService.signUp(document.getElementById('register-form')).then(() => window.location.href = '/landing.html').catch((err) => {
+            if (err.responseCode === 409) {
+                const errorMessage = document.getElementById('error-message');
+                if (errorMessage) {
+                    errorMessage.innerText = 'Account with this email already exists';
+                    errorMessage.style.color = getComputedStyle(document.documentElement).getPropertyValue('--claret');
+                    return;
+                }
+            }
+            alert('Cannot perform sign up. Please try again');
+        });
+    }
+
     render() {
         return (
             <div className="container-column">
@@ -9,7 +25,7 @@ export default class RegisterForm extends React.Component {
                 </div>
                 <a id="back-button" className="icon-button" href="./landing.html"><i
                     className="fas fa-angle-left fa-3x"/></a>
-                <form id="register-form" className="form">
+                <form id="register-form" className="form" onSubmit={(event) => this.handleSubmit(event)}>
                     <span id="error-message"/>
                     <div className="form-data">
                         <label htmlFor="name">Name <span className="text--sm">(optional)</span>:</label>
