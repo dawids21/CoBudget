@@ -2,7 +2,7 @@
     width: 100%;
 }
 
-.label {
+.labeledInput > label {
     color: var(--dark-green);
     width: 100%;
     text-align: left;
@@ -10,7 +10,7 @@
     margin-top: var(--space-sm);
 }
 
-.input {
+.labeledInput > input {
     width: 100%;
     height: var(--text-xl);
     border: 2px solid var(--dark-green);
@@ -19,7 +19,7 @@
     font-size: var(--text-sm);
 }
 
-.input:focus {
+.labeledInput > input:focus {
     border: 2px solid var(--main-green);
     outline: none;
 }
