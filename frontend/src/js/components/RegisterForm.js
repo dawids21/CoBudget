@@ -1,6 +1,30 @@
 import React from 'react';
 
-export default class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: '',
+            password: '',
+            passwordRepeat: '',
+            status: {
+                message: '',
+                error: false,
+            },
+        };
+    }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value,
+        });
+    }
 
     handleSubmit(event) {
         event.preventDefault();
@@ -45,17 +69,20 @@ export default class RegisterForm extends React.Component {
                     <span id="error-message"/>
                     <div className="form-data">
                         <label htmlFor="name">Name <span className="text--sm">(optional)</span>:</label>
-                        <input className="form-text" type="text" id="name" name="name"/>
+                        <input className="form-text" type="text" id="name" name="name"
+                               onChange={(e) => this.handleInputChange(e)}/>
                         <label className="margin-top--sm" htmlFor="email">Email:</label>
-                        <input className="form-text" type="email" id="email" name="email" required/>
+                        <input className="form-text" type="email" id="email" name="email"
+                               onChange={(e) => this.handleInputChange(e)} required/>
                         <label className="margin-top--sm" htmlFor="signup-password">Password:</label>
                         <input className="form-text" type="password" id="signup-password" name="password"
-                               onKeyUp={() => this.checkPasswords()}
+                               onChange={(e) => this.handleInputChange(e)} onKeyUp={() => this.checkPasswords()}
                                required/>
                         <label className="margin-top--sm" htmlFor="signup-password-repeat">Repeat
                             password:</label>
                         <input className="form-text" type="password" id="signup-password-repeat"
-                               name="password" onKeyUp={() => this.checkPasswords()}
+                               name="passwordRepeat" onChange={(e) => this.handleInputChange(e)}
+                               onKeyUp={() => this.checkPasswords()}
                                required/>
                         <span id="password-message" className="margin-top--xs">&nbsp;</span>
                     </div>
@@ -66,3 +93,5 @@ export default class RegisterForm extends React.Component {
         );
     }
 }
+
+export default RegisterForm;
