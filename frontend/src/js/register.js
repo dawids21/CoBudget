@@ -1,4 +1,4 @@
-import '../css/style.css';
+import '../css/global.css';
 import ConfigApp from './config.js';
 import RequestService from './service/RequestService.js';
 import {dom, library} from '@fortawesome/fontawesome-svg-core';
