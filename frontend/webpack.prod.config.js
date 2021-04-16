@@ -8,6 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
+//TODO config for css modules
 module.exports = merge(base, {
     mode: 'production',
     output: {
