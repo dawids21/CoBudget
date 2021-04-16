@@ -9,10 +9,9 @@ export default class RequestService {
         this.authenticationService = authenticationService;
     }
 
-    async signUp(form) {
-        const jsonFormData = this._buildJsonFormData(form);
+    async signUp(data) {
         const headers = this._buildHeaders();
-        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/sign-up', headers, jsonFormData);
+        const response = await this.fetchService.performPostHttpRequest(this.restUrl + '/user/sign-up', headers, data);
         if (!response.ok) {
             throw new ResponseError(`HTTP error! status: ${response.status}`, response.status);
         }

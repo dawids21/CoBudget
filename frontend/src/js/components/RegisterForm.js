@@ -34,7 +34,12 @@ class RegisterForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.requestService.signUp(document.getElementById('register-form')).then(() => window.location.href = '/landing.html').catch((err) => {
+        const {name, email, password} = this.state;
+        this.props.requestService.signUp({
+            name,
+            email,
+            password,
+        }).then(() => window.location.href = '/landing.html').catch((err) => {
             if (err.responseCode === 409) {
                 const errorMessage = document.getElementById('error-message');
                 if (errorMessage) {
