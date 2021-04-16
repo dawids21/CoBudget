@@ -189,11 +189,6 @@ main {
     margin: var(--space-xs) var(--space-unit);
 }
 
-#password-message {
-    width: 100%;
-    text-align: left;
-}
-
 #main-header {
     position: sticky;
     top: 0;

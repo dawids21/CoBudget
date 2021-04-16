@@ -1,5 +1,10 @@
 import React from 'react';
 
+const StatusMessage = (props) => {
+    return <span className="margin-top--xs"
+                 style={{color: props.error ? 'var(--claret)' : 'var(--main-green)'}}>{props.message}</span>;
+};
+
 class RegisterForm extends React.Component {
 
     constructor(props) {
@@ -13,6 +18,7 @@ class RegisterForm extends React.Component {
                 message: '',
                 error: false,
             },
+            buttonDisabled: false,
         };
     }
 
@@ -42,18 +48,22 @@ class RegisterForm extends React.Component {
     }
 
     checkPasswords() {
-        if (document.getElementById('signup-password').value ===
-            document.getElementById('signup-password-repeat').value) {
-            document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
-                .getPropertyValue('--main-green');
-            document.getElementById('password-message').innerHTML = 'Passwords are the same';
-            document.getElementById('sign-up-submit').disabled = false;
+        if (this.state.password === this.state.passwordRepeat) {
+            this.setState({
+                status: {
+                    message: 'Passwords are the same',
+                    error: false,
+                },
+                buttonDisabled: false,
+            });
         } else {
-            document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
-                .getPropertyValue('--claret');
-
-            document.getElementById('password-message').innerHTML = 'Passwords are not the same';
-            document.getElementById('sign-up-submit').disabled = true;
+            this.setState({
+                status: {
+                    message: 'Passwords are not the same',
+                    error: true,
+                },
+                buttonDisabled: true,
+            });
         }
     }
 
@@ -84,10 +94,10 @@ class RegisterForm extends React.Component {
                                name="passwordRepeat" onChange={(e) => this.handleInputChange(e)}
                                onKeyUp={() => this.checkPasswords()}
                                required/>
-                        <span id="password-message" className="margin-top--xs">&nbsp;</span>
+                        <StatusMessage message={this.state.status.message} error={this.state.status.error}/>
                     </div>
-                    <input id="sign-up-submit" type="submit" className="button disable-select" name="sign-up"
-                           value="Sign up"/>
+                    <input type="submit" className="button disable-select" name="sign-up"
+                           value="Sign up" disabled={this.state.buttonDisabled}/>
                 </form>
             </div>
         );
