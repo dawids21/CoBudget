@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './common/Form.js';
+import LabeledInput from './common/LabeledInput.js';
 
 const StatusMessage = (props) => {
     return <span className="margin-top--xs"
@@ -30,6 +31,10 @@ class RegisterForm extends React.Component {
 
         this.setState({
             [name]: value,
+        }, () => {
+            if (name === 'password' || name === 'passwordRepeat') {
+                this.checkPasswords();
+            }
         });
     }
 
@@ -76,22 +81,13 @@ class RegisterForm extends React.Component {
         return (
             <Form onSubmit={(event) => this.handleSubmit(event)} returnPage="./landing.html"
                   buttonDisabled={this.state.buttonDisabled} buttonText="Sign up">
-                <label htmlFor="name">Name <span className="text--sm">(optional)</span>:</label>
-                <input className="form-text" type="text" id="name" name="name"
-                       onChange={(e) => this.handleInputChange(e)}/>
-                <label className="margin-top--sm" htmlFor="email">Email:</label>
-                <input className="form-text" type="email" id="email" name="email"
-                       onChange={(e) => this.handleInputChange(e)} required/>
-                <label className="margin-top--sm" htmlFor="signup-password">Password:</label>
-                <input className="form-text" type="password" id="signup-password" name="password"
-                       onChange={(e) => this.handleInputChange(e)} onKeyUp={() => this.checkPasswords()}
-                       required/>
-                <label className="margin-top--sm" htmlFor="signup-password-repeat">Repeat
-                    password:</label>
-                <input className="form-text" type="password" id="signup-password-repeat"
-                       name="passwordRepeat" onChange={(e) => this.handleInputChange(e)}
-                       onKeyUp={() => this.checkPasswords()}
-                       required/>
+                <LabeledInput inputName="name" label="Name" type="text" onChange={(e) => this.handleInputChange(e)}/>
+                <LabeledInput inputName="email" label="Email" type="email" required
+                              onChange={(e) => this.handleInputChange(e)}/>
+                <LabeledInput inputName="password" label="Password" type="password" required
+                              onChange={(e) => this.handleInputChange(e)}/>
+                <LabeledInput inputName="passwordRepeat" label="Repeat password" type="password"
+                              onChange={(e) => this.handleInputChange(e)}/>
                 <StatusMessage message={this.state.status.message} error={this.state.status.error}/>
             </Form>
         );
