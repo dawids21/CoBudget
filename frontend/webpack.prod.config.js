@@ -8,7 +8,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
-//TODO config for css modules
 module.exports = merge(base, {
     mode: 'production',
     output: {
@@ -77,7 +76,28 @@ module.exports = merge(base, {
         rules: [
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            esModule: true,
+                            modules: {
+                                exportLocalsConvention: 'camelCaseOnly',
+                            },
+                        },
+                    },
+                ],
+                include: /\.module\.css$/,
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                ],
+                exclude: /\.module\.css$/,
             },
         ],
     },
