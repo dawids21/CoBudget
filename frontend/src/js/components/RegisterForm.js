@@ -9,6 +9,25 @@ const StatusMessage = (props) => {
                  style={{color: props.error ? 'var(--claret)' : 'var(--main-green)'}}>{props.message}</span>;
 };
 
+const Form = (props) => {
+    return (
+        <div className="container-column">
+            <div className="logo-container">
+                <Logo/>
+            </div>
+            <a id="back-button" className="icon-button" href={props.returnPage}><i
+                className="fas fa-angle-left fa-3x"/></a>
+            <form className="form" onSubmit={(event) => props.onSubmit(event)}>
+                <div className="form-data">
+                    {props.children}
+                </div>
+                <input type="submit" className="button disable-select"
+                       value={props.buttonText} disabled={props.buttonDisabled}/>
+            </form>
+        </div>
+    );
+};
+
 class RegisterForm extends React.Component {
 
     constructor(props) {
@@ -77,36 +96,26 @@ class RegisterForm extends React.Component {
 
     render() {
         return (
-            <div className="container-column">
-                <div className="logo-container">
-                    <Logo/>
-                </div>
-                <a id="back-button" className="icon-button" href="./landing.html"><i
-                    className="fas fa-angle-left fa-3x"/></a>
-                <form id="register-form" className="form" onSubmit={(event) => this.handleSubmit(event)}>
-                    <div className="form-data">
-                        <label htmlFor="name">Name <span className="text--sm">(optional)</span>:</label>
-                        <input className="form-text" type="text" id="name" name="name"
-                               onChange={(e) => this.handleInputChange(e)}/>
-                        <label className="margin-top--sm" htmlFor="email">Email:</label>
-                        <input className="form-text" type="email" id="email" name="email"
-                               onChange={(e) => this.handleInputChange(e)} required/>
-                        <label className="margin-top--sm" htmlFor="signup-password">Password:</label>
-                        <input className="form-text" type="password" id="signup-password" name="password"
-                               onChange={(e) => this.handleInputChange(e)} onKeyUp={() => this.checkPasswords()}
-                               required/>
-                        <label className="margin-top--sm" htmlFor="signup-password-repeat">Repeat
-                            password:</label>
-                        <input className="form-text" type="password" id="signup-password-repeat"
-                               name="passwordRepeat" onChange={(e) => this.handleInputChange(e)}
-                               onKeyUp={() => this.checkPasswords()}
-                               required/>
-                        <StatusMessage message={this.state.status.message} error={this.state.status.error}/>
-                    </div>
-                    <input type="submit" className="button disable-select" name="sign-up"
-                           value="Sign up" disabled={this.state.buttonDisabled}/>
-                </form>
-            </div>
+            <Form onSubmit={(event) => this.handleSubmit(event)} returnPage="./landing.html"
+                  buttonDisabled={this.state.buttonDisabled} buttonText="Sign up">
+                <label htmlFor="name">Name <span className="text--sm">(optional)</span>:</label>
+                <input className="form-text" type="text" id="name" name="name"
+                       onChange={(e) => this.handleInputChange(e)}/>
+                <label className="margin-top--sm" htmlFor="email">Email:</label>
+                <input className="form-text" type="email" id="email" name="email"
+                       onChange={(e) => this.handleInputChange(e)} required/>
+                <label className="margin-top--sm" htmlFor="signup-password">Password:</label>
+                <input className="form-text" type="password" id="signup-password" name="password"
+                       onChange={(e) => this.handleInputChange(e)} onKeyUp={() => this.checkPasswords()}
+                       required/>
+                <label className="margin-top--sm" htmlFor="signup-password-repeat">Repeat
+                    password:</label>
+                <input className="form-text" type="password" id="signup-password-repeat"
+                       name="passwordRepeat" onChange={(e) => this.handleInputChange(e)}
+                       onKeyUp={() => this.checkPasswords()}
+                       required/>
+                <StatusMessage message={this.state.status.message} error={this.state.status.error}/>
+            </Form>
         );
     }
 }
