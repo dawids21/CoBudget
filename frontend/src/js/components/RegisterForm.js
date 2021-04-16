@@ -1,31 +1,9 @@
 import React from 'react';
-
-const Logo = () => {
-    return <h1 className="logo disable-select">CoBudget</h1>;
-};
+import Form from './common/Form.js';
 
 const StatusMessage = (props) => {
     return <span className="margin-top--xs"
                  style={{color: props.error ? 'var(--claret)' : 'var(--main-green)'}}>{props.message}</span>;
-};
-
-const Form = (props) => {
-    return (
-        <div className="container-column">
-            <div className="logo-container">
-                <Logo/>
-            </div>
-            <a id="back-button" className="icon-button" href={props.returnPage}><i
-                className="fas fa-angle-left fa-3x"/></a>
-            <form className="form" onSubmit={(event) => props.onSubmit(event)}>
-                <div className="form-data">
-                    {props.children}
-                </div>
-                <input type="submit" className="button disable-select"
-                       value={props.buttonText} disabled={props.buttonDisabled}/>
-            </form>
-        </div>
-    );
 };
 
 class RegisterForm extends React.Component {
