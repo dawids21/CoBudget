@@ -41,14 +41,13 @@ class RegisterForm extends React.Component {
             password,
         }).then(() => window.location.href = '/landing.html').catch((err) => {
             if (err.responseCode === 409) {
-                const errorMessage = document.getElementById('error-message');
-                if (errorMessage) {
-                    errorMessage.innerText = 'Account with this email already exists';
-                    errorMessage.style.color = getComputedStyle(document.documentElement).getPropertyValue('--claret');
-                    return;
-                }
+                this.setState({
+                    status: {
+                        message: 'Account with this email already exists',
+                        error: true,
+                    },
+                });
             }
-            alert('Cannot perform sign up. Please try again');
         });
     }
 
@@ -81,7 +80,6 @@ class RegisterForm extends React.Component {
                 <a id="back-button" className="icon-button" href="./landing.html"><i
                     className="fas fa-angle-left fa-3x"/></a>
                 <form id="register-form" className="form" onSubmit={(event) => this.handleSubmit(event)}>
-                    <span id="error-message"/>
                     <div className="form-data">
                         <label htmlFor="name">Name <span className="text--sm">(optional)</span>:</label>
                         <input className="form-text" type="text" id="name" name="name"
