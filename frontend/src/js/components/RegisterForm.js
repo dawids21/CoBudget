@@ -1,5 +1,9 @@
 import React from 'react';
 
+const Logo = () => {
+    return <h1 className="logo disable-select">CoBudget</h1>;
+};
+
 const StatusMessage = (props) => {
     return <span className="margin-top--xs"
                  style={{color: props.error ? 'var(--claret)' : 'var(--main-green)'}}>{props.message}</span>;
@@ -75,7 +79,7 @@ class RegisterForm extends React.Component {
         return (
             <div className="container-column">
                 <div className="logo-container">
-                    <h1 className="logo disable-select">CoBudget</h1>
+                    <Logo/>
                 </div>
                 <a id="back-button" className="icon-button" href="./landing.html"><i
                     className="fas fa-angle-left fa-3x"/></a>
