@@ -17,6 +17,22 @@ export default class RegisterForm extends React.Component {
         });
     }
 
+    checkPasswords() {
+        if (document.getElementById('signup-password').value ===
+            document.getElementById('signup-password-repeat').value) {
+            document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
+                .getPropertyValue('--main-green');
+            document.getElementById('password-message').innerHTML = 'Passwords are the same';
+            document.getElementById('sign-up-submit').disabled = false;
+        } else {
+            document.getElementById('password-message').style.color = getComputedStyle(document.documentElement)
+                .getPropertyValue('--claret');
+
+            document.getElementById('password-message').innerHTML = 'Passwords are not the same';
+            document.getElementById('sign-up-submit').disabled = true;
+        }
+    }
+
     render() {
         return (
             <div className="container-column">
@@ -34,11 +50,12 @@ export default class RegisterForm extends React.Component {
                         <input className="form-text" type="email" id="email" name="email" required/>
                         <label className="margin-top--sm" htmlFor="signup-password">Password:</label>
                         <input className="form-text" type="password" id="signup-password" name="password"
+                               onKeyUp={() => this.checkPasswords()}
                                required/>
                         <label className="margin-top--sm" htmlFor="signup-password-repeat">Repeat
                             password:</label>
                         <input className="form-text" type="password" id="signup-password-repeat"
-                               name="password"
+                               name="password" onKeyUp={() => this.checkPasswords()}
                                required/>
                         <span id="password-message" className="margin-top--xs">&nbsp;</span>
                     </div>
