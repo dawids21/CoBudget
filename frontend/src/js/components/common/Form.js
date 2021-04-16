@@ -1,22 +1,25 @@
 import React from 'react';
+import styles from './Form.module.css';
 
-const Logo = () => {
-    return <h1 className="logo disable-select">CoBudget</h1>;
+const LogoContainer = () => {
+    return (
+        <div className={styles.logoContainer}>
+            <h1 className={styles.logo}>CoBudget</h1>
+        </div>
+    );
 };
 
 const Form = (props) => {
     return (
-        <div className="container-column">
-            <div className="logo-container">
-                <Logo/>
-            </div>
-            <a id="back-button" className="icon-button" href={props.returnPage}><i
+        <div className={styles.container}>
+            <LogoContainer/>
+            <a className={styles.formBackButton} href={props.returnPage}><i
                 className="fas fa-angle-left fa-3x"/></a>
-            <form className="form" onSubmit={(event) => props.onSubmit(event)}>
-                <div className="form-data">
+            <form className={styles.form} onSubmit={(event) => props.onSubmit(event)}>
+                <div className={styles.formData}>
                     {props.children}
                 </div>
-                <input type="submit" className="button disable-select"
+                <input type="submit" className={styles.formSubmit}
                        value={props.buttonText} disabled={props.buttonDisabled}/>
             </form>
         </div>
