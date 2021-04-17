@@ -1,0 +1,19 @@
+@import "config/_colors.css";
+@import "config/_spacing.css";
+@import "config/_typography.css";
+@import "config/_reset.css";
+
+#root {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+@media all and (min-width: 768px) {
+    :root {
+        --text-base-size: 1.1rem;
+        --space-unit: 1.1rem;
+    }
+}

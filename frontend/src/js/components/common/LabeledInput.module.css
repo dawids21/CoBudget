@@ -1,0 +1,25 @@
+.labeled-input {
+    width: 100%;
+}
+
+.labeled-input-label {
+    color: var(--dark-green);
+    width: 100%;
+    text-align: left;
+    display: inline-block;
+    margin-top: var(--space-sm);
+}
+
+.labeled-input-text {
+    width: 100%;
+    height: var(--text-xl);
+    border: 2px solid var(--dark-green);
+    padding: 0 var(--space-sm);
+    font-family: var(--text-primary-font), sans-serif;
+    font-size: var(--text-sm);
+}
+
+.labeled-input-text:focus {
+    border: 2px solid var(--main-green);
+    outline: none;
+}

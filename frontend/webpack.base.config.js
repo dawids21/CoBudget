@@ -1,4 +1,5 @@
 const FaviconsPlugin = require('favicons-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     entry: {
@@ -28,6 +29,11 @@ module.exports = {
             {
                 test: /\.html$/,
                 use: ['html-loader'],
+            },
+            {
+                test: /\.js$/,
+                include: path.resolve(__dirname, 'src/js'),
+                use: ['babel-loader'],
             },
             {
                 test: /\.(svg|eot|woff|woff2|ttf)$/,

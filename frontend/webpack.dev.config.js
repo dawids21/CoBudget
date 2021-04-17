@@ -16,7 +16,28 @@ module.exports = merge(base, {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            esModule: true,
+                            modules: {
+                                exportLocalsConvention: 'camelCaseOnly',
+                            },
+                        },
+                    },
+                ],
+                include: /\.module\.css$/,
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                ],
+                exclude: /\.module\.css$/,
             },
         ],
     },

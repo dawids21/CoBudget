@@ -1,6 +1,6 @@
-@import "./_typography.css";
-@import "./_spacing.css";
-@import "./_colors.css";
+@import "config/_typography.css";
+@import "config/_spacing.css";
+@import "config/_colors.css";
 
 * {
     margin: 0;
@@ -17,6 +17,14 @@ main {
     background-color: var(--light-gray);
     padding: 0 var(--space-unit);
     margin-top: var(--space-sm);
+}
+
+#root {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 .disable-select {
@@ -179,11 +187,6 @@ main {
 #back-button {
     align-self: flex-start;
     margin: var(--space-xs) var(--space-unit);
-}
-
-#password-message {
-    width: 100%;
-    text-align: left;
 }
 
 #main-header {
