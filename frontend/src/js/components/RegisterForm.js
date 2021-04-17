@@ -3,8 +3,12 @@ import Form from './common/Form.js';
 import LabeledInput from './common/LabeledInput.js';
 
 const StatusMessage = (props) => {
-    return <span className="margin-top--xs"
-                 style={{color: props.error ? 'var(--claret)' : 'var(--main-green)'}}>{props.message}</span>;
+    return (
+        <span style={{
+            color: props.error ? 'var(--claret)' : 'var(--main-green)',
+            marginTop: 'var(--space-xs)',
+        }}>{props.message}</span>
+    );
 };
 
 class RegisterForm extends React.Component {
