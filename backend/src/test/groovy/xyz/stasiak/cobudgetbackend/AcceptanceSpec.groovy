@@ -1,9 +1,12 @@
 package xyz.stasiak.cobudgetbackend
 
+import spock.lang.Ignore
 import spock.lang.Specification
 
 
 class AcceptanceSpec extends Specification {
+
+    @Ignore
     def "main acceptance test"() {
         when: "I create category for expense: Food, subcategory: Food-Home and category for earning: Work"
         then: "Request from configuration return given categories"
