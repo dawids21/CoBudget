@@ -15,8 +15,9 @@
     <description>Backend for Cobudget</description>
     <properties>
         <java.version>16</java.version>
-        <testcontainers.version>1.15.1</testcontainers.version>
+        <testcontainers.version>1.15.3</testcontainers.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
