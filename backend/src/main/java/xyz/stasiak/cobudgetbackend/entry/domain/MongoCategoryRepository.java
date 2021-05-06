@@ -2,6 +2,6 @@ package xyz.stasiak.cobudgetbackend.entry.domain;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-interface MongoCategoryRepository extends MongoRepository<Category, String> {
+interface MongoCategoryRepository extends CategoryRepository, MongoRepository<Category, String> {
 
 }
